@@ -42,6 +42,9 @@ header {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 8px var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 101;
 }
 
 .logo {
@@ -64,7 +67,7 @@ nav {
     border-bottom: 1px solid var(--gray);
     padding: 0 2rem;
     position: sticky;
-    top: 0;
+    top: 72px; /* Below header */
     z-index: 100;
 }
 
@@ -156,21 +159,17 @@ main {
 
 .flow-diagram .node {
     cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.flow-diagram .node:hover {
-    transform: scale(1.05);
 }
 
 .flow-diagram .node rect,
 .flow-diagram .node circle {
-    transition: all 0.2s ease;
+    transition: filter 0.2s ease, stroke 0.2s ease;
 }
 
-.flow-diagram .node:hover rect,
-.flow-diagram .node:hover circle {
-    filter: brightness(1.1);
+.flow-diagram .node:hover rect {
+    filter: brightness(1.08);
+    stroke: rgba(255,255,255,0.5);
+    stroke-width: 2px;
 }
 
 .flow-diagram .node.highlight rect,

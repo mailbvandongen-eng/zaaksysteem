@@ -4,7 +4,11 @@
       "WebFetch(domain:www.gemeentewestland.nl)",
       "Bash(git init:*)",
       "Bash(git remote add:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nZaaksysteem ketenvisualisatie website - Gemeente Westland\n\nInteractieve website voor bewustwording van de zaaksysteemketen:\n- Landing page met SVG flow diagram\n- Behandelaar perspectief (wat verandert er)\n- Aanvrager perspectief (burger journey)\n- KCC perspectief (Rx.Front simulatie)\n- 7 Vinkjes implementatieproces\n- Systemen overzicht\n\nWestland huisstijl met kleuren en logo.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
     ]
   }
 }

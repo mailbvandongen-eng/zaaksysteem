@@ -23,7 +23,6 @@ function initNavigation() {
 // Flow diagram interactivity
 function initFlowDiagram() {
     const nodes = document.querySelectorAll('.flow-diagram .node');
-    const detailPanel = document.getElementById('system-detail');
 
     nodes.forEach(node => {
         node.addEventListener('click', function() {
@@ -33,18 +32,6 @@ function initFlowDiagram() {
             // Highlight selected node
             nodes.forEach(n => n.classList.remove('highlight'));
             this.classList.add('highlight');
-        });
-
-        // Tooltip on hover
-        node.addEventListener('mouseenter', function(e) {
-            const tooltip = this.dataset.tooltip;
-            if (tooltip) {
-                showTooltip(e, tooltip);
-            }
-        });
-
-        node.addEventListener('mouseleave', function() {
-            hideTooltip();
         });
     });
 }
@@ -163,39 +150,6 @@ function showSystemDetail(systemId) {
 
     detailPanel.innerHTML = html;
     detailPanel.classList.add('visible');
-}
-
-// Tooltip
-let tooltipEl = null;
-
-function showTooltip(e, text) {
-    if (!tooltipEl) {
-        tooltipEl = document.createElement('div');
-        tooltipEl.className = 'tooltip';
-        tooltipEl.style.cssText = `
-            position: fixed;
-            background: var(--text);
-            color: var(--white);
-            padding: 0.5rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            z-index: 1000;
-            pointer-events: none;
-            max-width: 250px;
-        `;
-        document.body.appendChild(tooltipEl);
-    }
-
-    tooltipEl.textContent = text;
-    tooltipEl.style.display = 'block';
-    tooltipEl.style.left = (e.clientX + 10) + 'px';
-    tooltipEl.style.top = (e.clientY + 10) + 'px';
-}
-
-function hideTooltip() {
-    if (tooltipEl) {
-        tooltipEl.style.display = 'none';
-    }
 }
 
 // Perspective switcher
