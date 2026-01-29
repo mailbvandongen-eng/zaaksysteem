@@ -727,8 +727,11 @@
                     if (submenu) {
                         submenu.classList.add('visible');
                     }
-                    // Keep main diagram visible until submenu choice
-                    showMainDiagram();
+                    // Hide main diagram, show only submenu
+                    mainDiagram.style.display = 'none';
+                    perspectiveDiagram.style.display = 'none';
+                    quickActions.style.display = 'none';
+                    infoSection.style.display = 'none';
                 }
             });
         });
