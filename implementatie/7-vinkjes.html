@@ -408,13 +408,21 @@
             let currentIndex = 0;
 
             // Reset all
-            vinkjes.forEach(v => {
-                v.classList.remove('active', 'completed', 'expanded');
+            vinkjes.forEach((v, i) => {
+                v.classList.remove('active', 'completed');
+                v.querySelector('.number').textContent = i + 1;
             });
-            document.querySelectorAll('.vinkje-detail').forEach(d => d.classList.remove('visible'));
 
             function animateNext() {
-                if (currentIndex >= vinkjes.length) return;
+                if (currentIndex >= vinkjes.length) {
+                    // Laatste vinkje ook completed maken
+                    setTimeout(() => {
+                        vinkjes[vinkjes.length - 1].classList.remove('active');
+                        vinkjes[vinkjes.length - 1].classList.add('completed');
+                        vinkjes[vinkjes.length - 1].querySelector('.number').textContent = '✓';
+                    }, 800);
+                    return;
+                }
 
                 // Mark previous as completed
                 if (currentIndex > 0) {
@@ -425,20 +433,9 @@
 
                 // Mark current as active
                 vinkjes[currentIndex].classList.add('active');
-                vinkjes[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-                // Show detail
-                const id = vinkjes[currentIndex].dataset.vinkje;
-                const detail = document.querySelector(`.vinkje-detail[data-detail="${id}"]`);
-                document.querySelectorAll('.vinkje-detail').forEach(d => d.classList.remove('visible'));
-                detail.classList.add('visible');
-                vinkjes[currentIndex].classList.add('expanded');
 
                 currentIndex++;
-
-                if (currentIndex <= vinkjes.length) {
-                    setTimeout(animateNext, 2500);
-                }
+                setTimeout(animateNext, 1000);
             }
 
             animateNext();
@@ -448,10 +445,9 @@
         document.getElementById('reset-vinkjes').addEventListener('click', function() {
             const vinkjes = document.querySelectorAll('.vinkje[data-vinkje]');
             vinkjes.forEach((v, i) => {
-                v.classList.remove('active', 'completed', 'expanded');
+                v.classList.remove('active', 'completed');
                 v.querySelector('.number').textContent = i + 1;
             });
-            document.querySelectorAll('.vinkje-detail').forEach(d => d.classList.remove('visible'));
         });
     </script>
 </body>
