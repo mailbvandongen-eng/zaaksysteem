@@ -341,31 +341,84 @@
 
             <!-- Enable-U info popup -->
             <div id="eu-info" class="eu-info">
-                <h4>Enable-U - API Gateway</h4>
-                <p>Enable-U filtert welke informatie zichtbaar is voor de aanvrager op de PIP:</p>
-                <div class="eu-diagram">
-                    <svg viewBox="0 0 500 120" style="max-width:500px">
-                        <rect x="10" y="40" width="100" height="40" fill="#44772C" rx="4"/>
-                        <text x="60" y="65" text-anchor="middle" fill="white" font-size="10">Rx.Enterprise</text>
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Enable-U API Gateway</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                    De API Gateway bepaalt wat de aanvrager ziet op de PIP. Het werkt als een filter tussen het zaaksysteem en de burger.
+                </p>
 
-                        <rect x="150" y="20" width="80" height="80" fill="#B0BEC5" rx="4"/>
-                        <text x="190" y="55" text-anchor="middle" fill="#333" font-size="9" font-weight="600">Enable-U</text>
-                        <text x="190" y="70" text-anchor="middle" fill="#333" font-size="8">Filter</text>
-                        <text x="190" y="85" text-anchor="middle" fill="#666" font-size="7">zaaktypen</text>
-                        <text x="190" y="95" text-anchor="middle" fill="#666" font-size="7">documenttypen</text>
+                <!-- Diagram -->
+                <div style="background: var(--gray-light); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <svg viewBox="0 0 600 100" style="width: 100%; max-width: 700px; display: block; margin: 0 auto;">
+                        <rect x="20" y="25" width="140" height="50" fill="#44772C" rx="6"/>
+                        <text x="90" y="55" text-anchor="middle" fill="white" font-size="14" font-weight="500">Rx.Enterprise</text>
 
-                        <rect x="270" y="40" width="80" height="40" fill="#9C27B0" rx="4"/>
-                        <text x="310" y="65" text-anchor="middle" fill="white" font-size="10">PIP</text>
+                        <rect x="230" y="15" width="140" height="70" fill="#B0BEC5" rx="6"/>
+                        <text x="300" y="45" text-anchor="middle" fill="#333" font-size="14" font-weight="600">Enable-U</text>
+                        <text x="300" y="65" text-anchor="middle" fill="#555" font-size="12">API Gateway</text>
 
-                        <path d="M110,60 L150,60" stroke="#74B943" stroke-width="2" stroke-dasharray="4"/>
-                        <path d="M230,60 L270,60" stroke="#74B943" stroke-width="2" stroke-dasharray="4"/>
+                        <rect x="440" y="25" width="140" height="50" fill="#9C27B0" rx="6"/>
+                        <text x="510" y="55" text-anchor="middle" fill="white" font-size="14" font-weight="500">PIP</text>
 
-                        <text x="400" y="35" font-size="8" fill="#4CAF50">✓ Aanvragen</text>
-                        <text x="400" y="50" font-size="8" fill="#4CAF50">✓ Beschikkingen</text>
-                        <text x="400" y="65" font-size="8" fill="#4CAF50">✓ Eigen uploads</text>
-                        <text x="400" y="85" font-size="8" fill="#F44336">✗ Concepten</text>
-                        <text x="400" y="100" font-size="8" fill="#F44336">✗ Interne notities</text>
+                        <line class="flow-line" x1="160" y1="50" x2="230" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4"/>
+                        <line class="flow-line" x1="370" y1="50" x2="440" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4"/>
                     </svg>
+                </div>
+
+                <!-- Uitleg hoe het filter werkt -->
+                <h4 style="margin-bottom: 1rem;">Hoe werkt het filter?</h4>
+
+                <div style="display: grid; gap: 1rem; margin-bottom: 2rem;">
+                    <div style="background: #FFF3E0; padding: 1rem; border-radius: 6px; border-left: 4px solid #FF9800;">
+                        <strong>Niets ingericht = niets zichtbaar</strong><br>
+                        Een zaaktype dat niet is toegevoegd aan het filter is onzichtbaar op de PIP.
+                    </div>
+
+                    <div style="background: #E3F2FD; padding: 1rem; border-radius: 6px; border-left: 4px solid #2196F3;">
+                        <strong>Zaaktype toegevoegd = zaak zichtbaar, maar nog geen documenten</strong><br>
+                        Als je een zaaktype toevoegt, ziet de burger de zaak. Maar documenten zijn nog niet zichtbaar.
+                    </div>
+
+                    <div style="background: #E8F5E9; padding: 1rem; border-radius: 6px; border-left: 4px solid #4CAF50;">
+                        <strong>Documenttype toegevoegd = document zichtbaar</strong><br>
+                        Alleen documenttypen die zijn ingericht worden getoond. De rest blijft verborgen (zoals concept-beschikkingen).
+                    </div>
+                </div>
+
+                <!-- Wat is wel/niet zichtbaar -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="background: #E8F5E9; padding: 1.25rem; border-radius: 8px;">
+                        <h5 style="color: #2E7D32; margin-bottom: 0.75rem;">Meestal zichtbaar</h5>
+                        <ul style="margin: 0; padding-left: 1.25rem; color: #333;">
+                            <li>Aanvragen</li>
+                            <li>Beschikkingen</li>
+                            <li>Eigen uploads van de burger</li>
+                        </ul>
+                    </div>
+                    <div style="background: #FFEBEE; padding: 1.25rem; border-radius: 8px;">
+                        <h5 style="color: #C62828; margin-bottom: 0.75rem;">Meestal verborgen</h5>
+                        <ul style="margin: 0; padding-left: 1.25rem; color: #333;">
+                            <li>Concept-beschikkingen</li>
+                            <li>Interne notities</li>
+                            <li>Adviezen van derden</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Belangrijk om te weten -->
+                <div style="background: #FFF8E1; padding: 1.25rem; border-radius: 8px; border: 1px solid #FFE082; margin-bottom: 1.5rem;">
+                    <h5 style="color: #F57F17; margin-bottom: 0.5rem;">Belangrijk om te weten</h5>
+                    <p style="margin: 0; color: #333;">
+                        Op dit moment geldt een documenttype voor <strong>alle zaaktypen</strong>. Als je een documenttype openzet, is het zichtbaar bij elke zaak.
+                        Daarom is het belangrijk om <strong>vooraf per zaaktype te bespreken</strong> welke documenttypen zichtbaar moeten zijn.
+                    </p>
+                </div>
+
+                <!-- Toekomst -->
+                <div style="background: #E3F2FD; padding: 1.25rem; border-radius: 8px; border: 1px solid #90CAF9;">
+                    <h5 style="color: #1565C0; margin-bottom: 0.5rem;">Binnenkort</h5>
+                    <p style="margin: 0; color: #333;">
+                        Het filter wordt uitgebreid. Straks kun je <strong>per zaaktype</strong> bepalen welke documenttypen zichtbaar zijn op de PIP.
+                    </p>
                 </div>
             </div>
         </section>
