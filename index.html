@@ -42,6 +42,60 @@
             color: white;
             border-color: var(--primary);
         }
+        .flow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--white);
+            border: 2px solid var(--gray);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        .flow-step:hover {
+            border-color: var(--primary-light);
+            background: #f0fff0;
+        }
+        .flow-step.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .flow-step.completed {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-light);
+        }
+        .step-num {
+            width: 22px;
+            height: 22px;
+            background: var(--gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .flow-step.active .step-num,
+        .flow-step.completed .step-num {
+            background: rgba(255,255,255,0.3);
+        }
+        .step-description {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--white);
+            border-left: 4px solid var(--primary-light);
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+        }
         .flow-path {
             fill: none;
             stroke: var(--primary-light);
@@ -114,6 +168,83 @@
                 <div class="submenu-options">
                     <div class="submenu-option" data-flow="sd">Sociaal Domein (WMO, GPK)</div>
                     <div class="submenu-option" data-flow="bz">Burgerzaken (Paspoort, Rijbewijs)</div>
+                </div>
+            </div>
+
+            <!-- Stappen voor behandelaar -->
+            <div id="submenu-behandelaar" class="submenu">
+                <div class="submenu-title">Volg de behandeling stap voor stap:</div>
+                <div class="flow-steps">
+                    <div class="flow-step" data-step="beh-1">
+                        <span class="step-num">1</span>
+                        <span class="step-text">Aanvraag in werkvoorraad</span>
+                    </div>
+                    <div class="flow-step" data-step="beh-2">
+                        <span class="step-num">2</span>
+                        <span class="step-text">Behandelaar pakt zaak op</span>
+                    </div>
+                    <div class="flow-step" data-step="beh-3">
+                        <span class="step-num">3</span>
+                        <span class="step-text">Notificatie: "In behandeling"</span>
+                    </div>
+                    <div class="flow-step" data-step="beh-4">
+                        <span class="step-num">4</span>
+                        <span class="step-text">Aanvullende stukken nodig</span>
+                    </div>
+                    <div class="flow-step" data-step="beh-5">
+                        <span class="step-num">5</span>
+                        <span class="step-text">Aanvrager uploadt via PIP</span>
+                    </div>
+                    <div class="flow-step" data-step="beh-6">
+                        <span class="step-num">6</span>
+                        <span class="step-text">Zaak afgehandeld, beschikking</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stappen voor KCC -->
+            <div id="submenu-kcc" class="submenu">
+                <div class="submenu-title">KCC klantcontact:</div>
+                <div class="flow-steps">
+                    <div class="flow-step" data-step="kcc-1">
+                        <span class="step-num">1</span>
+                        <span class="step-text">Klant belt met vraag</span>
+                    </div>
+                    <div class="flow-step" data-step="kcc-2">
+                        <span class="step-num">2</span>
+                        <span class="step-text">KCC zoekt op BSN in Rx.Front</span>
+                    </div>
+                    <div class="flow-step" data-step="kcc-3">
+                        <span class="step-num">3</span>
+                        <span class="step-text">Ziet alle zaken + status</span>
+                    </div>
+                    <div class="flow-step" data-step="kcc-4">
+                        <span class="step-num">4</span>
+                        <span class="step-text">Terugbelverzoek of doorverbinden</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stappen voor registratie -->
+            <div id="submenu-registratie" class="submenu">
+                <div class="submenu-title">Post en scan verwerking:</div>
+                <div class="flow-steps">
+                    <div class="flow-step" data-step="reg-1">
+                        <span class="step-num">1</span>
+                        <span class="step-text">Post of mail komt binnen</span>
+                    </div>
+                    <div class="flow-step" data-step="reg-2">
+                        <span class="step-num">2</span>
+                        <span class="step-text">Scannen met Dyanix Scansuite</span>
+                    </div>
+                    <div class="flow-step" data-step="reg-3">
+                        <span class="step-num">3</span>
+                        <span class="step-text">Document in werkvoorraad</span>
+                    </div>
+                    <div class="flow-step" data-step="reg-4">
+                        <span class="step-num">4</span>
+                        <span class="step-text">Toewijzen aan behandelaar</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -281,7 +412,7 @@
 
             <!-- System detail panel -->
             <div id="system-detail" class="system-detail">
-                <p>Kies een perspectief en domein om de keten te zien</p>
+                <p>Kies een perspectief en klik op een stap om de keten te volgen</p>
             </div>
         </section>
 
@@ -322,40 +453,125 @@
 
     <script src="js/flow.js"></script>
     <script>
-        // Flow configurations per perspective and domain
-        // Node positions (box edges):
-        // gemeentewestland: 60-220, 100-150    simform: 280-420, 100-150   ediensten: 280-420, 170-220
-        // digid: 280-420, 400-440              rx-enterprise: 500-700, 180-250
-        // centric-bz: 480-590, 300-350         s4sd: 600-710, 300-350
-        // pip: 780-940, 130-190                rx-front: 1000-1140, 130-190
-        // post: 60-220, 310-360                scanner: 280-420, 310-360
+        // Step-by-step flow configurations
+        const stepConfigs = {
+            // Behandelaar stappen
+            'beh-1': {
+                nodes: ['rx-enterprise'],
+                path: null,
+                description: 'De aanvraag staat in de werkvoorraad van Rx.Enterprise. De behandelaar ziet dit in zijn takenlijst.'
+            },
+            'beh-2': {
+                nodes: ['rx-enterprise', 's4sd', 'centric-bz'],
+                path: 'M600,250 L600,300 L655,300',
+                description: 'Behandelaar opent de zaak en werkt in het afhandelsysteem (S4SD, Centric BZ, etc.). Status wordt "In behandeling".'
+            },
+            'beh-3': {
+                nodes: ['rx-enterprise', 'notificatie', 'pip'],
+                path: 'M700,215 L750,215 L750,232 L780,232',
+                description: 'Automatisch gaat er een notificatie naar de aanvrager: "Uw aanvraag is in behandeling".'
+            },
+            'beh-4': {
+                nodes: ['rx-enterprise', 'notificatie', 'pip'],
+                path: 'M700,215 L750,215 L750,232 L780,232 L940,232 L940,160 L860,160',
+                description: 'Behandelaar heeft aanvullende stukken nodig. Verzoek gaat via notificatie naar de PIP van de aanvrager.'
+            },
+            'beh-5': {
+                nodes: ['pip', 'rx-enterprise'],
+                path: 'M860,190 L860,250 L700,250 L700,215',
+                description: 'Aanvrager uploadt documenten via de PIP. Deze komen direct in het dossier in Rx.Enterprise.'
+            },
+            'beh-6': {
+                nodes: ['rx-enterprise', 's4sd', 'notificatie', 'pip'],
+                path: 'M655,300 L655,280 L700,250 L700,215 L750,215 L750,232 L780,232 L940,232 L940,160 L860,160',
+                description: 'Zaak wordt afgehandeld, beschikking wordt verstuurd. Aanvrager ontvangt notificatie en kan beschikking downloaden via PIP.'
+            },
+            // KCC stappen
+            'kcc-1': {
+                nodes: ['telefoon'],
+                path: null,
+                description: 'Een burger belt het KCC met een vraag over een lopende aanvraag.'
+            },
+            'kcc-2': {
+                nodes: ['telefoon', 'rx-front'],
+                path: 'M220,270 L980,270 L1000,200 L1000,160',
+                description: 'KCC-medewerker opent Rx.Front en zoekt de burger op via BSN. Het integrale klantbeeld verschijnt.'
+            },
+            'kcc-3': {
+                nodes: ['rx-front', 'rx-enterprise', 'pip'],
+                path: 'M1000,160 L950,160 L950,100 L600,100 L600,180',
+                description: 'KCC ziet alle lopende en afgeronde zaken, de actuele status, en wie de behandelaar is. Dezelfde info als op de PIP.'
+            },
+            'kcc-4': {
+                nodes: ['rx-front', 'rx-enterprise'],
+                path: 'M1070,190 L1070,250 L700,250 L700,215',
+                description: 'KCC kan een terugbelverzoek inplannen of direct doorverbinden met de behandelaar. Alles wordt gelogd.'
+            },
+            // Team Registratie stappen
+            'reg-1': {
+                nodes: ['post'],
+                path: null,
+                description: 'Post of e-mail komt binnen bij Team Registratie.'
+            },
+            'reg-2': {
+                nodes: ['post', 'scanner'],
+                path: 'M220,335 L280,335',
+                description: 'Document wordt gescand met de Dyanix Scansuite. Metadata wordt toegevoegd.'
+            },
+            'reg-3': {
+                nodes: ['scanner', 'rx-enterprise'],
+                path: 'M420,335 L460,335 L460,250 L500,215',
+                description: 'Gescand document komt in de werkvoorraad van Rx.Enterprise.'
+            },
+            'reg-4': {
+                nodes: ['rx-enterprise'],
+                path: null,
+                description: 'Team Registratie wijst het document toe aan de juiste behandelaar of koppelt het aan een bestaande zaak.'
+            }
+        };
+
+        // Aanvrager flow configurations (domain choice)
         const flowConfigs = {
             'aanvrager-sd': {
                 nodes: ['gemeentewestland', 'simform', 'digid', 'rx-enterprise', 's4sd', 'pip'],
-                // gemeentewestland → simform → digid → rx-enterprise → s4sd → pip
-                path: 'M220,125 L280,125 L350,150 L350,400 L350,440 L450,440 L450,250 L500,215 L700,215 L710,250 L655,300 L655,350 L750,350 L750,160 L780,160'
+                path: 'M220,125 L280,125 L350,150 L350,400 L350,440 L450,440 L450,250 L500,215 L700,215 L710,250 L655,300 L655,350 L750,350 L750,160 L780,160',
+                description: 'Burger vult formulier in op gemeentewestland.nl (SIMform), authenticeert met DigiD, zaak gaat naar Rx.Enterprise, wordt behandeld in S4SD, burger volgt status via PIP.'
             },
             'aanvrager-bz': {
                 nodes: ['gemeentewestland', 'ediensten', 'digid', 'centric-bz', 'rx-enterprise', 'pip'],
-                // gemeentewestland → ediensten → digid → centric-bz → rx-enterprise → pip
-                path: 'M140,150 L140,195 L280,195 L350,220 L350,400 L350,440 L450,440 L450,325 L480,325 L535,350 L535,380 L720,380 L720,215 L700,215 L700,180 L780,160'
-            },
-            'behandelaar': {
-                nodes: ['rx-enterprise', 'centric-bz', 's4sd', 'stratech', 'scanner'],
-                // werkvoorraad: scanner → rx-enterprise → afhandelsystemen
-                path: 'M420,335 L460,335 L460,250 L500,250 L600,250 L600,300 L535,300 L535,350 L535,380 L600,380 L655,350 L655,300'
-            },
-            'kcc': {
-                nodes: ['rx-front', 'rx-enterprise', 'pip', 'telefoon'],
-                // KCC belt burger, zoekt in Rx.Front, ziet alles
-                path: 'M220,270 L240,270 L240,100 L980,100 L1070,130 L1070,190 L1000,220 L860,220 L860,190 L780,160 L740,160 L740,180 L700,180'
-            },
-            'registratie': {
-                nodes: ['post', 'scanner', 'rx-enterprise'],
-                // post → scanner → rx-enterprise werkvoorraad
-                path: 'M220,335 L280,335 L420,335 L460,335 L460,250 L500,215 L600,215'
+                path: 'M140,150 L140,195 L280,195 L350,220 L350,400 L350,440 L450,440 L450,325 L480,325 L535,350 L535,380 L720,380 L720,215 L700,215 L700,180 L780,160',
+                description: 'Burger vraagt paspoort/rijbewijs aan via eDiensten, authenticeert met DigiD, Centric Burgerzaken verwerkt, synchroniseert met Rx.Enterprise, burger ziet status in PIP.'
             }
         };
+
+        // Hide all submenus
+        function hideAllSubmenus() {
+            document.querySelectorAll('.submenu').forEach(s => s.classList.remove('visible'));
+            document.querySelectorAll('.submenu-option, .flow-step').forEach(o => o.classList.remove('active', 'completed'));
+        }
+
+        // Reset diagram
+        function resetDiagram() {
+            document.querySelectorAll('.flow-path').forEach(p => p.classList.remove('visible'));
+            document.querySelectorAll('.node').forEach(n => {
+                n.classList.remove('dimmed', 'highlighted');
+            });
+            updateDescription('');
+        }
+
+        // Update description panel
+        function updateDescription(text) {
+            const panel = document.getElementById('system-detail');
+            if (panel) {
+                if (text) {
+                    panel.innerHTML = '<div class="step-description">' + text + '</div>';
+                    panel.classList.add('visible');
+                } else {
+                    panel.innerHTML = '<p>Kies een perspectief en klik op een stap om de keten te zien</p>';
+                    panel.classList.remove('visible');
+                }
+            }
+        }
 
         // Perspective cards
         document.querySelectorAll('.perspective-card').forEach(card => {
@@ -366,32 +582,19 @@
                 document.querySelectorAll('.perspective-card').forEach(c => c.classList.remove('active'));
                 this.classList.add('active');
 
-                // Hide all flow paths
-                document.querySelectorAll('.flow-path').forEach(p => p.classList.remove('visible'));
+                // Reset diagram and hide all submenus
+                resetDiagram();
+                hideAllSubmenus();
 
-                // Reset nodes
-                document.querySelectorAll('.node').forEach(n => {
-                    n.classList.remove('dimmed', 'highlighted');
-                });
-
-                // Show submenu for aanvrager
-                const submenu = document.getElementById('submenu-aanvrager');
-                if (perspective === 'aanvrager') {
+                // Show appropriate submenu
+                const submenu = document.getElementById('submenu-' + perspective);
+                if (submenu) {
                     submenu.classList.add('visible');
-                    document.querySelectorAll('.submenu-option').forEach(o => o.classList.remove('active'));
-                } else {
-                    submenu.classList.remove('visible');
-
-                    // Apply flow for other perspectives
-                    const config = flowConfigs[perspective];
-                    if (config) {
-                        applyFlow(config);
-                    }
                 }
             });
         });
 
-        // Submenu options
+        // Submenu options (for aanvrager domain choice)
         document.querySelectorAll('.submenu-option').forEach(option => {
             option.addEventListener('click', function() {
                 const flow = this.dataset.flow;
@@ -400,25 +603,39 @@
                 document.querySelectorAll('.submenu-option').forEach(o => o.classList.remove('active'));
                 this.classList.add('active');
 
-                // Get config
+                // Get config and apply
                 const config = flowConfigs['aanvrager-' + flow];
                 if (config) {
                     applyFlow(config);
-
-                    // Show animated path
-                    const svg = document.querySelector('.flow-diagram svg');
-                    let flowPath = document.getElementById('dynamic-flow');
-                    if (!flowPath) {
-                        flowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                        flowPath.id = 'dynamic-flow';
-                        flowPath.classList.add('flow-path');
-                        // Insert after defs but before nodes
-                        const firstNode = svg.querySelector('.node');
-                        svg.insertBefore(flowPath, firstNode);
-                    }
-                    flowPath.setAttribute('d', config.path);
-                    flowPath.classList.add('visible');
+                    updateDescription(config.description);
                 }
+            });
+        });
+
+        // Flow step clicks
+        document.querySelectorAll('.flow-step').forEach(step => {
+            step.addEventListener('click', function() {
+                const stepId = this.dataset.step;
+                const config = stepConfigs[stepId];
+
+                if (!config) return;
+
+                // Mark previous steps as completed, current as active
+                const allSteps = this.parentElement.querySelectorAll('.flow-step');
+                let foundCurrent = false;
+                allSteps.forEach(s => {
+                    s.classList.remove('active', 'completed');
+                    if (s === this) {
+                        s.classList.add('active');
+                        foundCurrent = true;
+                    } else if (!foundCurrent) {
+                        s.classList.add('completed');
+                    }
+                });
+
+                // Apply the flow
+                applyFlow(config);
+                updateDescription(config.description);
             });
         });
 
