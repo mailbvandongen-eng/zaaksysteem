@@ -115,10 +115,6 @@
         <section>
             <p>Voordat een zaaktype live kan gaan, moeten 7 partijen akkoord geven. Dit zorgt ervoor dat de hele keten goed is ingericht en getest. Pas als alle vinkjes zijn gezet, tekent de proceseigenaar het overdrachtsformulier.</p>
 
-            <div class="play-controls">
-                <button id="play-vinkjes" class="btn btn-primary">▶ Doorloop de stappen</button>
-                <button id="reset-vinkjes" class="btn btn-outline">↺ Reset</button>
-            </div>
         </section>
 
         <!-- De 7 vinkjes -->
@@ -402,53 +398,6 @@
             });
         });
 
-        // Play animation
-        document.getElementById('play-vinkjes').addEventListener('click', function() {
-            const vinkjes = document.querySelectorAll('.vinkje[data-vinkje]');
-            let currentIndex = 0;
-
-            // Reset all
-            vinkjes.forEach((v, i) => {
-                v.classList.remove('active', 'completed');
-                v.querySelector('.number').textContent = i + 1;
-            });
-
-            function animateNext() {
-                if (currentIndex >= vinkjes.length) {
-                    // Laatste vinkje ook completed maken
-                    setTimeout(() => {
-                        vinkjes[vinkjes.length - 1].classList.remove('active');
-                        vinkjes[vinkjes.length - 1].classList.add('completed');
-                        vinkjes[vinkjes.length - 1].querySelector('.number').textContent = '✓';
-                    }, 800);
-                    return;
-                }
-
-                // Mark previous as completed
-                if (currentIndex > 0) {
-                    vinkjes[currentIndex - 1].classList.remove('active');
-                    vinkjes[currentIndex - 1].classList.add('completed');
-                    vinkjes[currentIndex - 1].querySelector('.number').textContent = '✓';
-                }
-
-                // Mark current as active
-                vinkjes[currentIndex].classList.add('active');
-
-                currentIndex++;
-                setTimeout(animateNext, 1000);
-            }
-
-            animateNext();
-        });
-
-        // Reset
-        document.getElementById('reset-vinkjes').addEventListener('click', function() {
-            const vinkjes = document.querySelectorAll('.vinkje[data-vinkje]');
-            vinkjes.forEach((v, i) => {
-                v.classList.remove('active', 'completed');
-                v.querySelector('.number').textContent = i + 1;
-            });
-        });
     </script>
 </body>
 </html>
