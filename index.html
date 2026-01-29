@@ -6,6 +6,34 @@
     <title>Zaaksysteem Keten - Gemeente Westland</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+        .perspective-cards {
+            display: flex;
+            gap: 0.75rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .perspective-card {
+            padding: 0.75rem 1.25rem;
+            background: var(--white);
+            border: 1px solid var(--gray);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .perspective-card:hover {
+            border-color: var(--primary-light);
+        }
+        .perspective-card.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+        .perspective-card h5 {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Submenu voor keuzes */
         .submenu {
             display: none;
             margin-top: 1rem;
@@ -20,19 +48,21 @@
             font-weight: 600;
             margin-bottom: 0.75rem;
             color: var(--text);
+            font-size: 0.9rem;
         }
         .submenu-options {
             display: flex;
             gap: 0.75rem;
+            flex-wrap: wrap;
         }
         .submenu-option {
-            padding: 0.75rem 1.5rem;
+            padding: 0.6rem 1.25rem;
             background: var(--white);
-            border: 2px solid var(--gray);
+            border: 1px solid var(--gray);
             border-radius: 6px;
             cursor: pointer;
-            font-weight: 500;
-            transition: all 0.2s;
+            font-size: 0.9rem;
+            transition: all 0.15s;
         }
         .submenu-option:hover {
             border-color: var(--primary-light);
@@ -42,81 +72,68 @@
             color: white;
             border-color: var(--primary);
         }
-        .flow-steps {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        .flow-step {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
+
+        /* Flow diagrams */
+        .flow-container {
             background: var(--white);
-            border: 2px solid var(--gray);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .flow-container h3 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Perspective flow - simpele horizontale weergave */
+        .perspective-flow {
+            display: none;
+            padding: 2rem 1rem;
+        }
+        .perspective-flow.visible {
+            display: block;
+        }
+        .perspective-flow svg {
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Flow beschrijving */
+        .flow-description {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f0f7ed;
+            border-left: 3px solid var(--primary);
+            border-radius: 0 6px 6px 0;
             font-size: 0.9rem;
         }
-        .flow-step:hover {
-            border-color: var(--primary-light);
-            background: #f0fff0;
-        }
-        .flow-step.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        .flow-step.completed {
-            background: var(--primary-light);
-            color: white;
-            border-color: var(--primary-light);
-        }
-        .step-num {
-            width: 22px;
-            height: 22px;
-            background: var(--gray);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
-        .flow-step.active .step-num,
-        .flow-step.completed .step-num {
-            background: rgba(255,255,255,0.3);
-        }
-        .step-description {
+
+        /* Enable-U popup */
+        .eu-info {
+            display: none;
             margin-top: 1rem;
-            padding: 1rem;
+            padding: 1.5rem;
             background: var(--white);
-            border-left: 4px solid var(--primary-light);
-            border-radius: 0 8px 8px 0;
-            font-size: 0.95rem;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
         }
-        .flow-path {
-            fill: none;
-            stroke: var(--primary-light);
-            stroke-width: 4;
-            stroke-dasharray: 12 6;
-            stroke-linecap: round;
-            opacity: 0;
-            transition: opacity 0.3s;
+        .eu-info.visible {
+            display: block;
         }
-        .flow-path.visible {
-            opacity: 1;
-            animation: flowDash 1s linear infinite;
+        .eu-info h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
-        @keyframes flowDash {
-            to { stroke-dashoffset: -18; }
-        }
-        .node.dimmed {
-            opacity: 0.25;
-        }
-        .node.highlighted {
-            opacity: 1;
+        .eu-diagram {
+            background: var(--gray-light);
+            padding: 1.5rem;
+            border-radius: 6px;
+            text-align: center;
         }
     </style>
 </head>
@@ -142,276 +159,222 @@
     <main>
         <!-- Perspective switcher -->
         <section>
-            <h3>Bekijk de keten vanuit jouw perspectief</h3>
+            <h3>Bekijk de keten vanuit een perspectief</h3>
             <div class="perspective-cards">
+                <div class="perspective-card" data-perspective="overzicht">
+                    <h5>Overzicht</h5>
+                </div>
                 <div class="perspective-card" data-perspective="aanvrager">
                     <h5>Aanvrager</h5>
-                    <p>Burger of bedrijf</p>
                 </div>
                 <div class="perspective-card" data-perspective="behandelaar">
                     <h5>Behandelaar</h5>
-                    <p>Werkt in de keten</p>
                 </div>
                 <div class="perspective-card" data-perspective="kcc">
                     <h5>KCC</h5>
-                    <p>Klantcontact</p>
                 </div>
                 <div class="perspective-card" data-perspective="registratie">
                     <h5>Team Registratie</h5>
-                    <p>Post en scan</p>
                 </div>
             </div>
 
-            <!-- Submenu voor aanvrager -->
+            <!-- Submenu's voor specifieke flows -->
             <div id="submenu-aanvrager" class="submenu">
                 <div class="submenu-title">Kies een domein:</div>
                 <div class="submenu-options">
-                    <div class="submenu-option" data-flow="sd">Sociaal Domein (WMO, GPK)</div>
-                    <div class="submenu-option" data-flow="bz">Burgerzaken (Paspoort, Rijbewijs)</div>
+                    <div class="submenu-option" data-flow="aanvrager-sd">Sociaal Domein (WMO, GPK)</div>
+                    <div class="submenu-option" data-flow="aanvrager-bz">Burgerzaken (Paspoort, Rijbewijs)</div>
                 </div>
             </div>
 
-            <!-- Stappen voor behandelaar -->
             <div id="submenu-behandelaar" class="submenu">
-                <div class="submenu-title">Volg de behandeling stap voor stap:</div>
-                <div class="flow-steps">
-                    <div class="flow-step" data-step="beh-1">
-                        <span class="step-num">1</span>
-                        <span class="step-text">Aanvraag in werkvoorraad</span>
-                    </div>
-                    <div class="flow-step" data-step="beh-2">
-                        <span class="step-num">2</span>
-                        <span class="step-text">Behandelaar pakt zaak op</span>
-                    </div>
-                    <div class="flow-step" data-step="beh-3">
-                        <span class="step-num">3</span>
-                        <span class="step-text">Notificatie: "In behandeling"</span>
-                    </div>
-                    <div class="flow-step" data-step="beh-4">
-                        <span class="step-num">4</span>
-                        <span class="step-text">Aanvullende stukken nodig</span>
-                    </div>
-                    <div class="flow-step" data-step="beh-5">
-                        <span class="step-num">5</span>
-                        <span class="step-text">Aanvrager uploadt via PIP</span>
-                    </div>
-                    <div class="flow-step" data-step="beh-6">
-                        <span class="step-num">6</span>
-                        <span class="step-text">Zaak afgehandeld, beschikking</span>
-                    </div>
+                <div class="submenu-title">Kies een stap in het proces:</div>
+                <div class="submenu-options">
+                    <div class="submenu-option" data-flow="beh-1">1. Zaak oppakken</div>
+                    <div class="submenu-option" data-flow="beh-2">2. In behandeling</div>
+                    <div class="submenu-option" data-flow="beh-3">3. Stukken opvragen</div>
+                    <div class="submenu-option" data-flow="beh-4">4. Stukken ontvangen</div>
+                    <div class="submenu-option" data-flow="beh-5">5. Zaak afsluiten</div>
                 </div>
             </div>
 
-            <!-- Stappen voor KCC -->
             <div id="submenu-kcc" class="submenu">
-                <div class="submenu-title">KCC klantcontact:</div>
-                <div class="flow-steps">
-                    <div class="flow-step" data-step="kcc-1">
-                        <span class="step-num">1</span>
-                        <span class="step-text">Klant belt met vraag</span>
-                    </div>
-                    <div class="flow-step" data-step="kcc-2">
-                        <span class="step-num">2</span>
-                        <span class="step-text">KCC zoekt op BSN in Rx.Front</span>
-                    </div>
-                    <div class="flow-step" data-step="kcc-3">
-                        <span class="step-num">3</span>
-                        <span class="step-text">Ziet alle zaken + status</span>
-                    </div>
-                    <div class="flow-step" data-step="kcc-4">
-                        <span class="step-num">4</span>
-                        <span class="step-text">Terugbelverzoek of doorverbinden</span>
-                    </div>
+                <div class="submenu-title">Kies een scenario:</div>
+                <div class="submenu-options">
+                    <div class="submenu-option" data-flow="kcc-1">Klant belt voor status</div>
+                    <div class="submenu-option" data-flow="kcc-2">Terugbelverzoek</div>
                 </div>
             </div>
 
-            <!-- Stappen voor registratie -->
             <div id="submenu-registratie" class="submenu">
-                <div class="submenu-title">Post en scan verwerking:</div>
-                <div class="flow-steps">
-                    <div class="flow-step" data-step="reg-1">
-                        <span class="step-num">1</span>
-                        <span class="step-text">Post of mail komt binnen</span>
-                    </div>
-                    <div class="flow-step" data-step="reg-2">
-                        <span class="step-num">2</span>
-                        <span class="step-text">Scannen met Dyanix Scansuite</span>
-                    </div>
-                    <div class="flow-step" data-step="reg-3">
-                        <span class="step-num">3</span>
-                        <span class="step-text">Document in werkvoorraad</span>
-                    </div>
-                    <div class="flow-step" data-step="reg-4">
-                        <span class="step-num">4</span>
-                        <span class="step-text">Toewijzen aan behandelaar</span>
-                    </div>
+                <div class="submenu-title">Post verwerking:</div>
+                <div class="submenu-options">
+                    <div class="submenu-option" data-flow="reg-1">Post scannen en toewijzen</div>
                 </div>
             </div>
         </section>
 
-        <!-- Main flow diagram -->
-        <section class="flow-container">
+        <!-- OVERZICHT DIAGRAM -->
+        <section class="flow-container" id="main-diagram">
             <h3>De Zaaksysteem Keten</h3>
             <div class="flow-diagram">
-                <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <marker id="arrowhead-flow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                            <polygon points="0 0, 10 3.5, 0 7" fill="#74B943"/>
-                        </marker>
-                    </defs>
+                <svg viewBox="0 0 1100 450" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Achtergrond kolommen -->
+                    <rect x="20" y="30" width="180" height="400" fill="#E8F5E9" rx="8" opacity="0.5"/>
+                    <text x="110" y="55" text-anchor="middle" font-size="12" fill="#44772C" font-weight="600">KANALEN</text>
 
-                    <!-- Background layers -->
-                    <rect x="40" y="40" width="200" height="520" fill="#E8F5E9" rx="8" opacity="0.5"/>
-                    <text x="140" y="70" text-anchor="middle" font-size="14" fill="#44772C" font-weight="600">KANALEN</text>
+                    <rect x="220" y="30" width="160" height="400" fill="#E3F2FD" rx="8" opacity="0.5"/>
+                    <text x="300" y="55" text-anchor="middle" font-size="12" fill="#1976D2" font-weight="600">INTAKE</text>
 
-                    <rect x="260" y="40" width="180" height="520" fill="#E3F2FD" rx="8" opacity="0.5"/>
-                    <text x="350" y="70" text-anchor="middle" font-size="14" fill="#1976D2" font-weight="600">INTAKE</text>
+                    <rect x="400" y="30" width="240" height="400" fill="#FFF3E0" rx="8" opacity="0.5"/>
+                    <text x="520" y="55" text-anchor="middle" font-size="12" fill="#E65100" font-weight="600">VERWERKING</text>
 
-                    <rect x="460" y="40" width="280" height="520" fill="#FFF3E0" rx="8" opacity="0.5"/>
-                    <text x="600" y="70" text-anchor="middle" font-size="14" fill="#E65100" font-weight="600">VERWERKING</text>
+                    <rect x="660" y="30" width="80" height="400" fill="#ECEFF1" rx="8" opacity="0.3"/>
+                    <text x="700" y="55" text-anchor="middle" font-size="10" fill="#607D8B" font-weight="500">API</text>
 
-                    <rect x="760" y="40" width="200" height="520" fill="#F3E5F5" rx="8" opacity="0.5"/>
-                    <text x="860" y="70" text-anchor="middle" font-size="14" fill="#7B1FA2" font-weight="600">TERUGKOPPELING</text>
+                    <rect x="760" y="30" width="160" height="400" fill="#F3E5F5" rx="8" opacity="0.5"/>
+                    <text x="840" y="55" text-anchor="middle" font-size="12" fill="#7B1FA2" font-weight="600">TERUGKOPPELING</text>
 
-                    <rect x="980" y="40" width="180" height="520" fill="#E0F7FA" rx="8" opacity="0.5"/>
-                    <text x="1070" y="70" text-anchor="middle" font-size="14" fill="#00838F" font-weight="600">INZICHT</text>
+                    <rect x="940" y="30" width="140" height="400" fill="#E0F7FA" rx="8" opacity="0.5"/>
+                    <text x="1010" y="55" text-anchor="middle" font-size="12" fill="#00838F" font-weight="600">INZICHT</text>
 
                     <!-- KANALEN -->
-                    <g class="node node-kanaal" data-system="gemeentewestland">
-                        <rect x="60" y="100" width="160" height="50" fill="#4CAF50" rx="6"/>
-                        <text x="140" y="130" text-anchor="middle" fill="white" font-size="13" font-weight="500">gemeentewestland.nl</text>
+                    <g class="node">
+                        <rect x="40" y="80" width="140" height="45" fill="#4CAF50" rx="6"/>
+                        <text x="110" y="107" text-anchor="middle" fill="white" font-size="11" font-weight="500">gemeentewestland.nl</text>
                     </g>
-
-                    <g class="node node-kanaal" data-system="balie">
-                        <rect x="60" y="170" width="160" height="50" fill="#66BB6A" rx="6"/>
-                        <text x="140" y="200" text-anchor="middle" fill="white" font-size="13" font-weight="500">Balie</text>
+                    <g class="node">
+                        <rect x="40" y="140" width="140" height="45" fill="#66BB6A" rx="6"/>
+                        <text x="110" y="167" text-anchor="middle" fill="white" font-size="11" font-weight="500">Balie</text>
                     </g>
-
-                    <g class="node node-kanaal" data-system="telefoon">
-                        <rect x="60" y="240" width="160" height="50" fill="#81C784" rx="6"/>
-                        <text x="140" y="270" text-anchor="middle" fill="white" font-size="13" font-weight="500">Telefoon</text>
+                    <g class="node">
+                        <rect x="40" y="200" width="140" height="45" fill="#81C784" rx="6"/>
+                        <text x="110" y="227" text-anchor="middle" fill="white" font-size="11" font-weight="500">Telefoon</text>
                     </g>
-
-                    <g class="node node-kanaal" data-system="post">
-                        <rect x="60" y="310" width="160" height="50" fill="#A5D6A7" rx="6"/>
-                        <text x="140" y="340" text-anchor="middle" fill="#1A1919" font-size="13" font-weight="500">Post / Scan</text>
+                    <g class="node">
+                        <rect x="40" y="260" width="140" height="45" fill="#A5D6A7" rx="6"/>
+                        <text x="110" y="287" text-anchor="middle" fill="#333" font-size="11" font-weight="500">Post / Scan</text>
                     </g>
 
                     <!-- INTAKE -->
-                    <g class="node node-formulier" data-system="simform">
-                        <rect x="280" y="100" width="140" height="50" fill="#2196F3" rx="6"/>
-                        <text x="350" y="130" text-anchor="middle" fill="white" font-size="13" font-weight="500">SIMform</text>
+                    <g class="node">
+                        <rect x="240" y="80" width="120" height="45" fill="#2196F3" rx="6"/>
+                        <text x="300" y="107" text-anchor="middle" fill="white" font-size="11" font-weight="500">SIMform</text>
                     </g>
-
-                    <g class="node node-formulier" data-system="ediensten">
-                        <rect x="280" y="170" width="140" height="50" fill="#42A5F5" rx="6"/>
-                        <text x="350" y="200" text-anchor="middle" fill="white" font-size="13" font-weight="500">Centric eDiensten</text>
+                    <g class="node">
+                        <rect x="240" y="140" width="120" height="45" fill="#42A5F5" rx="6"/>
+                        <text x="300" y="167" text-anchor="middle" fill="white" font-size="11" font-weight="500">Centric eDiensten</text>
                     </g>
-
-                    <g class="node" data-system="digid">
-                        <rect x="280" y="400" width="140" height="40" fill="#FF5722" rx="6"/>
-                        <text x="350" y="425" text-anchor="middle" fill="white" font-size="12" font-weight="500">DigiD</text>
+                    <g class="node">
+                        <rect x="240" y="320" width="120" height="40" fill="#FF5722" rx="6"/>
+                        <text x="300" y="345" text-anchor="middle" fill="white" font-size="11" font-weight="500">DigiD</text>
                     </g>
-
-                    <g class="node" data-system="eherkenning">
-                        <rect x="280" y="450" width="140" height="40" fill="#FF7043" rx="6"/>
-                        <text x="350" y="475" text-anchor="middle" fill="white" font-size="12" font-weight="500">eHerkenning</text>
-                        <text x="350" y="490" text-anchor="middle" fill="white" font-size="9">(komt erbij)</text>
-                    </g>
-
-                    <!-- Scanner detail -->
-                    <g class="node" data-system="scanner">
-                        <rect x="280" y="310" width="140" height="50" fill="#78909C" rx="6"/>
-                        <text x="350" y="335" text-anchor="middle" fill="white" font-size="12" font-weight="500">Dyanix Scansuite</text>
-                        <text x="350" y="350" text-anchor="middle" fill="white" font-size="10">Team Registratie</text>
+                    <g class="node">
+                        <rect x="240" y="375" width="120" height="40" fill="#FF7043" rx="6"/>
+                        <text x="300" y="395" text-anchor="middle" fill="white" font-size="10" font-weight="500">eHerkenning</text>
+                        <text x="300" y="408" text-anchor="middle" fill="white" font-size="8">(binnenkort)</text>
                     </g>
 
                     <!-- VERWERKING -->
-                    <g class="node node-zaaksysteem" data-system="rx-enterprise">
-                        <rect x="500" y="180" width="200" height="70" fill="#44772C" rx="8"/>
-                        <text x="600" y="210" text-anchor="middle" fill="white" font-size="15" font-weight="600">Rx.Enterprise</text>
-                        <text x="600" y="230" text-anchor="middle" fill="white" font-size="11">Zaaksysteem + Documenten</text>
+                    <g class="node">
+                        <rect x="420" y="100" width="200" height="60" fill="#44772C" rx="8"/>
+                        <text x="520" y="128" text-anchor="middle" fill="white" font-size="13" font-weight="600">Rx.Enterprise</text>
+                        <text x="520" y="145" text-anchor="middle" fill="white" font-size="10">Zaaksysteem + Documenten</text>
+                    </g>
+                    <g class="node">
+                        <rect x="420" y="200" width="95" height="45" fill="#FF9800" rx="6"/>
+                        <text x="467" y="220" text-anchor="middle" fill="white" font-size="10" font-weight="500">Centric BZ</text>
+                        <text x="467" y="235" text-anchor="middle" fill="white" font-size="9">Burgerzaken</text>
+                    </g>
+                    <g class="node">
+                        <rect x="525" y="200" width="95" height="45" fill="#FFA726" rx="6"/>
+                        <text x="572" y="220" text-anchor="middle" fill="white" font-size="10" font-weight="500">Suite4SD</text>
+                        <text x="572" y="235" text-anchor="middle" fill="white" font-size="9">Sociaal Domein</text>
+                    </g>
+                    <g class="node">
+                        <rect x="420" y="260" width="95" height="40" fill="#FFB74D" rx="6"/>
+                        <text x="467" y="285" text-anchor="middle" fill="#333" font-size="10" font-weight="500">Stratech</text>
+                    </g>
+                    <g class="node" style="opacity:0.6">
+                        <rect x="525" y="260" width="95" height="40" fill="#FFE0B2" rx="6" stroke="#FF9800" stroke-dasharray="3"/>
+                        <text x="572" y="282" text-anchor="middle" fill="#666" font-size="9">Toekomstig</text>
                     </g>
 
-                    <!-- Afhandelsystemen -->
-                    <g class="node node-afhandel" data-system="centric-bz">
-                        <rect x="480" y="300" width="110" height="50" fill="#FF9800" rx="6"/>
-                        <text x="535" y="325" text-anchor="middle" fill="white" font-size="11" font-weight="500">Centric</text>
-                        <text x="535" y="340" text-anchor="middle" fill="white" font-size="11" font-weight="500">Burgerzaken</text>
-                    </g>
-
-                    <g class="node node-afhandel" data-system="s4sd">
-                        <rect x="600" y="300" width="110" height="50" fill="#FFA726" rx="6"/>
-                        <text x="655" y="325" text-anchor="middle" fill="white" font-size="11" font-weight="500">Suite4SD</text>
-                        <text x="655" y="340" text-anchor="middle" fill="white" font-size="10">(GPK live!)</text>
-                    </g>
-
-                    <g class="node node-afhandel" data-system="stratech">
-                        <rect x="480" y="360" width="110" height="45" fill="#FFB74D" rx="6"/>
-                        <text x="535" y="385" text-anchor="middle" fill="#1A1919" font-size="11" font-weight="500">Stratech</text>
-                        <text x="535" y="398" text-anchor="middle" fill="#1A1919" font-size="9">(naar cloud)</text>
-                    </g>
-
-                    <g class="node node-afhandel" data-system="toekomstig" style="opacity: 0.6">
-                        <rect x="600" y="360" width="110" height="45" fill="#FFE0B2" rx="6" stroke="#FF9800" stroke-dasharray="4"/>
-                        <text x="655" y="385" text-anchor="middle" fill="#1A1919" font-size="11">JVS, Begraven</text>
-                        <text x="655" y="398" text-anchor="middle" fill="#666" font-size="9">(toekomstig)</text>
-                    </g>
-
-                    <!-- Integratie/Middleware -->
-                    <g class="node node-middleware" data-system="enable-u">
-                        <rect x="720" y="260" width="140" height="35" fill="#607D8B" rx="4"/>
-                        <text x="790" y="282" text-anchor="middle" fill="white" font-size="10" font-weight="500">Enable-U (API Gateway)</text>
-                    </g>
-
-                    <g class="node node-middleware" data-system="cloudadapter">
-                        <rect x="280" y="240" width="140" height="30" fill="#78909C" rx="4"/>
-                        <text x="350" y="260" text-anchor="middle" fill="white" font-size="10">Cloud Adapter</text>
+                    <!-- ENABLE-U (API Gateway) - klikbaar -->
+                    <g class="node node-eu" id="enable-u-node" style="cursor:pointer">
+                        <rect x="670" y="110" width="60" height="180" fill="#B0BEC5" rx="4"/>
+                        <text x="700" y="200" text-anchor="middle" fill="#455A64" font-size="9" font-weight="500" transform="rotate(-90 700 200)">Enable-U</text>
                     </g>
 
                     <!-- TERUGKOPPELING -->
-                    <g class="node node-pip" data-system="pip">
-                        <rect x="780" y="130" width="160" height="60" fill="#9C27B0" rx="6"/>
-                        <text x="860" y="155" text-anchor="middle" fill="white" font-size="14" font-weight="500">PIP</text>
-                        <text x="860" y="170" text-anchor="middle" fill="white" font-size="9">(binnenkort live)</text>
-                        <text x="860" y="185" text-anchor="middle" fill="white" font-size="10">Status en documenten</text>
+                    <g class="node">
+                        <rect x="780" y="80" width="120" height="50" fill="#9C27B0" rx="6"/>
+                        <text x="840" y="102" text-anchor="middle" fill="white" font-size="12" font-weight="500">PIP</text>
+                        <text x="840" y="118" text-anchor="middle" fill="white" font-size="9">(binnenkort live)</text>
                     </g>
-
-                    <g class="node" data-system="notificatie">
-                        <rect x="780" y="210" width="160" height="45" fill="#BA68C8" rx="6"/>
-                        <text x="860" y="237" text-anchor="middle" fill="white" font-size="12" font-weight="500">Notificaties (mail)</text>
+                    <g class="node">
+                        <rect x="780" y="145" width="120" height="40" fill="#BA68C8" rx="6"/>
+                        <text x="840" y="170" text-anchor="middle" fill="white" font-size="10" font-weight="500">Notificaties</text>
                     </g>
 
                     <!-- INZICHT -->
-                    <g class="node node-kcc" data-system="rx-front">
-                        <rect x="1000" y="130" width="140" height="60" fill="#00BCD4" rx="6"/>
-                        <text x="1070" y="158" text-anchor="middle" fill="white" font-size="14" font-weight="500">Rx.Front</text>
-                        <text x="1070" y="175" text-anchor="middle" fill="white" font-size="10">KCC - Klantbeeld</text>
+                    <g class="node">
+                        <rect x="960" y="80" width="100" height="50" fill="#00BCD4" rx="6"/>
+                        <text x="1010" y="102" text-anchor="middle" fill="white" font-size="11" font-weight="500">Rx.Front</text>
+                        <text x="1010" y="118" text-anchor="middle" fill="white" font-size="9">KCC</text>
                     </g>
-
-                    <g class="node" data-system="powerbi">
-                        <rect x="1000" y="210" width="140" height="45" fill="#26C6DA" rx="6"/>
-                        <text x="1070" y="237" text-anchor="middle" fill="white" font-size="12" font-weight="500">PowerBI / DWH</text>
-                    </g>
-
-                    <!-- Legacy -->
-                    <g class="node" data-system="corsa" style="opacity: 0.5">
-                        <rect x="1000" y="480" width="140" height="45" fill="#BDBDBD" rx="6" stroke="#F44336" stroke-dasharray="4"/>
-                        <text x="1070" y="500" text-anchor="middle" fill="#666" font-size="12">Corsa</text>
-                        <text x="1070" y="515" text-anchor="middle" fill="#F44336" font-size="9">(wordt uitgefaseerd)</text>
+                    <g class="node">
+                        <rect x="960" y="145" width="100" height="40" fill="#26C6DA" rx="6"/>
+                        <text x="1010" y="170" text-anchor="middle" fill="white" font-size="10" font-weight="500">PowerBI</text>
                     </g>
 
                 </svg>
             </div>
 
-            <!-- System detail panel -->
-            <div id="system-detail" class="system-detail">
-                <p>Kies een perspectief en klik op een stap om de keten te volgen</p>
+            <!-- Enable-U info popup -->
+            <div id="eu-info" class="eu-info">
+                <h4>Enable-U - API Gateway</h4>
+                <p>Enable-U filtert welke informatie zichtbaar is voor de aanvrager op de PIP:</p>
+                <div class="eu-diagram">
+                    <svg viewBox="0 0 500 120" style="max-width:500px">
+                        <rect x="10" y="40" width="100" height="40" fill="#44772C" rx="4"/>
+                        <text x="60" y="65" text-anchor="middle" fill="white" font-size="10">Rx.Enterprise</text>
+
+                        <rect x="150" y="20" width="80" height="80" fill="#B0BEC5" rx="4"/>
+                        <text x="190" y="55" text-anchor="middle" fill="#333" font-size="9" font-weight="600">Enable-U</text>
+                        <text x="190" y="70" text-anchor="middle" fill="#333" font-size="8">Filter</text>
+                        <text x="190" y="85" text-anchor="middle" fill="#666" font-size="7">zaaktypen</text>
+                        <text x="190" y="95" text-anchor="middle" fill="#666" font-size="7">documenttypen</text>
+
+                        <rect x="270" y="40" width="80" height="40" fill="#9C27B0" rx="4"/>
+                        <text x="310" y="65" text-anchor="middle" fill="white" font-size="10">PIP</text>
+
+                        <path d="M110,60 L150,60" stroke="#74B943" stroke-width="2" stroke-dasharray="4"/>
+                        <path d="M230,60 L270,60" stroke="#74B943" stroke-width="2" stroke-dasharray="4"/>
+
+                        <text x="400" y="35" font-size="8" fill="#4CAF50">✓ Aanvragen</text>
+                        <text x="400" y="50" font-size="8" fill="#4CAF50">✓ Beschikkingen</text>
+                        <text x="400" y="65" font-size="8" fill="#4CAF50">✓ Eigen uploads</text>
+                        <text x="400" y="85" font-size="8" fill="#F44336">✗ Concepten</text>
+                        <text x="400" y="100" font-size="8" fill="#F44336">✗ Interne notities</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- PERSPECTIEF FLOWS (verborgen tot selectie) -->
+        <section class="flow-container" id="perspective-diagram" style="display:none">
+            <h3 id="perspective-title">Flow</h3>
+            <div class="perspective-flow visible" id="current-flow">
+                <!-- Dynamisch gevuld door JavaScript -->
+            </div>
+            <div class="flow-description" id="flow-description">
+                <!-- Dynamisch gevuld door JavaScript -->
             </div>
         </section>
 
         <!-- Quick actions -->
-        <section>
+        <section id="quick-actions">
             <h3>Snel naar</h3>
             <div class="cards">
                 <a href="perspectief/behandelaar.html" class="card">
@@ -434,9 +397,9 @@
         </section>
 
         <!-- Info box -->
-        <section>
+        <section id="info-section">
             <div class="info-box success">
-                <strong>GPK is live!</strong> De Gehandicaptenparkeerkaart is het eerste zaaktype uit het Sociaal Domein dat volledig zaakgericht werkt. WMO Melding en WMO aanvragen volgen binnenkort. De PIP (Persoonlijke Internet Pagina) wordt binnenkort gelanceerd.
+                <strong>GPK is live!</strong> De Gehandicaptenparkeerkaart is het eerste zaaktype uit het Sociaal Domein dat volledig zaakgericht werkt. De PIP wordt binnenkort gelanceerd.
             </div>
         </section>
     </main>
@@ -447,142 +410,273 @@
 
     <script src="js/flow.js"></script>
     <script>
-        // Step-by-step flow configurations
-        // Alle paden met alleen horizontale en verticale lijnen (90° hoeken)
-        const stepConfigs = {
-            // ========== BEHANDELAAR STAPPEN ==========
+        // Flow configuraties - elke flow heeft eigen SVG en beschrijving
+        const flowConfigs = {
+            // ===== AANVRAGER FLOWS =====
+            'aanvrager-sd': {
+                title: 'Aanvrager - Sociaal Domein (WMO, GPK)',
+                description: 'De burger vult een formulier in op gemeentewestland.nl, logt in met DigiD, de aanvraag komt in Rx.Enterprise, wordt behandeld in Suite4SD, en de burger kan de status volgen via de PIP.',
+                svg: `
+                    <svg viewBox="0 0 900 100">
+                        <defs>
+                            <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                                <path d="M0,0 L6,3 L0,6 Z" fill="#74B943"/>
+                            </marker>
+                        </defs>
+                        <!-- Flow lijn -->
+                        <path d="M130,50 L175,50 M225,50 L275,50 M325,50 L375,50 M425,50 L475,50 M525,50 L575,50 M625,50 L700,50"
+                              stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
+                        <!-- Blokken -->
+                        <rect x="20" y="25" width="110" height="50" fill="#4CAF50" rx="6"/>
+                        <text x="75" y="55" text-anchor="middle" fill="white" font-size="10">gemeentewestland.nl</text>
+
+                        <rect x="175" y="25" width="50" height="50" fill="#2196F3" rx="6"/>
+                        <text x="200" y="55" text-anchor="middle" fill="white" font-size="10">SIMform</text>
+
+                        <rect x="275" y="25" width="50" height="50" fill="#FF5722" rx="6"/>
+                        <text x="300" y="55" text-anchor="middle" fill="white" font-size="10">DigiD</text>
+
+                        <rect x="375" y="25" width="50" height="50" fill="#44772C" rx="6"/>
+                        <text x="400" y="45" text-anchor="middle" fill="white" font-size="9">Rx.</text>
+                        <text x="400" y="58" text-anchor="middle" fill="white" font-size="9">Enterprise</text>
+
+                        <rect x="475" y="25" width="50" height="50" fill="#FFA726" rx="6"/>
+                        <text x="500" y="55" text-anchor="middle" fill="white" font-size="10">Suite4SD</text>
+
+                        <rect x="575" y="25" width="50" height="50" fill="#B0BEC5" rx="4"/>
+                        <text x="600" y="55" text-anchor="middle" fill="#333" font-size="9">Enable-U</text>
+
+                        <rect x="700" y="25" width="50" height="50" fill="#9C27B0" rx="6"/>
+                        <text x="725" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
+                    </svg>`
+            },
+            'aanvrager-bz': {
+                title: 'Aanvrager - Burgerzaken (Paspoort, Rijbewijs)',
+                description: 'De burger vraagt een paspoort of rijbewijs aan via Centric eDiensten, logt in met DigiD, Centric Burgerzaken verwerkt de aanvraag, dit synchroniseert naar Rx.Enterprise, en de status wordt zichtbaar in de PIP.',
+                svg: `
+                    <svg viewBox="0 0 900 100">
+                        <path d="M130,50 L175,50 M250,50 L300,50 M350,50 L400,50 M475,50 L525,50 M575,50 L625,50 M675,50 L750,50"
+                              stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
+                        <rect x="20" y="25" width="110" height="50" fill="#4CAF50" rx="6"/>
+                        <text x="75" y="55" text-anchor="middle" fill="white" font-size="10">gemeentewestland.nl</text>
+
+                        <rect x="175" y="25" width="75" height="50" fill="#42A5F5" rx="6"/>
+                        <text x="212" y="55" text-anchor="middle" fill="white" font-size="9">eDiensten</text>
+
+                        <rect x="300" y="25" width="50" height="50" fill="#FF5722" rx="6"/>
+                        <text x="325" y="55" text-anchor="middle" fill="white" font-size="10">DigiD</text>
+
+                        <rect x="400" y="25" width="75" height="50" fill="#FF9800" rx="6"/>
+                        <text x="437" y="55" text-anchor="middle" fill="white" font-size="9">Centric BZ</text>
+
+                        <rect x="525" y="25" width="50" height="50" fill="#44772C" rx="6"/>
+                        <text x="550" y="45" text-anchor="middle" fill="white" font-size="9">Rx.</text>
+                        <text x="550" y="58" text-anchor="middle" fill="white" font-size="9">Enterprise</text>
+
+                        <rect x="625" y="25" width="50" height="50" fill="#B0BEC5" rx="4"/>
+                        <text x="650" y="55" text-anchor="middle" fill="#333" font-size="9">Enable-U</text>
+
+                        <rect x="750" y="25" width="50" height="50" fill="#9C27B0" rx="6"/>
+                        <text x="775" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
+                    </svg>`
+            },
+            // ===== BEHANDELAAR FLOWS =====
             'beh-1': {
-                nodes: ['rx-enterprise'],
-                path: null,
-                description: 'De aanvraag staat in de werkvoorraad van Rx.Enterprise. De behandelaar ziet dit in zijn takenlijst.'
+                title: 'Behandelaar - Zaak oppakken',
+                description: 'De behandelaar ziet een nieuwe zaak in de werkvoorraad van Rx.Enterprise en opent deze in het afhandelsysteem (bijv. Suite4SD).',
+                svg: `
+                    <svg viewBox="0 0 400 100">
+                        <path d="M130,50 L200,50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
+                        <rect x="20" y="25" width="110" height="50" fill="#44772C" rx="6"/>
+                        <text x="75" y="45" text-anchor="middle" fill="white" font-size="10">Rx.Enterprise</text>
+                        <text x="75" y="60" text-anchor="middle" fill="white" font-size="8">werkvoorraad</text>
+
+                        <rect x="200" y="25" width="80" height="50" fill="#FFA726" rx="6"/>
+                        <text x="240" y="55" text-anchor="middle" fill="white" font-size="10">Suite4SD</text>
+                    </svg>`
             },
             'beh-2': {
-                nodes: ['rx-enterprise', 's4sd'],
-                // rx-enterprise → s4sd (behandelaar opent zaak in afhandelsysteem)
-                path: 'M600,250 L600,280 L655,280 L655,300',
-                description: 'Behandelaar opent de zaak vanuit Rx.Enterprise en gaat werken in het afhandelsysteem (Suite4SD).'
+                title: 'Behandelaar - Status "In behandeling"',
+                description: 'De behandelaar zet de status op "In behandeling" in Suite4SD. Dit synchroniseert naar Rx.Enterprise en de aanvrager krijgt automatisch een notificatie.',
+                svg: `
+                    <svg viewBox="0 0 600 100">
+                        <path d="M100,50 L150,50 M250,50 L300,50 M400,50 L470,50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
+                        <rect x="20" y="25" width="80" height="50" fill="#FFA726" rx="6"/>
+                        <text x="60" y="55" text-anchor="middle" fill="white" font-size="10">Suite4SD</text>
+
+                        <rect x="150" y="25" width="100" height="50" fill="#44772C" rx="6"/>
+                        <text x="200" y="55" text-anchor="middle" fill="white" font-size="10">Rx.Enterprise</text>
+
+                        <rect x="300" y="25" width="100" height="50" fill="#BA68C8" rx="6"/>
+                        <text x="350" y="55" text-anchor="middle" fill="white" font-size="10">Notificatie</text>
+
+                        <rect x="470" y="25" width="60" height="50" fill="#9C27B0" rx="6"/>
+                        <text x="500" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
+                    </svg>`
             },
             'beh-3': {
-                nodes: ['s4sd', 'rx-enterprise', 'notificatie'],
-                // s4sd → rx-enterprise → notificatie (status update)
-                path: 'M655,300 L655,280 L600,280 L600,250 M700,215 L750,215 L750,232 L780,232',
-                description: 'Behandelaar zet status op "In behandeling" in Suite. Dit synchroniseert naar Rx.Enterprise en stuurt automatisch een notificatie naar de aanvrager.'
+                title: 'Behandelaar - Aanvullende stukken opvragen',
+                description: 'De behandelaar heeft extra documenten nodig. Een verzoek gaat via notificatie naar de aanvrager, die dit ziet in de PIP.',
+                svg: `
+                    <svg viewBox="0 0 500 100">
+                        <path d="M100,50 L150,50 M250,50 L320,50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
+                        <rect x="20" y="25" width="80" height="50" fill="#FFA726" rx="6"/>
+                        <text x="60" y="55" text-anchor="middle" fill="white" font-size="10">Suite4SD</text>
+
+                        <rect x="150" y="25" width="100" height="50" fill="#BA68C8" rx="6"/>
+                        <text x="200" y="50" text-anchor="middle" fill="white" font-size="9">Notificatie</text>
+                        <text x="200" y="65" text-anchor="middle" fill="white" font-size="8">"stukken nodig"</text>
+
+                        <rect x="320" y="25" width="60" height="50" fill="#9C27B0" rx="6"/>
+                        <text x="350" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
+                    </svg>`
             },
             'beh-4': {
-                nodes: ['notificatie', 'pip'],
-                // notificatie → pip (aanvullende stukken verzoek)
-                path: 'M860,210 L860,190',
-                description: 'Aanvrager ontvangt notificatie: "Wij hebben aanvullende documenten nodig". Dit is zichtbaar in de PIP.'
+                title: 'Behandelaar - Stukken ontvangen',
+                description: 'De aanvrager uploadt documenten via de PIP. Deze komen in Rx.Enterprise en de behandelaar ziet een melding in Suite4SD.',
+                svg: `
+                    <svg viewBox="0 0 600 100">
+                        <path d="M80,50 L150,50 M250,50 L300,50 M400,50 L470,50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
+                        <rect x="20" y="25" width="60" height="50" fill="#9C27B0" rx="6"/>
+                        <text x="50" y="50" text-anchor="middle" fill="white" font-size="9">PIP</text>
+                        <text x="50" y="63" text-anchor="middle" fill="white" font-size="8">upload</text>
+
+                        <rect x="150" y="25" width="100" height="50" fill="#44772C" rx="6"/>
+                        <text x="200" y="55" text-anchor="middle" fill="white" font-size="10">Rx.Enterprise</text>
+
+                        <rect x="300" y="25" width="100" height="50" fill="#BA68C8" rx="6"/>
+                        <text x="350" y="55" text-anchor="middle" fill="white" font-size="9">Melding</text>
+
+                        <rect x="470" y="25" width="80" height="50" fill="#FFA726" rx="6"/>
+                        <text x="510" y="55" text-anchor="middle" fill="white" font-size="10">Suite4SD</text>
+                    </svg>`
             },
             'beh-5': {
-                nodes: ['pip', 'rx-enterprise', 's4sd'],
-                // pip → rx-enterprise, melding naar s4sd
-                path: 'M780,160 L750,160 L750,100 L600,100 L600,180 M600,250 L600,280 L655,280 L655,300',
-                description: 'Aanvrager uploadt documenten via de PIP. Deze komen in Rx.Enterprise. Behandelaar krijgt melding in Suite dat er nieuwe stukken zijn.'
+                title: 'Behandelaar - Zaak afsluiten',
+                description: 'De behandelaar sluit de zaak af in Suite4SD met een beschikking. Status gaat naar Rx.Enterprise, notificatie naar aanvrager, beschikking zichtbaar in PIP.',
+                svg: `
+                    <svg viewBox="0 0 700 100">
+                        <path d="M100,50 L150,50 M250,50 L300,50 M400,50 L450,50 M550,50 L620,50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
+                        <rect x="20" y="25" width="80" height="50" fill="#FFA726" rx="6"/>
+                        <text x="60" y="50" text-anchor="middle" fill="white" font-size="9">Suite4SD</text>
+                        <text x="60" y="63" text-anchor="middle" fill="white" font-size="8">afsluiten</text>
+
+                        <rect x="150" y="25" width="100" height="50" fill="#44772C" rx="6"/>
+                        <text x="200" y="55" text-anchor="middle" fill="white" font-size="10">Rx.Enterprise</text>
+
+                        <rect x="300" y="25" width="100" height="50" fill="#B0BEC5" rx="4"/>
+                        <text x="350" y="55" text-anchor="middle" fill="#333" font-size="9">Enable-U</text>
+
+                        <rect x="450" y="25" width="100" height="50" fill="#BA68C8" rx="6"/>
+                        <text x="500" y="55" text-anchor="middle" fill="white" font-size="9">Notificatie</text>
+
+                        <rect x="620" y="25" width="60" height="50" fill="#9C27B0" rx="6"/>
+                        <text x="650" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
+                    </svg>`
             },
-            'beh-6': {
-                nodes: ['s4sd', 'rx-enterprise', 'notificatie', 'pip'],
-                // s4sd → rx-enterprise → notificatie → pip (zaak afsluiten)
-                path: 'M655,300 L655,280 L600,280 L600,250 M700,215 L750,215 L750,232 L780,232 M860,210 L860,190',
-                description: 'Behandelaar sluit de zaak af in Suite. Beschikking wordt verstuurd. Status gaat naar Rx.Enterprise, notificatie naar aanvrager, zichtbaar in PIP.'
-            },
-            // ========== KCC STAPPEN ==========
+            // ===== KCC FLOWS =====
             'kcc-1': {
-                nodes: ['telefoon'],
-                path: null,
-                description: 'Een burger belt het KCC met een vraag over een lopende aanvraag.'
+                title: 'KCC - Klant belt voor status',
+                description: 'Een burger belt het KCC. De medewerker zoekt op BSN in Rx.Front en ziet direct alle zaken, de status en wie de behandelaar is.',
+                svg: `
+                    <svg viewBox="0 0 500 100">
+                        <path d="M100,50 L150,50 M280,50 L350,50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
+                        <rect x="20" y="25" width="80" height="50" fill="#81C784" rx="6"/>
+                        <text x="60" y="50" text-anchor="middle" fill="white" font-size="9">Telefoon</text>
+                        <text x="60" y="63" text-anchor="middle" fill="white" font-size="8">burger belt</text>
+
+                        <rect x="150" y="25" width="130" height="50" fill="#00BCD4" rx="6"/>
+                        <text x="215" y="50" text-anchor="middle" fill="white" font-size="10">Rx.Front</text>
+                        <text x="215" y="63" text-anchor="middle" fill="white" font-size="8">zoek op BSN</text>
+
+                        <rect x="350" y="25" width="100" height="50" fill="#44772C" rx="6"/>
+                        <text x="400" y="50" text-anchor="middle" fill="white" font-size="9">Rx.Enterprise</text>
+                        <text x="400" y="63" text-anchor="middle" fill="white" font-size="8">alle zaken</text>
+                    </svg>`
             },
             'kcc-2': {
-                nodes: ['telefoon', 'rx-front'],
-                // telefoon → rx-front
-                path: 'M220,265 L240,265 L240,90 L1070,90 L1070,130',
-                description: 'KCC-medewerker opent Rx.Front en zoekt de burger op via BSN. Het integrale klantbeeld verschijnt.'
+                title: 'KCC - Terugbelverzoek',
+                description: 'Het KCC ziet wie de behandelaar is en plant een terugbelverzoek in. Dit wordt gelogd in het systeem.',
+                svg: `
+                    <svg viewBox="0 0 500 100">
+                        <path d="M130,50 L180,50 M310,50 L380,50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
+                        <rect x="20" y="25" width="110" height="50" fill="#00BCD4" rx="6"/>
+                        <text x="75" y="50" text-anchor="middle" fill="white" font-size="10">Rx.Front</text>
+                        <text x="75" y="63" text-anchor="middle" fill="white" font-size="8">KCC</text>
+
+                        <rect x="180" y="25" width="130" height="50" fill="#26C6DA" rx="6"/>
+                        <text x="245" y="50" text-anchor="middle" fill="white" font-size="9">Terugbelverzoek</text>
+                        <text x="245" y="63" text-anchor="middle" fill="white" font-size="8">naar behandelaar</text>
+
+                        <rect x="380" y="25" width="80" height="50" fill="#44772C" rx="6"/>
+                        <text x="420" y="55" text-anchor="middle" fill="white" font-size="9">Rx.Enterprise</text>
+                    </svg>`
             },
-            'kcc-3': {
-                nodes: ['rx-front', 'rx-enterprise', 'pip'],
-                // rx-front ziet data van rx-enterprise en pip
-                path: 'M1000,160 L950,160 L950,100 L600,100 L600,180 M860,100 L860,130',
-                description: 'KCC ziet alle lopende en afgeronde zaken, de actuele status, en wie de behandelaar is. Dezelfde info als op de PIP.'
-            },
-            'kcc-4': {
-                nodes: ['rx-front', 'rx-enterprise'],
-                // rx-front → terugbelverzoek naar rx-enterprise/behandelaar
-                path: 'M1000,190 L980,190 L980,280 L700,280 L700,250',
-                description: 'KCC kan een terugbelverzoek inplannen of direct doorverbinden met de behandelaar. Alles wordt gelogd.'
-            },
-            // ========== TEAM REGISTRATIE STAPPEN ==========
+            // ===== REGISTRATIE FLOW =====
             'reg-1': {
-                nodes: ['post'],
-                path: null,
-                description: 'Post of e-mail komt binnen bij Team Registratie.'
-            },
-            'reg-2': {
-                nodes: ['post', 'scanner'],
-                // post → scanner
-                path: 'M220,335 L280,335',
-                description: 'Document wordt gescand met de Dyanix Scansuite. Metadata wordt toegevoegd.'
-            },
-            'reg-3': {
-                nodes: ['scanner', 'rx-enterprise'],
-                // scanner → rx-enterprise
-                path: 'M420,335 L470,335 L470,250 L500,250',
-                description: 'Gescand document komt in de werkvoorraad van Rx.Enterprise.'
-            },
-            'reg-4': {
-                nodes: ['rx-enterprise'],
-                path: null,
-                description: 'Team Registratie wijst het document toe aan de juiste behandelaar of koppelt het aan een bestaande zaak.'
+                title: 'Team Registratie - Post verwerken',
+                description: 'Post komt binnen, wordt gescand, komt in de werkvoorraad van Rx.Enterprise en wordt toegewezen aan de juiste behandelaar.',
+                svg: `
+                    <svg viewBox="0 0 600 100">
+                        <path d="M100,50 L150,50 M250,50 L300,50 M400,50 L470,50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
+                        <rect x="20" y="25" width="80" height="50" fill="#A5D6A7" rx="6"/>
+                        <text x="60" y="55" text-anchor="middle" fill="#333" font-size="10">Post</text>
+
+                        <rect x="150" y="25" width="100" height="50" fill="#78909C" rx="6"/>
+                        <text x="200" y="55" text-anchor="middle" fill="white" font-size="10">Scannen</text>
+
+                        <rect x="300" y="25" width="100" height="50" fill="#44772C" rx="6"/>
+                        <text x="350" y="50" text-anchor="middle" fill="white" font-size="9">Rx.Enterprise</text>
+                        <text x="350" y="63" text-anchor="middle" fill="white" font-size="8">werkvoorraad</text>
+
+                        <rect x="470" y="25" width="100" height="50" fill="#FFA726" rx="6"/>
+                        <text x="520" y="50" text-anchor="middle" fill="white" font-size="9">Behandelaar</text>
+                        <text x="520" y="63" text-anchor="middle" fill="white" font-size="8">toewijzing</text>
+                    </svg>`
             }
         };
 
-        // Aanvrager flow configurations (domain choice)
-        // Paden met alleen horizontale en verticale lijnen (90° hoeken)
-        // M = move (gap), L = line to (verbinding)
-        const flowConfigs = {
-            'aanvrager-sd': {
-                nodes: ['gemeentewestland', 'simform', 'digid', 'rx-enterprise', 's4sd', 'pip'],
-                // gemeentewestland→simform | simform→digid | digid→rx | rx→s4sd | s4sd→pip
-                path: 'M220,125 L280,125 M420,125 L450,125 L450,420 L420,420 M280,420 L280,500 L470,500 L470,215 L500,215 M700,250 L730,250 L730,325 L710,325 M710,325 L750,325 L750,160 L780,160',
-                description: 'Burger vult formulier in op gemeentewestland.nl (SIMform), authenticeert met DigiD, zaak gaat naar Rx.Enterprise, wordt behandeld in S4SD, burger volgt status via PIP.'
-            },
-            'aanvrager-bz': {
-                nodes: ['gemeentewestland', 'ediensten', 'digid', 'cloudadapter', 'centric-bz', 'rx-enterprise', 'pip'],
-                // gemeentewestland→ediensten | ediensten→cloudadapter→digid | cloudadapter→centric-bz | centric-bz→rx | rx→pip
-                path: 'M220,125 L220,195 L280,195 M420,195 L450,195 L450,255 L420,255 M280,255 L280,420 L280,420 M420,420 L450,420 L450,325 L480,325 M590,325 L620,325 L620,250 L700,250 M700,180 L750,180 L750,160 L780,160',
-                description: 'Burger vraagt paspoort/rijbewijs aan via eDiensten, via Cloud Adapter en DigiD authenticatie, Centric Burgerzaken verwerkt, synchroniseert met Rx.Enterprise, burger ziet status in PIP.'
-            }
-        };
+        // DOM elements
+        const mainDiagram = document.getElementById('main-diagram');
+        const perspectiveDiagram = document.getElementById('perspective-diagram');
+        const perspectiveTitle = document.getElementById('perspective-title');
+        const currentFlow = document.getElementById('current-flow');
+        const flowDescription = document.getElementById('flow-description');
+        const euInfo = document.getElementById('eu-info');
+        const quickActions = document.getElementById('quick-actions');
+        const infoSection = document.getElementById('info-section');
 
         // Hide all submenus
         function hideAllSubmenus() {
             document.querySelectorAll('.submenu').forEach(s => s.classList.remove('visible'));
-            document.querySelectorAll('.submenu-option, .flow-step').forEach(o => o.classList.remove('active', 'completed'));
+            document.querySelectorAll('.submenu-option').forEach(o => o.classList.remove('active'));
         }
 
-        // Reset diagram
-        function resetDiagram() {
-            document.querySelectorAll('.flow-path').forEach(p => p.classList.remove('visible'));
-            document.querySelectorAll('.node').forEach(n => {
-                n.classList.remove('dimmed', 'highlighted');
-            });
-            updateDescription('');
+        // Show main diagram (overzicht)
+        function showMainDiagram() {
+            mainDiagram.style.display = 'block';
+            perspectiveDiagram.style.display = 'none';
+            quickActions.style.display = 'block';
+            infoSection.style.display = 'block';
+            euInfo.classList.remove('visible');
         }
 
-        // Update description panel
-        function updateDescription(text) {
-            const panel = document.getElementById('system-detail');
-            if (panel) {
-                if (text) {
-                    panel.innerHTML = '<div class="step-description">' + text + '</div>';
-                    panel.classList.add('visible');
-                } else {
-                    panel.innerHTML = '<p>Kies een perspectief en klik op een stap om de keten te zien</p>';
-                    panel.classList.remove('visible');
-                }
-            }
+        // Show perspective diagram
+        function showPerspectiveDiagram(flowKey) {
+            const config = flowConfigs[flowKey];
+            if (!config) return;
+
+            mainDiagram.style.display = 'none';
+            perspectiveDiagram.style.display = 'block';
+            quickActions.style.display = 'none';
+            infoSection.style.display = 'none';
+
+            perspectiveTitle.textContent = config.title;
+            currentFlow.innerHTML = config.svg;
+            flowDescription.innerHTML = config.description;
         }
 
-        // Perspective cards
+        // Perspective card clicks
         document.querySelectorAll('.perspective-card').forEach(card => {
             card.addEventListener('click', function() {
                 const perspective = this.dataset.perspective;
@@ -591,106 +685,45 @@
                 document.querySelectorAll('.perspective-card').forEach(c => c.classList.remove('active'));
                 this.classList.add('active');
 
-                // Reset diagram and hide all submenus
-                resetDiagram();
+                // Hide all submenus first
                 hideAllSubmenus();
+                euInfo.classList.remove('visible');
 
-                // Show appropriate submenu
-                const submenu = document.getElementById('submenu-' + perspective);
-                if (submenu) {
-                    submenu.classList.add('visible');
+                if (perspective === 'overzicht') {
+                    showMainDiagram();
+                } else {
+                    // Show submenu for this perspective
+                    const submenu = document.getElementById('submenu-' + perspective);
+                    if (submenu) {
+                        submenu.classList.add('visible');
+                    }
+                    // Keep main diagram visible until submenu choice
+                    showMainDiagram();
                 }
             });
         });
 
-        // Submenu options (for aanvrager domain choice)
+        // Submenu option clicks
         document.querySelectorAll('.submenu-option').forEach(option => {
             option.addEventListener('click', function() {
-                const flow = this.dataset.flow;
+                const flowKey = this.dataset.flow;
 
                 // Update active state
                 document.querySelectorAll('.submenu-option').forEach(o => o.classList.remove('active'));
                 this.classList.add('active');
 
-                // Get config and apply
-                const config = flowConfigs['aanvrager-' + flow];
-                if (config) {
-                    applyFlow(config);
-                    updateDescription(config.description);
-                }
+                // Show the perspective diagram
+                showPerspectiveDiagram(flowKey);
             });
         });
 
-        // Flow step clicks (met toggle functionaliteit)
-        document.querySelectorAll('.flow-step').forEach(step => {
-            step.addEventListener('click', function() {
-                const stepId = this.dataset.step;
-                const config = stepConfigs[stepId];
-
-                if (!config) return;
-
-                // Toggle: als deze stap al actief is, reset alles
-                if (this.classList.contains('active')) {
-                    resetDiagram();
-                    this.parentElement.querySelectorAll('.flow-step').forEach(s => {
-                        s.classList.remove('active', 'completed');
-                    });
-                    return;
-                }
-
-                // Mark alleen deze stap als active (geen completed voor vorige)
-                const allSteps = this.parentElement.querySelectorAll('.flow-step');
-                allSteps.forEach(s => {
-                    s.classList.remove('active', 'completed');
-                });
-                this.classList.add('active');
-
-                // Apply the flow
-                applyFlow(config);
-                updateDescription(config.description);
-            });
+        // Enable-U click handler
+        document.getElementById('enable-u-node').addEventListener('click', function() {
+            euInfo.classList.toggle('visible');
         });
 
-        function applyFlow(config) {
-            const allNodes = document.querySelectorAll('.node');
-
-            // Hide any existing dynamic flow first
-            const existingFlow = document.getElementById('dynamic-flow');
-            if (existingFlow) {
-                existingFlow.classList.remove('visible');
-            }
-
-            // Dim all nodes first
-            allNodes.forEach(node => {
-                node.classList.add('dimmed');
-                node.classList.remove('highlighted');
-            });
-
-            // Highlight relevant nodes
-            config.nodes.forEach(nodeId => {
-                const node = document.querySelector(`[data-system="${nodeId}"]`);
-                if (node) {
-                    node.classList.remove('dimmed');
-                    node.classList.add('highlighted');
-                }
-            });
-
-            // Draw path if exists
-            if (config.path) {
-                const svg = document.querySelector('.flow-diagram svg');
-                let flowPath = document.getElementById('dynamic-flow');
-                if (!flowPath) {
-                    flowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                    flowPath.id = 'dynamic-flow';
-                    flowPath.classList.add('flow-path');
-                    flowPath.setAttribute('marker-end', 'url(#arrowhead-flow)');
-                    const firstNode = svg.querySelector('.node');
-                    svg.insertBefore(flowPath, firstNode);
-                }
-                flowPath.setAttribute('d', config.path);
-                setTimeout(() => flowPath.classList.add('visible'), 50);
-            }
-        }
+        // Initialize with overzicht active
+        document.querySelector('[data-perspective="overzicht"]').classList.add('active');
     </script>
 </body>
 </html>
