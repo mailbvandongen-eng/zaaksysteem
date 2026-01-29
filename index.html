@@ -6,6 +6,15 @@
     <title>Zaaksysteem Keten - Gemeente Westland</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+        /* Animatie voor flow lijnen */
+        @keyframes flowLine {
+            from { stroke-dashoffset: 18; }
+            to { stroke-dashoffset: 0; }
+        }
+        .flow-line {
+            animation: flowLine 0.6s linear infinite;
+        }
+
         .perspective-cards {
             display: flex;
             gap: 0.75rem;
@@ -440,12 +449,12 @@
                         <text x="595" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
 
                         <!-- Flow lijn (bovenop) -->
-                        <line x1="120" y1="50" x2="140" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line x1="200" y1="50" x2="220" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line x1="280" y1="50" x2="300" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line x1="380" y1="50" x2="400" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line x1="470" y1="50" x2="490" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line x1="550" y1="50" x2="570" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="120" y1="50" x2="140" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="200" y1="50" x2="220" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="280" y1="50" x2="300" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="380" y1="50" x2="400" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="470" y1="50" x2="490" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="550" y1="50" x2="570" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
                     </svg>`
             },
             'aanvrager-bz': {
@@ -476,12 +485,12 @@
                         <text x="615" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
 
                         <!-- Flow lijn (bovenop) -->
-                        <line x1="120" y1="50" x2="140" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line x1="210" y1="50" x2="230" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line x1="290" y1="50" x2="310" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line x1="390" y1="50" x2="410" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line x1="490" y1="50" x2="510" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line x1="570" y1="50" x2="590" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="120" y1="50" x2="140" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="210" y1="50" x2="230" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="290" y1="50" x2="310" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="390" y1="50" x2="410" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="490" y1="50" x2="510" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="flow-line" x1="570" y1="50" x2="590" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
                     </svg>`
             },
             // ===== BEHANDELAAR FLOWS =====
