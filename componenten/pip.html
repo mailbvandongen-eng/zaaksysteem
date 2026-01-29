@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIP - Persoonlijke Internet Pagina</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .pip-demo {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .pip-demo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        .pip-demo-header img {
+            height: 40px;
+        }
+        .pip-demo-header h4 {
+            color: var(--primary);
+            margin: 0;
+        }
+        .pip-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .pip-menu-item {
+            padding: 0.75rem 1rem;
+            background: var(--gray-light);
+            border-radius: 6px;
+            border-left: 3px solid transparent;
+        }
+        .pip-menu-item.active {
+            border-left-color: var(--primary);
+            background: white;
+            font-weight: 600;
+        }
+        .pip-content {
+            background: var(--gray-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .test-box {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid #74B943;
+            margin: 1.5rem 0;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .feature {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 4px solid var(--primary);
+        }
+        .feature h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .feature p {
+            color: var(--text-light);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://www.gemeentewestland.nl/fileadmin/Gemeente_Westland/site_assets/logowestland.svg" alt="Gemeente Westland">
+        </div>
+        <h1>Zaaksysteem Ketenvisualisatie</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Overzicht</a></li>
+            <li><a href="../perspectief/behandelaar.html">Behandelaar</a></li>
+            <li><a href="../perspectief/aanvrager.html">Aanvrager</a></li>
+            <li><a href="../perspectief/kcc.html">KCC</a></li>
+            <li><a href="../implementatie/7-vinkjes.html">7 Vinkjes</a></li>
+            <li><a href="pip.html" class="active">PIP</a></li>
+            <li><a href="systemen.html">Systemen</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>PIP - Persoonlijke Internet Pagina</h2>
+        <p style="color: var(--text-light); margin-bottom: 1.5rem;">De digitale omgeving waar aanvragers hun zaken kunnen volgen en documenten kunnen beheren.</p>
+
+        <!-- Test de PIP -->
+        <section>
+            <h3>Test de PIP</h3>
+            <p>Wil je zien hoe de PIP eruitziet? Bekijk de acceptatieomgeving:</p>
+            <div class="test-box">
+                <p style="margin-bottom: 0.75rem;"><strong>Testomgeving:</strong> <a href="http://mijn.gemeentewestland.simgroep-acceptatie.nl/" target="_blank" style="color: #44772C;">mijn.gemeentewestland.simgroep-acceptatie.nl</a></p>
+                <p style="margin-bottom: 0.25rem;"><strong>Gebruikersnaam:</strong> DonaldDuck</p>
+                <p style="margin-bottom: 0;"><strong>Wachtwoord:</strong> 123Duckstad!</p>
+            </div>
+            <p style="color: var(--text-light); font-size: 0.9rem;">Let op: "Mijn Zaken" is nog niet actief in deze omgeving, maar je krijgt wel een indruk van de PIP.</p>
+        </section>
+
+        <!-- Wat is de PIP -->
+        <section>
+            <h3>Wat is de PIP?</h3>
+            <p>De PIP is het digitale loket van Gemeente Westland waar inwoners en bedrijven hun zaken kunnen regelen en volgen.</p>
+
+            <div class="features">
+                <div class="feature">
+                    <h4>Mijn Zaken</h4>
+                    <p>Overzicht van alle lopende en afgeronde aanvragen met actuele status</p>
+                </div>
+                <div class="feature">
+                    <h4>Mijn Documenten</h4>
+                    <p>Documenten uploaden en downloaden, zoals beschikkingen en bijlagen</p>
+                </div>
+                <div class="feature">
+                    <h4>Mijn Gegevens</h4>
+                    <p>Inzicht in welke persoonsgegevens bij de gemeente bekend zijn</p>
+                </div>
+                <div class="feature">
+                    <h4>Notificaties</h4>
+                    <p>Automatische e-mail bij statuswijzigingen van aanvragen</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hoe ziet de PIP eruit -->
+        <section>
+            <h3>Hoe ziet de PIP eruit?</h3>
+            <div class="pip-demo">
+                <div class="pip-demo-header">
+                    <img src="https://www.gemeentewestland.nl/fileadmin/Gemeente_Westland/site_assets/logowestland.svg" alt="Gemeente Westland">
+                    <h4>Mijn Gemeente Westland</h4>
+                </div>
+                <div style="display: grid; grid-template-columns: 200px 1fr; gap: 2rem;">
+                    <div class="pip-menu">
+                        <div class="pip-menu-item active">Overzicht</div>
+                        <div class="pip-menu-item">Mijn gegevens</div>
+                        <div class="pip-menu-item">Mijn inkomen</div>
+                        <div class="pip-menu-item">Mijn Zorg</div>
+                        <div class="pip-menu-item">Instellingen</div>
+                    </div>
+                    <div class="pip-content">
+                        <h4 style="margin-bottom: 1rem;">Welkom op Mijn Gemeente Westland</h4>
+                        <p>Mijn Gemeente Westland, het digitale loket van uw gemeente. U kunt hier:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Uw zaken direct regelen</li>
+                            <li>Aanvragen volgen en bekijken welke gegevens bij ons bekend zijn</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inloggen -->
+        <section>
+            <h3>Inloggen op de PIP</h3>
+            <div class="cards" style="margin-top: 1rem;">
+                <div class="card" style="cursor: default; border-left: 4px solid #FF5722;">
+                    <h4>DigiD</h4>
+                    <p>Voor inwoners. Inloggen met persoonlijke DigiD.</p>
+                </div>
+                <div class="card" style="cursor: default; border-left: 4px solid #2196F3;">
+                    <h4>eHerkenning</h4>
+                    <p>Voor bedrijven. Inloggen namens een organisatie.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wat ziet de aanvrager -->
+        <section class="flow-container">
+            <h3>Wat ziet de aanvrager wel en niet?</h3>
+            <div class="cards" style="margin-top: 1rem;">
+                <div class="card" style="cursor: default; border-left: 4px solid #4CAF50;">
+                    <h4>Zichtbaar</h4>
+                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                        <li>De aanvraag zelf</li>
+                        <li>Eigen uploads</li>
+                        <li>Definitieve beschikkingen</li>
+                        <li>Brieven aan aanvrager</li>
+                        <li>Status van de zaak</li>
+                    </ul>
+                </div>
+                <div class="card" style="cursor: default; border-left: 4px solid #F44336;">
+                    <h4>Niet zichtbaar</h4>
+                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                        <li>Concept-beschikkingen</li>
+                        <li>Interne notities</li>
+                        <li>Adviesrapporten</li>
+                        <li>Collegiale toetsing</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top: 1rem;">
+                <strong>Enable-U bepaalt de zichtbaarheid.</strong> Per zaaktype wordt geconfigureerd welke documenttypen de aanvrager mag zien. Dit wordt beheerd door de Functioneel Beheerders.
+            </div>
+        </section>
+
+        <section style="text-align: center; margin-top: 3rem;">
+            <a href="../perspectief/aanvrager.html" class="btn btn-primary">Bekijk de aanvrager journey</a>
+            <a href="../index.html" class="btn btn-outline" style="margin-left: 1rem;">Terug naar overzicht</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Zaaksysteem Ketenvisualisatie - Gemeente Westland</p>
+    </footer>
+</body>
+</html>
