@@ -89,6 +89,26 @@
                     <rect x="980" y="40" width="180" height="520" fill="#E0F7FA" rx="8" opacity="0.5"/>
                     <text x="1070" y="70" text-anchor="middle" font-size="14" fill="#00838F" font-weight="600">INZICHT</text>
 
+                    <!-- ARROWS / CONNECTIONS (eerst, zodat ze achter nodes komen) -->
+                    <path class="arrow" d="M220,125 L275,125"/>
+                    <path class="arrow" d="M220,195 L275,195"/>
+                    <path class="arrow" d="M220,335 L275,335"/>
+                    <path class="arrow" d="M420,125 L495,200"/>
+                    <path class="arrow" d="M420,195 L495,210"/>
+                    <path class="arrow" d="M420,335 L495,230"/>
+                    <path class="arrow" d="M550,250 L535,295"/>
+                    <path class="arrow" d="M650,250 L655,295"/>
+                    <path class="arrow" d="M535,250 L535,355"/>
+                    <path class="arrow" d="M655,250 L655,355"/>
+                    <path class="arrow" d="M535,350 L550,425"/>
+                    <path class="arrow" d="M655,350 L650,425"/>
+                    <path class="arrow animated" d="M700,200 L775,160" stroke="#74B943" marker-end="url(#arrowhead-green)"/>
+                    <path class="arrow" d="M700,215 L775,230"/>
+                    <path class="arrow animated" d="M940,160 L995,160" stroke="#74B943" marker-end="url(#arrowhead-green)"/>
+                    <path class="arrow" d="M350,395 L350,365"/>
+                    <path class="arrow" d="M280,420 L225,125" stroke="#FF5722" stroke-dasharray="3"/>
+                    <text x="600" y="275" text-anchor="middle" font-size="10" fill="#666">ZS-DMS</text>
+
                     <!-- KANALEN -->
                     <g class="node node-kanaal" data-system="gemeentewestland">
                         <rect x="60" y="100" width="160" height="50" fill="#4CAF50" rx="6"/>
@@ -214,41 +234,6 @@
                         <text x="1070" y="500" text-anchor="middle" fill="#666" font-size="12">Corsa</text>
                         <text x="1070" y="515" text-anchor="middle" fill="#F44336" font-size="9">(wordt uitgefaseerd)</text>
                     </g>
-
-                    <!-- ARROWS / CONNECTIONS -->
-                    <!-- Kanalen naar Intake -->
-                    <path class="arrow" d="M220,125 L275,125"/>
-                    <path class="arrow" d="M220,195 L275,195"/>
-                    <path class="arrow" d="M220,335 L275,335"/>
-
-                    <!-- Intake naar Rx.Enterprise -->
-                    <path class="arrow" d="M420,125 L495,200"/>
-                    <path class="arrow" d="M420,195 L495,210"/>
-
-                    <!-- Scanner naar Rx.Enterprise -->
-                    <path class="arrow" d="M420,335 L495,230"/>
-
-                    <!-- Rx.Enterprise naar Afhandelsystemen -->
-                    <path class="arrow" d="M550,250 L535,295"/>
-                    <path class="arrow" d="M650,250 L655,295"/>
-                    <path class="arrow" d="M535,250 L535,355"/>
-                    <path class="arrow" d="M655,250 L655,355"/>
-
-                    <!-- Afhandelsystemen naar Enable-U -->
-                    <path class="arrow" d="M535,350 L550,425"/>
-                    <path class="arrow" d="M655,350 L650,425"/>
-
-                    <!-- Rx.Enterprise naar PIP/KCC -->
-                    <path class="arrow animated" d="M700,200 L775,160" stroke="#74B943" marker-end="url(#arrowhead-green)"/>
-                    <path class="arrow" d="M700,215 L775,230"/>
-                    <path class="arrow animated" d="M940,160 L995,160" stroke="#74B943" marker-end="url(#arrowhead-green)"/>
-
-                    <!-- DigiD/eHerk connecties -->
-                    <path class="arrow" d="M350,395 L350,365"/>
-                    <path class="arrow" d="M280,420 L225,125" stroke="#FF5722" stroke-dasharray="3"/>
-
-                    <!-- Labels voor flows -->
-                    <text x="600" y="275" text-anchor="middle" font-size="10" fill="#666">ZS-DMS</text>
 
                 </svg>
             </div>

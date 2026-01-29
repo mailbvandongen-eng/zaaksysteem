@@ -35,8 +35,8 @@ body {
 
 /* Header */
 header {
-    background: var(--primary);
-    color: var(--white);
+    background: var(--white);
+    color: var(--text);
     padding: 1rem 2rem;
     display: flex;
     align-items: center;
@@ -45,6 +45,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 101;
+    border-bottom: 1px solid var(--gray);
 }
 
 .logo {
@@ -58,6 +59,7 @@ header {
 header h1 {
     font-size: 1.5rem;
     font-weight: 600;
+    color: var(--primary);
 }
 
 /* Navigation */
