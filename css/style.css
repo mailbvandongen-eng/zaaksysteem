@@ -1,11 +1,5 @@
 /* Gemeente Westland Zaaksysteem Flow Visualisatie
-   Huisstijl kleuren:
-   - Donkergroen: #44772C (primair)
-   - Limoengroen: #74B943 (accenten, CTA)
-   - Lichtblauw: #8FB6D9 (achtergronden)
-   - Blauwgrijs: #93B8D7 (secundair)
-   - Zwart: #1A1919 (tekst)
-   - Wit: #FFFFFE (achtergrond)
+   Huisstijl gebaseerd op gemeentewestland.nl
 */
 
 :root {
@@ -13,11 +7,13 @@
     --primary-light: #74B943;
     --secondary: #8FB6D9;
     --secondary-dark: #93B8D7;
-    --text: #1A1919;
-    --white: #FFFFFE;
-    --gray-light: #f5f7f9;
-    --gray: #e0e4e8;
-    --shadow: rgba(26, 25, 25, 0.1);
+    --text: #333333;
+    --text-light: #666666;
+    --white: #FFFFFF;
+    --gray-light: #f8f9fa;
+    --gray: #e9ecef;
+    --gray-dark: #dee2e6;
+    --shadow: rgba(0, 0, 0, 0.08);
 }
 
 * {
@@ -26,27 +22,54 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
     color: var(--text);
     background: var(--white);
     line-height: 1.6;
+    font-size: 15px;
+    min-height: 100vh;
 }
 
-/* Header */
+/* Fixed background wave gradient */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background: linear-gradient(180deg,
+        #f0f7ed 0%,
+        #e8f4e5 15%,
+        #f5f9f3 30%,
+        var(--white) 50%
+    );
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Header - fixed */
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     background: var(--white);
-    color: var(--text);
-    padding: 1rem 2rem;
+    padding: 0.75rem 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 2px 8px var(--shadow);
-    border-bottom: 1px solid var(--gray);
+    box-shadow: 0 1px 3px var(--shadow);
+    z-index: 1000;
 }
 
 .logo {
-    height: 50px;
+    height: 40px;
 }
 
 .logo img {
@@ -54,96 +77,99 @@ header {
 }
 
 header h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 500;
     color: var(--primary);
+    letter-spacing: -0.01em;
 }
 
-/* Navigation */
+/* Navigation - fixed under header */
 nav {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
     background: var(--white);
     border-bottom: 1px solid var(--gray);
     padding: 0 2rem;
+    z-index: 999;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 0.5rem;
+    gap: 0;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 nav a {
     display: block;
-    padding: 1rem 1.25rem;
+    padding: 0.75rem 1rem;
     color: var(--text);
     text-decoration: none;
-    font-weight: 500;
-    border-bottom: 3px solid transparent;
-    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s ease;
 }
 
 nav a:hover {
     color: var(--primary);
-    background: var(--gray-light);
 }
 
 nav a.active {
     color: var(--primary);
+    font-weight: 500;
     border-bottom-color: var(--primary-light);
 }
 
-/* Main content */
+/* Main content - account for fixed header/nav */
 main {
     max-width: 1400px;
     margin: 0 auto;
     padding: 2rem;
+    padding-top: 120px; /* Space for fixed header + nav */
+    min-height: calc(100vh - 80px);
 }
 
-/* Hero section */
-.hero {
-    text-align: center;
-    padding: 3rem 2rem;
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
-    border-radius: 12px;
-    margin-bottom: 2rem;
+/* Section headings */
+main h2 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
-.hero h2 {
-    font-size: 2rem;
-    color: var(--text);
-    margin-bottom: 0.5rem;
+main h3 {
+    color: var(--primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
-.hero p {
-    font-size: 1.2rem;
-    color: var(--text);
-    opacity: 0.9;
-}
-
-.hero .subtitle {
+main h4 {
+    color: var(--primary);
     font-size: 1rem;
-    background: var(--primary);
-    color: var(--white);
-    padding: 0.5rem 1.5rem;
-    border-radius: 20px;
-    display: inline-block;
-    margin-top: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
 /* Flow diagram container */
 .flow-container {
     background: var(--white);
     border: 1px solid var(--gray);
-    border-radius: 12px;
-    padding: 2rem;
-    margin: 2rem 0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
     overflow-x: auto;
 }
 
 .flow-container h3 {
     color: var(--primary);
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 /* SVG Flow styles */
@@ -158,62 +184,27 @@ main {
 
 .flow-diagram .node rect,
 .flow-diagram .node circle {
-    transition: filter 0.2s ease, stroke 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .flow-diagram .node:hover rect {
-    filter: brightness(1.08);
-    stroke: rgba(255,255,255,0.5);
-    stroke-width: 2px;
+    filter: brightness(1.05);
 }
-
-.flow-diagram .node.highlight rect,
-.flow-diagram .node.highlight circle {
-    stroke: var(--primary-light);
-    stroke-width: 3px;
-}
-
-.flow-diagram .arrow {
-    stroke: var(--text);
-    stroke-width: 2;
-    fill: none;
-    marker-end: url(#arrowhead);
-}
-
-.flow-diagram .arrow.animated {
-    stroke-dasharray: 10;
-    animation: flowArrow 1s linear infinite;
-}
-
-@keyframes flowArrow {
-    to {
-        stroke-dashoffset: -20;
-    }
-}
-
-/* Component colors in flow */
-.node-kanaal rect { fill: #4CAF50; }
-.node-formulier rect { fill: #2196F3; }
-.node-zaaksysteem rect { fill: var(--primary); }
-.node-afhandel rect { fill: #FF9800; }
-.node-pip rect { fill: #9C27B0; }
-.node-kcc rect { fill: #00BCD4; }
-.node-middleware rect { fill: #607D8B; }
 
 /* Cards grid */
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
 }
 
 .card {
     background: var(--white);
     border: 1px solid var(--gray);
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: all 0.2s ease;
+    border-radius: 8px;
+    padding: 1.25rem;
+    transition: all 0.15s ease;
     text-decoration: none;
     color: inherit;
     display: block;
@@ -221,88 +212,91 @@ main {
 
 .card:hover {
     border-color: var(--primary-light);
-    box-shadow: 0 4px 12px var(--shadow);
-    transform: translateY(-2px);
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 .card h4 {
     color: var(--primary);
     margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
 .card p {
-    color: var(--text);
-    opacity: 0.8;
-    font-size: 0.95rem;
-}
-
-.card .icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    color: var(--text-light);
+    font-size: 0.875rem;
+    line-height: 1.5;
 }
 
 /* Perspective cards */
 .perspective-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
 }
 
 .perspective-card {
-    background: var(--gray-light);
-    border-radius: 8px;
-    padding: 1.25rem;
+    background: var(--white);
+    border: 1px solid var(--gray);
+    border-radius: 6px;
+    padding: 1rem;
     text-align: center;
     cursor: pointer;
-    transition: all 0.2s ease;
-    border: 2px solid transparent;
+    transition: all 0.15s ease;
 }
 
 .perspective-card:hover {
-    background: var(--white);
     border-color: var(--primary-light);
+    background: var(--gray-light);
 }
 
 .perspective-card.active {
     background: var(--primary);
+    border-color: var(--primary);
     color: var(--white);
 }
 
 .perspective-card h5 {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
     margin-bottom: 0.25rem;
 }
 
 .perspective-card p {
-    font-size: 0.85rem;
-    opacity: 0.8;
+    font-size: 0.8rem;
+    opacity: 0.7;
 }
 
 /* 7 Vinkjes */
 .vinkjes {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin: 2rem 0;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
 }
 
 .vinkje {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--white);
+    border: 1px solid var(--gray);
+    border-radius: 6px;
+    border-left: 3px solid var(--gray-dark);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.vinkje:hover {
+    border-left-color: var(--primary-light);
     background: var(--gray-light);
-    border-radius: 8px;
-    border-left: 4px solid var(--gray);
-    transition: all 0.3s ease;
 }
 
 .vinkje.active {
-    background: var(--white);
     border-left-color: var(--primary-light);
-    box-shadow: 0 2px 8px var(--shadow);
+    background: #f0f7ed;
 }
 
 .vinkje.completed {
@@ -310,15 +304,17 @@ main {
 }
 
 .vinkje .number {
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     background: var(--gray);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
+    font-size: 0.85rem;
     flex-shrink: 0;
+    color: var(--text);
 }
 
 .vinkje.completed .number {
@@ -327,26 +323,29 @@ main {
 }
 
 .vinkje .content h5 {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
     margin-bottom: 0.25rem;
+    color: var(--text);
 }
 
 .vinkje .content p {
-    font-size: 0.9rem;
-    opacity: 0.7;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.5;
 }
 
 /* Buttons */
 .btn {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    font-weight: 600;
+    padding: 0.6rem 1.25rem;
+    border-radius: 4px;
+    font-weight: 500;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
     border: none;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .btn-primary {
@@ -359,122 +358,131 @@ main {
 }
 
 .btn-secondary {
-    background: var(--secondary);
+    background: var(--gray-light);
     color: var(--text);
+    border: 1px solid var(--gray);
 }
 
 .btn-secondary:hover {
-    background: var(--secondary-dark);
-}
-
-.btn-outline {
-    background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-}
-
-.btn-outline:hover {
-    background: var(--primary);
-    color: var(--white);
-}
-
-/* Toggle switch */
-.toggle-container {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 1rem 0;
-}
-
-.toggle {
-    position: relative;
-    width: 50px;
-    height: 26px;
     background: var(--gray);
-    border-radius: 13px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-.toggle.active {
-    background: var(--primary-light);
-}
-
-.toggle::after {
-    content: '';
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    background: var(--white);
-    border-radius: 50%;
-    top: 2px;
-    left: 2px;
-    transition: transform 0.2s ease;
-    box-shadow: 0 1px 3px var(--shadow);
-}
-
-.toggle.active::after {
-    transform: translateX(24px);
 }
 
 /* Info boxes */
 .info-box {
     background: var(--gray-light);
-    border-left: 4px solid var(--secondary);
-    padding: 1rem 1.5rem;
-    border-radius: 0 8px 8px 0;
+    border-left: 3px solid var(--secondary);
+    padding: 1rem 1.25rem;
+    border-radius: 0 6px 6px 0;
     margin: 1.5rem 0;
+    font-size: 0.9rem;
 }
 
 .info-box.warning {
-    border-left-color: #FF9800;
-    background: #FFF8E1;
+    border-left-color: #e6a700;
+    background: #fffbf0;
 }
 
 .info-box.success {
     border-left-color: var(--primary);
-    background: #E8F5E9;
+    background: #f0f7ed;
+}
+
+.info-box strong {
+    color: var(--primary);
 }
 
 /* System component details */
 .system-detail {
     display: none;
-    background: var(--white);
-    border: 1px solid var(--gray);
-    border-radius: 8px;
-    padding: 1.5rem;
+    background: var(--gray-light);
+    border-radius: 6px;
+    padding: 1.25rem;
     margin-top: 1rem;
+    font-size: 0.9rem;
 }
 
 .system-detail.visible {
     display: block;
-    animation: fadeIn 0.3s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Content sections */
+.content-section {
+    background: var(--white);
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.content-section h3 {
+    border-bottom: 1px solid var(--gray);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray);
+}
+
+th {
+    background: var(--gray-light);
+    font-weight: 600;
+    color: var(--primary);
+}
+
+tr:hover {
+    background: var(--gray-light);
+}
+
+/* Lists */
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text);
 }
 
 /* Footer */
 footer {
-    background: var(--text);
+    background: var(--primary);
     color: var(--white);
-    padding: 2rem;
+    padding: 1.5rem 2rem;
     text-align: center;
-    margin-top: 3rem;
+    margin-top: auto;
 }
 
 footer p {
-    opacity: 0.8;
+    font-size: 0.85rem;
+    opacity: 0.9;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     header {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
+        padding: 0.75rem 1rem;
+    }
+
+    header h1 {
+        font-size: 0.95rem;
+    }
+
+    nav {
+        padding: 0 1rem;
+        top: 50px;
     }
 
     nav ul {
@@ -483,46 +491,68 @@ footer p {
     }
 
     nav a {
-        padding: 0.75rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    .hero h2 {
-        font-size: 1.5rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
     }
 
     main {
         padding: 1rem;
+        padding-top: 110px;
     }
 
     .cards {
         grid-template-columns: 1fr;
     }
+
+    .perspective-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-/* Animation for "volg de zaak" */
-.zaak-dot {
-    fill: var(--primary-light);
-    r: 8;
+/* Animation for flow paths */
+.flow-path {
+    fill: none;
+    stroke: var(--primary-light);
+    stroke-width: 3;
+    stroke-dasharray: 10 5;
+    stroke-linecap: round;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
-.zaak-dot.moving {
-    animation: pulse 0.5s ease-in-out infinite;
+.flow-path.visible {
+    opacity: 1;
+    animation: flowDash 0.8s linear infinite;
 }
 
-@keyframes pulse {
-    0%, 100% { r: 8; opacity: 1; }
-    50% { r: 12; opacity: 0.7; }
+@keyframes flowDash {
+    to { stroke-dashoffset: -15; }
+}
+
+.node.dimmed {
+    opacity: 0.2;
+}
+
+.node.highlighted {
+    opacity: 1;
 }
 
 /* Print styles */
 @media print {
-    nav, .btn, .toggle-container {
+    body::before {
         display: none;
     }
 
+    header, nav {
+        position: static;
+    }
+
+    main {
+        padding-top: 1rem;
+    }
+
     .flow-container {
-        border: 1px solid #000;
+        border: 1px solid #ccc;
         break-inside: avoid;
     }
 }
