@@ -450,43 +450,43 @@
         // Step-by-step flow configurations
         // Alle paden met alleen horizontale en verticale lijnen (90° hoeken)
         const stepConfigs = {
-            // Behandelaar stappen
+            // ========== BEHANDELAAR STAPPEN ==========
             'beh-1': {
                 nodes: ['rx-enterprise'],
                 path: null,
                 description: 'De aanvraag staat in de werkvoorraad van Rx.Enterprise. De behandelaar ziet dit in zijn takenlijst.'
             },
             'beh-2': {
-                nodes: ['rx-enterprise', 's4sd', 'centric-bz'],
-                // rx-enterprise → afhandelsystemen
-                path: 'M600,250 L600,280 L535,280 L535,300 M655,280 L655,300',
-                description: 'Behandelaar opent de zaak en werkt in het afhandelsysteem (S4SD, Centric BZ, etc.). Status wordt "In behandeling".'
+                nodes: ['rx-enterprise', 's4sd'],
+                // rx-enterprise → s4sd (behandelaar opent zaak in afhandelsysteem)
+                path: 'M600,250 L600,280 L655,280 L655,300',
+                description: 'Behandelaar opent de zaak vanuit Rx.Enterprise en gaat werken in het afhandelsysteem (Suite4SD).'
             },
             'beh-3': {
-                nodes: ['rx-enterprise', 'notificatie', 'pip'],
-                // rx-enterprise → notificatie → pip
-                path: 'M700,215 L750,215 L750,232 L780,232 M940,232 L950,232 L950,160 L940,160',
-                description: 'Automatisch gaat er een notificatie naar de aanvrager: "Uw aanvraag is in behandeling".'
+                nodes: ['s4sd', 'rx-enterprise', 'notificatie'],
+                // s4sd → rx-enterprise → notificatie (status update)
+                path: 'M655,300 L655,280 L600,280 L600,250 M700,215 L750,215 L750,232 L780,232',
+                description: 'Behandelaar zet status op "In behandeling" in Suite. Dit synchroniseert naar Rx.Enterprise en stuurt automatisch een notificatie naar de aanvrager.'
             },
             'beh-4': {
-                nodes: ['rx-enterprise', 'notificatie', 'pip'],
-                // rx → notificatie → pip (verzoek aanvullende stukken)
-                path: 'M700,215 L750,215 L750,232 L780,232 M940,232 L950,232 L950,160 L940,160',
-                description: 'Behandelaar heeft aanvullende stukken nodig. Verzoek gaat via notificatie naar de PIP van de aanvrager.'
+                nodes: ['notificatie', 'pip'],
+                // notificatie → pip (aanvullende stukken verzoek)
+                path: 'M860,210 L860,190',
+                description: 'Aanvrager ontvangt notificatie: "Wij hebben aanvullende documenten nodig". Dit is zichtbaar in de PIP.'
             },
             'beh-5': {
-                nodes: ['pip', 'rx-enterprise'],
-                // pip → rx-enterprise (upload documenten)
-                path: 'M780,160 L750,160 L750,100 L600,100 L600,180',
-                description: 'Aanvrager uploadt documenten via de PIP. Deze komen direct in het dossier in Rx.Enterprise.'
+                nodes: ['pip', 'rx-enterprise', 's4sd'],
+                // pip → rx-enterprise, melding naar s4sd
+                path: 'M780,160 L750,160 L750,100 L600,100 L600,180 M600,250 L600,280 L655,280 L655,300',
+                description: 'Aanvrager uploadt documenten via de PIP. Deze komen in Rx.Enterprise. Behandelaar krijgt melding in Suite dat er nieuwe stukken zijn.'
             },
             'beh-6': {
-                nodes: ['rx-enterprise', 's4sd', 'notificatie', 'pip'],
-                // s4sd → rx → notificatie → pip
-                path: 'M655,300 L655,280 L700,280 L700,250 M700,215 L750,215 L750,232 L780,232 M940,232 L950,232 L950,160 L940,160',
-                description: 'Zaak wordt afgehandeld, beschikking wordt verstuurd. Aanvrager ontvangt notificatie en kan beschikking downloaden via PIP.'
+                nodes: ['s4sd', 'rx-enterprise', 'notificatie', 'pip'],
+                // s4sd → rx-enterprise → notificatie → pip (zaak afsluiten)
+                path: 'M655,300 L655,280 L600,280 L600,250 M700,215 L750,215 L750,232 L780,232 M860,210 L860,190',
+                description: 'Behandelaar sluit de zaak af in Suite. Beschikking wordt verstuurd. Status gaat naar Rx.Enterprise, notificatie naar aanvrager, zichtbaar in PIP.'
             },
-            // KCC stappen
+            // ========== KCC STAPPEN ==========
             'kcc-1': {
                 nodes: ['telefoon'],
                 path: null,
@@ -506,11 +506,11 @@
             },
             'kcc-4': {
                 nodes: ['rx-front', 'rx-enterprise'],
-                // rx-front → terugbelverzoek naar rx-enterprise
+                // rx-front → terugbelverzoek naar rx-enterprise/behandelaar
                 path: 'M1000,190 L980,190 L980,280 L700,280 L700,250',
                 description: 'KCC kan een terugbelverzoek inplannen of direct doorverbinden met de behandelaar. Alles wordt gelogd.'
             },
-            // Team Registratie stappen
+            // ========== TEAM REGISTRATIE STAPPEN ==========
             'reg-1': {
                 nodes: ['post'],
                 path: null,
@@ -546,10 +546,10 @@
                 description: 'Burger vult formulier in op gemeentewestland.nl (SIMform), authenticeert met DigiD, zaak gaat naar Rx.Enterprise, wordt behandeld in S4SD, burger volgt status via PIP.'
             },
             'aanvrager-bz': {
-                nodes: ['gemeentewestland', 'ediensten', 'digid', 'centric-bz', 'rx-enterprise', 'pip'],
-                // gemeentewestland→ediensten | ediensten→digid | digid→centric-bz | centric-bz→rx | rx→pip
-                path: 'M220,125 L220,195 L280,195 M420,195 L450,195 L450,420 L420,420 M280,420 L280,500 L460,500 L460,325 L480,325 M590,325 L620,325 L620,250 L700,250 M700,180 L750,180 L750,160 L780,160',
-                description: 'Burger vraagt paspoort/rijbewijs aan via eDiensten, authenticeert met DigiD, Centric Burgerzaken verwerkt, synchroniseert met Rx.Enterprise, burger ziet status in PIP.'
+                nodes: ['gemeentewestland', 'ediensten', 'digid', 'cloudadapter', 'centric-bz', 'rx-enterprise', 'pip'],
+                // gemeentewestland→ediensten | ediensten→cloudadapter→digid | cloudadapter→centric-bz | centric-bz→rx | rx→pip
+                path: 'M220,125 L220,195 L280,195 M420,195 L450,195 L450,255 L420,255 M280,255 L280,420 L280,420 M420,420 L450,420 L450,325 L480,325 M590,325 L620,325 L620,250 L700,250 M700,180 L750,180 L750,160 L780,160',
+                description: 'Burger vraagt paspoort/rijbewijs aan via eDiensten, via Cloud Adapter en DigiD authenticatie, Centric Burgerzaken verwerkt, synchroniseert met Rx.Enterprise, burger ziet status in PIP.'
             }
         };
 
@@ -621,7 +621,7 @@
             });
         });
 
-        // Flow step clicks
+        // Flow step clicks (met toggle functionaliteit)
         document.querySelectorAll('.flow-step').forEach(step => {
             step.addEventListener('click', function() {
                 const stepId = this.dataset.step;
@@ -629,18 +629,21 @@
 
                 if (!config) return;
 
-                // Mark previous steps as completed, current as active
+                // Toggle: als deze stap al actief is, reset alles
+                if (this.classList.contains('active')) {
+                    resetDiagram();
+                    this.parentElement.querySelectorAll('.flow-step').forEach(s => {
+                        s.classList.remove('active', 'completed');
+                    });
+                    return;
+                }
+
+                // Mark alleen deze stap als active (geen completed voor vorige)
                 const allSteps = this.parentElement.querySelectorAll('.flow-step');
-                let foundCurrent = false;
                 allSteps.forEach(s => {
                     s.classList.remove('active', 'completed');
-                    if (s === this) {
-                        s.classList.add('active');
-                        foundCurrent = true;
-                    } else if (!foundCurrent) {
-                        s.classList.add('completed');
-                    }
                 });
+                this.classList.add('active');
 
                 // Apply the flow
                 applyFlow(config);
