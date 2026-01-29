@@ -249,14 +249,23 @@ function initToggles() {
             this.classList.toggle('active');
 
             const target = this.dataset.target;
-            if (target) {
-                const element = document.getElementById(target);
-                if (element) {
-                    element.classList.toggle('visible');
-                }
+            if (target === 'tech-layer') {
+                // Toggle both tech layer elements (SVG groups)
+                const layer1 = document.getElementById('tech-layer');
+                const layer2 = document.getElementById('tech-layer-2');
+                const isVisible = this.classList.contains('active');
+
+                if (layer1) layer1.style.display = isVisible ? 'block' : 'none';
+                if (layer2) layer2.style.display = isVisible ? 'block' : 'none';
             }
         });
     });
+
+    // Hide tech layers by default
+    const layer1 = document.getElementById('tech-layer');
+    const layer2 = document.getElementById('tech-layer-2');
+    if (layer1) layer1.style.display = 'none';
+    if (layer2) layer2.style.display = 'none';
 }
 
 // "Volg de zaak" animation
