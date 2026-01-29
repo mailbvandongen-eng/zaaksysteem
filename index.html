@@ -237,37 +237,6 @@
 
                     <rect x="940" y="30" width="140" height="400" fill="#E0F7FA" rx="8" opacity="0.5"/>
                     <text x="1010" y="55" text-anchor="middle" font-size="12" fill="#00838F" font-weight="600">INZICHT</text>
-
-                    <!-- FLOW LIJNEN -->
-                    <!-- Kanalen naar Intake -->
-                    <path d="M180,102 L240,102" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
-                    <path d="M180,162 L240,162" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
-                    <path d="M180,282 L200,282 L200,200 L420,150" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
-
-                    <!-- Intake naar Verwerking -->
-                    <path d="M360,102 L420,120" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
-                    <path d="M360,162 L420,140" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
-
-                    <!-- Rx.Enterprise naar Afhandelsystemen -->
-                    <path d="M520,160 L520,200" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
-                    <path d="M467,200 L467,245" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none" opacity="0.5"/>
-                    <path d="M572,200 L572,245" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none" opacity="0.5"/>
-
-                    <!-- Verwerking naar Enable-U -->
-                    <path d="M620,130 L670,130" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
-                    <path d="M620,200 L670,200" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
-
-                    <!-- Enable-U naar Terugkoppeling -->
-                    <path d="M730,130 L780,105" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
-                    <path d="M730,165 L780,165" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
-
-                    <!-- Naar Inzicht -->
-                    <path d="M900,105 L960,105" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
-                    <path d="M620,130 L640,130 L640,320 L980,320 L980,185" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none" opacity="0.5"/>
-
-                    <!-- Telefoon naar KCC -->
-                    <path d="M180,222 L200,222 L200,330 L950,330 L950,105 L960,105" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none" opacity="0.6"/>
-
                     <!-- KANALEN -->
                     <g class="node">
                         <rect x="40" y="80" width="140" height="45" fill="#4CAF50" rx="6"/>
@@ -447,67 +416,72 @@
                 title: 'Aanvrager - Sociaal Domein (WMO, GPK)',
                 description: 'De burger vult een formulier in op gemeentewestland.nl, logt in met DigiD, de aanvraag komt in Rx.Enterprise, wordt behandeld in Suite4SD, en de burger kan de status volgen via de PIP.',
                 svg: `
-                    <svg viewBox="0 0 900 100">
-                        <defs>
-                            <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-                                <path d="M0,0 L6,3 L0,6 Z" fill="#74B943"/>
-                            </marker>
-                        </defs>
-                        <!-- Flow lijn -->
-                        <path d="M130,50 L175,50 M225,50 L275,50 M325,50 L375,50 M425,50 L475,50 M525,50 L575,50 M625,50 L700,50"
-                              stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
+                    <svg viewBox="0 0 800 100">
                         <!-- Blokken -->
-                        <rect x="20" y="25" width="110" height="50" fill="#4CAF50" rx="6"/>
-                        <text x="75" y="55" text-anchor="middle" fill="white" font-size="10">gemeentewestland.nl</text>
+                        <rect x="20" y="25" width="100" height="50" fill="#4CAF50" rx="6"/>
+                        <text x="70" y="55" text-anchor="middle" fill="white" font-size="9">gemeentewestland.nl</text>
 
-                        <rect x="175" y="25" width="50" height="50" fill="#2196F3" rx="6"/>
-                        <text x="200" y="55" text-anchor="middle" fill="white" font-size="10">SIMform</text>
+                        <rect x="140" y="25" width="60" height="50" fill="#2196F3" rx="6"/>
+                        <text x="170" y="55" text-anchor="middle" fill="white" font-size="10">SIMform</text>
 
-                        <rect x="275" y="25" width="50" height="50" fill="#FF5722" rx="6"/>
-                        <text x="300" y="55" text-anchor="middle" fill="white" font-size="10">DigiD</text>
+                        <rect x="220" y="25" width="60" height="50" fill="#FF5722" rx="6"/>
+                        <text x="250" y="55" text-anchor="middle" fill="white" font-size="10">DigiD</text>
 
-                        <rect x="375" y="25" width="50" height="50" fill="#44772C" rx="6"/>
-                        <text x="400" y="45" text-anchor="middle" fill="white" font-size="9">Rx.</text>
-                        <text x="400" y="58" text-anchor="middle" fill="white" font-size="9">Enterprise</text>
+                        <rect x="300" y="25" width="80" height="50" fill="#44772C" rx="6"/>
+                        <text x="340" y="55" text-anchor="middle" fill="white" font-size="9">Rx.Enterprise</text>
 
-                        <rect x="475" y="25" width="50" height="50" fill="#FFA726" rx="6"/>
-                        <text x="500" y="55" text-anchor="middle" fill="white" font-size="10">Suite4SD</text>
+                        <rect x="400" y="25" width="70" height="50" fill="#FFA726" rx="6"/>
+                        <text x="435" y="55" text-anchor="middle" fill="white" font-size="10">Suite4SD</text>
 
-                        <rect x="575" y="25" width="50" height="50" fill="#B0BEC5" rx="4"/>
-                        <text x="600" y="55" text-anchor="middle" fill="#333" font-size="9">Enable-U</text>
+                        <rect x="490" y="25" width="60" height="50" fill="#B0BEC5" rx="4"/>
+                        <text x="520" y="55" text-anchor="middle" fill="#333" font-size="9">Enable-U</text>
 
-                        <rect x="700" y="25" width="50" height="50" fill="#9C27B0" rx="6"/>
-                        <text x="725" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
+                        <rect x="570" y="25" width="50" height="50" fill="#9C27B0" rx="6"/>
+                        <text x="595" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
+
+                        <!-- Flow lijn (bovenop) -->
+                        <line x1="120" y1="50" x2="140" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line x1="200" y1="50" x2="220" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line x1="280" y1="50" x2="300" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line x1="380" y1="50" x2="400" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line x1="470" y1="50" x2="490" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line x1="550" y1="50" x2="570" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
                     </svg>`
             },
             'aanvrager-bz': {
-                title: 'Aanvrager - Burgerzaken (Paspoort, Rijbewijs)',
+                title: 'Aanvrager - Burgerzaken (eDiensten)',
                 description: 'De burger vraagt een paspoort of rijbewijs aan via Centric eDiensten, logt in met DigiD, Centric Burgerzaken verwerkt de aanvraag, dit synchroniseert naar Rx.Enterprise, en de status wordt zichtbaar in de PIP.',
                 svg: `
-                    <svg viewBox="0 0 900 100">
-                        <path d="M130,50 L175,50 M250,50 L300,50 M350,50 L400,50 M475,50 L525,50 M575,50 L625,50 M675,50 L750,50"
-                              stroke="#74B943" stroke-width="3" stroke-dasharray="8,4" fill="none"/>
-                        <rect x="20" y="25" width="110" height="50" fill="#4CAF50" rx="6"/>
-                        <text x="75" y="55" text-anchor="middle" fill="white" font-size="10">gemeentewestland.nl</text>
+                    <svg viewBox="0 0 800 100">
+                        <!-- Blokken -->
+                        <rect x="20" y="25" width="100" height="50" fill="#4CAF50" rx="6"/>
+                        <text x="70" y="55" text-anchor="middle" fill="white" font-size="9">gemeentewestland.nl</text>
 
-                        <rect x="175" y="25" width="75" height="50" fill="#42A5F5" rx="6"/>
-                        <text x="212" y="55" text-anchor="middle" fill="white" font-size="9">eDiensten</text>
+                        <rect x="140" y="25" width="70" height="50" fill="#42A5F5" rx="6"/>
+                        <text x="175" y="55" text-anchor="middle" fill="white" font-size="9">eDiensten</text>
 
-                        <rect x="300" y="25" width="50" height="50" fill="#FF5722" rx="6"/>
-                        <text x="325" y="55" text-anchor="middle" fill="white" font-size="10">DigiD</text>
+                        <rect x="230" y="25" width="60" height="50" fill="#FF5722" rx="6"/>
+                        <text x="260" y="55" text-anchor="middle" fill="white" font-size="10">DigiD</text>
 
-                        <rect x="400" y="25" width="75" height="50" fill="#FF9800" rx="6"/>
-                        <text x="437" y="55" text-anchor="middle" fill="white" font-size="9">Centric BZ</text>
+                        <rect x="310" y="25" width="80" height="50" fill="#FF9800" rx="6"/>
+                        <text x="350" y="55" text-anchor="middle" fill="white" font-size="9">Centric BZ</text>
 
-                        <rect x="525" y="25" width="50" height="50" fill="#44772C" rx="6"/>
-                        <text x="550" y="45" text-anchor="middle" fill="white" font-size="9">Rx.</text>
-                        <text x="550" y="58" text-anchor="middle" fill="white" font-size="9">Enterprise</text>
+                        <rect x="410" y="25" width="80" height="50" fill="#44772C" rx="6"/>
+                        <text x="450" y="55" text-anchor="middle" fill="white" font-size="9">Rx.Enterprise</text>
 
-                        <rect x="625" y="25" width="50" height="50" fill="#B0BEC5" rx="4"/>
-                        <text x="650" y="55" text-anchor="middle" fill="#333" font-size="9">Enable-U</text>
+                        <rect x="510" y="25" width="60" height="50" fill="#B0BEC5" rx="4"/>
+                        <text x="540" y="55" text-anchor="middle" fill="#333" font-size="9">Enable-U</text>
 
-                        <rect x="750" y="25" width="50" height="50" fill="#9C27B0" rx="6"/>
-                        <text x="775" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
+                        <rect x="590" y="25" width="50" height="50" fill="#9C27B0" rx="6"/>
+                        <text x="615" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
+
+                        <!-- Flow lijn (bovenop) -->
+                        <line x1="120" y1="50" x2="140" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line x1="210" y1="50" x2="230" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line x1="290" y1="50" x2="310" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line x1="390" y1="50" x2="410" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line x1="490" y1="50" x2="510" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line x1="570" y1="50" x2="590" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
                     </svg>`
             },
             // ===== BEHANDELAAR FLOWS =====
