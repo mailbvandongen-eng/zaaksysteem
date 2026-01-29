@@ -42,9 +42,6 @@ header {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 8px var(--shadow);
-    position: sticky;
-    top: 0;
-    z-index: 101;
     border-bottom: 1px solid var(--gray);
 }
 
@@ -67,9 +64,6 @@ nav {
     background: var(--white);
     border-bottom: 1px solid var(--gray);
     padding: 0 2rem;
-    position: sticky;
-    top: 72px; /* Below header */
-    z-index: 100;
 }
 
 nav ul {
