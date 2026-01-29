@@ -105,6 +105,73 @@
         <h2>PIP - Persoonlijke Internet Pagina</h2>
         <p style="color: var(--text-light); margin-bottom: 1.5rem;">De digitale omgeving waar aanvragers hun zaken kunnen volgen en documenten kunnen beheren.</p>
 
+        <!-- Hoe werkt de filtering -->
+        <section>
+            <h3>Hoe werkt de filtering van de PIP?</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                De API Gateway (Enable-U) bepaalt wat de aanvrager ziet op de PIP. Het werkt als een filter tussen het zaaksysteem en de aanvrager.
+            </p>
+
+            <!-- Diagram -->
+            <div style="background: var(--gray-light); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+                <svg viewBox="0 0 600 100" style="width: 100%; max-width: 700px; display: block; margin: 0 auto;">
+                    <style>
+                        @keyframes dash { to { stroke-dashoffset: -12; } }
+                        .animated-line { animation: dash 0.5s linear infinite; }
+                    </style>
+                    <rect x="20" y="25" width="140" height="50" fill="#44772C" rx="6"/>
+                    <text x="90" y="55" text-anchor="middle" fill="white" font-size="14" font-weight="500">Rx.Enterprise</text>
+
+                    <rect x="230" y="15" width="140" height="70" fill="#B0BEC5" rx="6"/>
+                    <text x="300" y="45" text-anchor="middle" fill="#333" font-size="14" font-weight="600">Enable-U</text>
+                    <text x="300" y="65" text-anchor="middle" fill="#555" font-size="12">API Gateway</text>
+
+                    <rect x="440" y="25" width="140" height="50" fill="#9C27B0" rx="6"/>
+                    <text x="510" y="55" text-anchor="middle" fill="white" font-size="14" font-weight="500">PIP</text>
+
+                    <line class="animated-line" x1="160" y1="50" x2="230" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4"/>
+                    <line class="animated-line" x1="370" y1="50" x2="440" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4"/>
+                </svg>
+            </div>
+
+            <!-- Uitleg hoe het filter werkt -->
+            <h4 style="margin-bottom: 1rem;">Hoe werkt het filter?</h4>
+
+            <div style="display: grid; gap: 1rem; margin-bottom: 2rem;">
+                <div style="background: #FFF3E0; padding: 1rem; border-radius: 6px; border-left: 4px solid #FF9800;">
+                    <strong>Niets ingericht = niets zichtbaar</strong><br>
+                    Een zaaktype dat niet is toegevoegd aan het filter is onzichtbaar op de PIP.
+                </div>
+
+                <div style="background: #E3F2FD; padding: 1rem; border-radius: 6px; border-left: 4px solid #2196F3;">
+                    <strong>Zaaktype toegevoegd = zaak zichtbaar, maar nog geen documenten</strong><br>
+                    Als je een zaaktype toevoegt, ziet de aanvrager de zaak. Maar documenten zijn nog niet zichtbaar.
+                </div>
+
+                <div style="background: #E8F5E9; padding: 1rem; border-radius: 6px; border-left: 4px solid #4CAF50;">
+                    <strong>Documenttype toegevoegd = document zichtbaar</strong><br>
+                    Alleen documenttypen die zijn ingericht worden getoond. De rest blijft verborgen (zoals concept-beschikkingen).
+                </div>
+            </div>
+
+            <!-- Belangrijk om te weten -->
+            <div style="background: #FFF8E1; padding: 1.25rem; border-radius: 8px; border: 1px solid #FFE082; margin-bottom: 1.5rem;">
+                <h5 style="color: #F57F17; margin-bottom: 0.5rem;">Belangrijk om te weten</h5>
+                <p style="margin: 0; color: #333;">
+                    Op dit moment geldt een documenttype voor <strong>alle zaaktypen</strong>. Als je een documenttype openzet, is het zichtbaar bij elke zaak.
+                    Daarom is het belangrijk om <strong>vooraf per zaaktype te bespreken</strong> welke documenttypen zichtbaar moeten zijn.
+                </p>
+            </div>
+
+            <!-- Toekomst -->
+            <div style="background: #E3F2FD; padding: 1.25rem; border-radius: 8px; border: 1px solid #90CAF9;">
+                <h5 style="color: #1565C0; margin-bottom: 0.5rem;">Binnenkort</h5>
+                <p style="margin: 0; color: #333;">
+                    Het filter wordt uitgebreid. Straks kun je <strong>per zaaktype</strong> bepalen welke documenttypen zichtbaar zijn op de PIP.
+                </p>
+            </div>
+        </section>
+
         <!-- Test de PIP -->
         <section>
             <h3>Test de PIP</h3>

@@ -123,28 +123,6 @@
             font-size: 0.9rem;
         }
 
-        /* Enable-U popup */
-        .eu-info {
-            display: none;
-            margin-top: 1rem;
-            padding: 1.5rem;
-            background: var(--white);
-            border: 1px solid var(--gray);
-            border-radius: 8px;
-        }
-        .eu-info.visible {
-            display: block;
-        }
-        .eu-info h4 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        .eu-diagram {
-            background: var(--gray-light);
-            padding: 1.5rem;
-            border-radius: 6px;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
@@ -309,8 +287,8 @@
                         <text x="572" y="282" text-anchor="middle" fill="#666" font-size="9">Toekomstig</text>
                     </g>
 
-                    <!-- ENABLE-U (API Gateway) - klikbaar -->
-                    <g class="node node-eu" id="enable-u-node" style="cursor:pointer">
+                    <!-- ENABLE-U (API Gateway) -->
+                    <g class="node">
                         <rect x="670" y="110" width="60" height="180" fill="#B0BEC5" rx="4"/>
                         <text x="700" y="200" text-anchor="middle" fill="#455A64" font-size="9" font-weight="500" transform="rotate(-90 700 200)">Enable-U</text>
                     </g>
@@ -340,92 +318,6 @@
                 </svg>
             </div>
 
-            <!-- Enable-U info popup -->
-            <div id="eu-info" class="eu-info">
-                <h3 style="color: var(--primary); margin-bottom: 1rem;">Enable-U API Gateway</h3>
-                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
-                    De API Gateway bepaalt wat de aanvrager ziet op de PIP. Het werkt als een filter tussen het zaaksysteem en de aanvrager.
-                </p>
-
-                <!-- Diagram -->
-                <div style="background: var(--gray-light); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
-                    <svg viewBox="0 0 600 100" style="width: 100%; max-width: 700px; display: block; margin: 0 auto;">
-                        <style>
-                            @keyframes dash { to { stroke-dashoffset: -12; } }
-                            .animated-line { animation: dash 0.5s linear infinite; }
-                        </style>
-                        <rect x="20" y="25" width="140" height="50" fill="#44772C" rx="6"/>
-                        <text x="90" y="55" text-anchor="middle" fill="white" font-size="14" font-weight="500">Rx.Enterprise</text>
-
-                        <rect x="230" y="15" width="140" height="70" fill="#B0BEC5" rx="6"/>
-                        <text x="300" y="45" text-anchor="middle" fill="#333" font-size="14" font-weight="600">Enable-U</text>
-                        <text x="300" y="65" text-anchor="middle" fill="#555" font-size="12">API Gateway</text>
-
-                        <rect x="440" y="25" width="140" height="50" fill="#9C27B0" rx="6"/>
-                        <text x="510" y="55" text-anchor="middle" fill="white" font-size="14" font-weight="500">PIP</text>
-
-                        <line class="animated-line" x1="160" y1="50" x2="230" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4"/>
-                        <line class="animated-line" x1="370" y1="50" x2="440" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4"/>
-                    </svg>
-                </div>
-
-                <!-- Uitleg hoe het filter werkt -->
-                <h4 style="margin-bottom: 1rem;">Hoe werkt het filter?</h4>
-
-                <div style="display: grid; gap: 1rem; margin-bottom: 2rem;">
-                    <div style="background: #FFF3E0; padding: 1rem; border-radius: 6px; border-left: 4px solid #FF9800;">
-                        <strong>Niets ingericht = niets zichtbaar</strong><br>
-                        Een zaaktype dat niet is toegevoegd aan het filter is onzichtbaar op de PIP.
-                    </div>
-
-                    <div style="background: #E3F2FD; padding: 1rem; border-radius: 6px; border-left: 4px solid #2196F3;">
-                        <strong>Zaaktype toegevoegd = zaak zichtbaar, maar nog geen documenten</strong><br>
-                        Als je een zaaktype toevoegt, ziet de aanvrager de zaak. Maar documenten zijn nog niet zichtbaar.
-                    </div>
-
-                    <div style="background: #E8F5E9; padding: 1rem; border-radius: 6px; border-left: 4px solid #4CAF50;">
-                        <strong>Documenttype toegevoegd = document zichtbaar</strong><br>
-                        Alleen documenttypen die zijn ingericht worden getoond. De rest blijft verborgen (zoals concept-beschikkingen).
-                    </div>
-                </div>
-
-                <!-- Wat is wel/niet zichtbaar -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
-                    <div style="background: #E8F5E9; padding: 1.25rem; border-radius: 8px;">
-                        <h5 style="color: #2E7D32; margin-bottom: 0.75rem;">Meestal zichtbaar</h5>
-                        <ul style="margin: 0; padding-left: 1.25rem; color: #333;">
-                            <li>Aanvragen</li>
-                            <li>Beschikkingen</li>
-                            <li>Eigen uploads van de aanvrager</li>
-                        </ul>
-                    </div>
-                    <div style="background: #FFEBEE; padding: 1.25rem; border-radius: 8px;">
-                        <h5 style="color: #C62828; margin-bottom: 0.75rem;">Meestal verborgen</h5>
-                        <ul style="margin: 0; padding-left: 1.25rem; color: #333;">
-                            <li>Concept-beschikkingen</li>
-                            <li>Interne notities</li>
-                            <li>Adviezen van derden</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Belangrijk om te weten -->
-                <div style="background: #FFF8E1; padding: 1.25rem; border-radius: 8px; border: 1px solid #FFE082; margin-bottom: 1.5rem;">
-                    <h5 style="color: #F57F17; margin-bottom: 0.5rem;">Belangrijk om te weten</h5>
-                    <p style="margin: 0; color: #333;">
-                        Op dit moment geldt een documenttype voor <strong>alle zaaktypen</strong>. Als je een documenttype openzet, is het zichtbaar bij elke zaak.
-                        Daarom is het belangrijk om <strong>vooraf per zaaktype te bespreken</strong> welke documenttypen zichtbaar moeten zijn.
-                    </p>
-                </div>
-
-                <!-- Toekomst -->
-                <div style="background: #E3F2FD; padding: 1.25rem; border-radius: 8px; border: 1px solid #90CAF9;">
-                    <h5 style="color: #1565C0; margin-bottom: 0.5rem;">Binnenkort</h5>
-                    <p style="margin: 0; color: #333;">
-                        Het filter wordt uitgebreid. Straks kun je <strong>per zaaktype</strong> bepalen welke documenttypen zichtbaar zijn op de PIP.
-                    </p>
-                </div>
-            </div>
         </section>
 
         <!-- PERSPECTIEF FLOWS (verborgen tot selectie) -->
@@ -698,7 +590,6 @@
         const perspectiveTitle = document.getElementById('perspective-title');
         const currentFlow = document.getElementById('current-flow');
         const flowDescription = document.getElementById('flow-description');
-        const euInfo = document.getElementById('eu-info');
         const quickActions = document.getElementById('quick-actions');
         const infoSection = document.getElementById('info-section');
 
@@ -743,7 +634,6 @@
 
                 // Hide all submenus first
                 hideAllSubmenus();
-                euInfo.classList.remove('visible');
 
                 if (perspective === 'overzicht') {
                     showMainDiagram();
@@ -774,11 +664,6 @@
                 // Show the perspective diagram
                 showPerspectiveDiagram(flowKey);
             });
-        });
-
-        // Enable-U click handler
-        document.getElementById('enable-u-node').addEventListener('click', function() {
-            euInfo.classList.toggle('visible');
         });
 
         // Initialize with overzicht active
