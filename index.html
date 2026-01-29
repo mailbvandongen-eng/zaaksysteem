@@ -183,7 +183,7 @@
                 <div class="submenu-title">Kies een domein:</div>
                 <div class="submenu-options">
                     <div class="submenu-option" data-flow="aanvrager-sd">Sociaal Domein (WMO, GPK)</div>
-                    <div class="submenu-option" data-flow="aanvrager-bz">Burgerzaken (Paspoort, Rijbewijs)</div>
+                    <div class="submenu-option" data-flow="aanvrager-bz">Burgerzaken (eDiensten)</div>
                 </div>
             </div>
 
@@ -237,6 +237,36 @@
 
                     <rect x="940" y="30" width="140" height="400" fill="#E0F7FA" rx="8" opacity="0.5"/>
                     <text x="1010" y="55" text-anchor="middle" font-size="12" fill="#00838F" font-weight="600">INZICHT</text>
+
+                    <!-- FLOW LIJNEN -->
+                    <!-- Kanalen naar Intake -->
+                    <path d="M180,102 L240,102" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+                    <path d="M180,162 L240,162" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+                    <path d="M180,282 L300,282 L300,200 L420,150" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+
+                    <!-- Intake naar Verwerking -->
+                    <path d="M360,102 L420,120" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+                    <path d="M360,162 L420,140" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+
+                    <!-- Rx.Enterprise naar Afhandelsystemen -->
+                    <path d="M520,160 L520,200" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+                    <path d="M467,200 L467,245" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none" opacity="0.5"/>
+                    <path d="M572,200 L572,245" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none" opacity="0.5"/>
+
+                    <!-- Verwerking naar Enable-U -->
+                    <path d="M620,130 L670,130" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+                    <path d="M620,200 L670,200" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+
+                    <!-- Enable-U naar Terugkoppeling -->
+                    <path d="M730,130 L780,105" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+                    <path d="M730,165 L780,165" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+
+                    <!-- Naar Inzicht -->
+                    <path d="M900,105 L960,105" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none"/>
+                    <path d="M620,130 L640,130 L640,320 L980,320 L980,185" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none" opacity="0.5"/>
+
+                    <!-- Telefoon naar KCC -->
+                    <path d="M180,222 L200,222 L200,350 L950,350 L950,105 L960,105" stroke="#74B943" stroke-width="2" stroke-dasharray="6,3" fill="none" opacity="0.6"/>
 
                     <!-- KANALEN -->
                     <g class="node">
