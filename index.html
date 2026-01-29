@@ -323,35 +323,37 @@
     <script src="js/flow.js"></script>
     <script>
         // Flow configurations per perspective and domain
-        // Node positions (centers):
-        // gemeentewestland: 140,125  simform: 350,125  ediensten: 350,195  digid: 350,420
-        // rx-enterprise: 600,215  centric-bz: 535,325  s4sd: 655,325  pip: 860,160
-        // rx-front: 1070,160  post: 140,335  scanner: 350,335
+        // Node positions (box edges):
+        // gemeentewestland: 60-220, 100-150    simform: 280-420, 100-150   ediensten: 280-420, 170-220
+        // digid: 280-420, 400-440              rx-enterprise: 500-700, 180-250
+        // centric-bz: 480-590, 300-350         s4sd: 600-710, 300-350
+        // pip: 780-940, 130-190                rx-front: 1000-1140, 130-190
+        // post: 60-220, 310-360                scanner: 280-420, 310-360
         const flowConfigs = {
             'aanvrager-sd': {
                 nodes: ['gemeentewestland', 'simform', 'digid', 'rx-enterprise', 's4sd', 'pip'],
-                // gemeentewestland → simform → (digid) → rx-enterprise → s4sd → pip
-                path: 'M220,125 L280,125 M420,125 L420,380 L300,420 M400,420 L500,380 L500,215 M700,215 L700,300 L655,300 M655,350 L655,380 L750,380 L780,180 L780,160'
+                // gemeentewestland → simform → digid → rx-enterprise → s4sd → pip
+                path: 'M220,125 L280,125 L350,150 L350,400 L350,440 L450,440 L450,250 L500,215 L700,215 L710,250 L655,300 L655,350 L750,350 L750,160 L780,160'
             },
             'aanvrager-bz': {
                 nodes: ['gemeentewestland', 'ediensten', 'digid', 'centric-bz', 'rx-enterprise', 'pip'],
-                // gemeentewestland → ediensten → (digid) → centric-bz → rx-enterprise → pip
-                path: 'M220,125 L220,195 L280,195 M420,195 L420,380 L300,420 M400,420 L480,380 L480,325 M590,325 L630,325 L630,250 L600,250 M600,180 L700,180 L780,160'
+                // gemeentewestland → ediensten → digid → centric-bz → rx-enterprise → pip
+                path: 'M140,150 L140,195 L280,195 L350,220 L350,400 L350,440 L450,440 L450,325 L480,325 L535,350 L535,380 L720,380 L720,215 L700,215 L700,180 L780,160'
             },
             'behandelaar': {
                 nodes: ['rx-enterprise', 'centric-bz', 's4sd', 'stratech', 'scanner'],
-                // scanner → rx-enterprise → afhandelsystemen
-                path: 'M420,335 L500,280 L500,215 M700,215 L700,280 L655,300 M535,300 L535,360'
+                // werkvoorraad: scanner → rx-enterprise → afhandelsystemen
+                path: 'M420,335 L460,335 L460,250 L500,250 L600,250 L600,300 L535,300 L535,350 L535,380 L600,380 L655,350 L655,300'
             },
             'kcc': {
                 nodes: ['rx-front', 'rx-enterprise', 'pip', 'telefoon'],
-                // telefoon → rx-front ← rx-enterprise ← pip
-                path: 'M220,270 L1000,270 L1000,160 M940,160 L860,160 M780,160 L700,160 L700,180'
+                // KCC belt burger, zoekt in Rx.Front, ziet alles
+                path: 'M220,270 L240,270 L240,100 L980,100 L1070,130 L1070,190 L1000,220 L860,220 L860,190 L780,160 L740,160 L740,180 L700,180'
             },
             'registratie': {
                 nodes: ['post', 'scanner', 'rx-enterprise'],
-                // post → scanner → rx-enterprise
-                path: 'M220,335 L280,335 M420,335 L500,280 L500,215'
+                // post → scanner → rx-enterprise werkvoorraad
+                path: 'M220,335 L280,335 L420,335 L460,335 L460,250 L500,215 L600,215'
             }
         };
 
