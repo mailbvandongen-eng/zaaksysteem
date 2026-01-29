@@ -349,6 +349,10 @@
                 <!-- Diagram -->
                 <div style="background: var(--gray-light); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
                     <svg viewBox="0 0 600 100" style="width: 100%; max-width: 700px; display: block; margin: 0 auto;">
+                        <style>
+                            @keyframes dash { to { stroke-dashoffset: -12; } }
+                            .animated-line { animation: dash 0.5s linear infinite; }
+                        </style>
                         <rect x="20" y="25" width="140" height="50" fill="#44772C" rx="6"/>
                         <text x="90" y="55" text-anchor="middle" fill="white" font-size="14" font-weight="500">Rx.Enterprise</text>
 
@@ -359,8 +363,8 @@
                         <rect x="440" y="25" width="140" height="50" fill="#9C27B0" rx="6"/>
                         <text x="510" y="55" text-anchor="middle" fill="white" font-size="14" font-weight="500">PIP</text>
 
-                        <line class="flow-line" x1="160" y1="50" x2="230" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4"/>
-                        <line class="flow-line" x1="370" y1="50" x2="440" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4"/>
+                        <line class="animated-line" x1="160" y1="50" x2="230" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4"/>
+                        <line class="animated-line" x1="370" y1="50" x2="440" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="8,4"/>
                     </svg>
                 </div>
 
@@ -479,6 +483,10 @@
                 description: 'De burger vult een formulier in op gemeentewestland.nl, logt in met DigiD, de aanvraag komt in Rx.Enterprise, wordt behandeld in Suite4SD, en de burger kan de status volgen via de PIP.',
                 svg: `
                     <svg viewBox="0 0 800 100">
+                        <style>
+                            @keyframes flow { to { stroke-dashoffset: -9; } }
+                            .anim { animation: flow 0.4s linear infinite; }
+                        </style>
                         <!-- Blokken -->
                         <rect x="20" y="25" width="100" height="50" fill="#4CAF50" rx="6"/>
                         <text x="70" y="55" text-anchor="middle" fill="white" font-size="9">gemeentewestland.nl</text>
@@ -502,12 +510,12 @@
                         <text x="595" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
 
                         <!-- Flow lijn (bovenop) -->
-                        <line class="flow-line" x1="120" y1="50" x2="140" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="flow-line" x1="200" y1="50" x2="220" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="flow-line" x1="280" y1="50" x2="300" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="flow-line" x1="380" y1="50" x2="400" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="flow-line" x1="470" y1="50" x2="490" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="flow-line" x1="550" y1="50" x2="570" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="120" y1="50" x2="140" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="200" y1="50" x2="220" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="280" y1="50" x2="300" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="380" y1="50" x2="400" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="470" y1="50" x2="490" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="550" y1="50" x2="570" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
                     </svg>`
             },
             'aanvrager-bz': {
@@ -515,6 +523,10 @@
                 description: 'De burger vraagt een dienst aan via Centric eDiensten (bijv. uittreksel BRP, adreswijziging), logt in met DigiD, Centric Burgerzaken verwerkt de aanvraag, dit synchroniseert naar Rx.Enterprise, en de status wordt zichtbaar in de PIP. Paspoorten en rijbewijzen gaan via de balie.',
                 svg: `
                     <svg viewBox="0 0 800 100">
+                        <style>
+                            @keyframes flow { to { stroke-dashoffset: -9; } }
+                            .anim { animation: flow 0.4s linear infinite; }
+                        </style>
                         <!-- Blokken -->
                         <rect x="20" y="25" width="100" height="50" fill="#4CAF50" rx="6"/>
                         <text x="70" y="55" text-anchor="middle" fill="white" font-size="9">gemeentewestland.nl</text>
@@ -538,12 +550,12 @@
                         <text x="615" y="55" text-anchor="middle" fill="white" font-size="10">PIP</text>
 
                         <!-- Flow lijn (bovenop) -->
-                        <line class="flow-line" x1="120" y1="50" x2="140" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="flow-line" x1="210" y1="50" x2="230" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="flow-line" x1="290" y1="50" x2="310" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="flow-line" x1="390" y1="50" x2="410" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="flow-line" x1="490" y1="50" x2="510" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="flow-line" x1="570" y1="50" x2="590" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="120" y1="50" x2="140" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="210" y1="50" x2="230" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="290" y1="50" x2="310" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="390" y1="50" x2="410" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="490" y1="50" x2="510" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <line class="anim" x1="570" y1="50" x2="590" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
                     </svg>`
             },
             // ===== BEHANDELAAR FLOWS =====
