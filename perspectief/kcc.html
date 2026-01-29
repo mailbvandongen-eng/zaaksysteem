@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCC Perspectief - Zaaksysteem Keten</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .kcc-screen {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            color: white;
+        }
+        .kcc-screen-header {
+            background: #16213e;
+            padding: 0.75rem 1rem;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: -1rem -1rem 1rem -1rem;
+        }
+        .kcc-screen-header .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .kcc-screen-header .dot.red { background: #ff5f56; }
+        .kcc-screen-header .dot.yellow { background: #ffbd2e; }
+        .kcc-screen-header .dot.green { background: #27ca3f; }
+        .kcc-screen-title {
+            color: #8892b0;
+            font-size: 0.9rem;
+            margin-left: auto;
+        }
+        .kcc-search {
+            background: #0f3460;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .kcc-search input {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .kcc-results {
+            background: #16213e;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .kcc-person {
+            padding: 1rem;
+            border-bottom: 1px solid #1a1a2e;
+        }
+        .kcc-person h4 {
+            color: #00BCD4;
+            margin-bottom: 0.5rem;
+        }
+        .kcc-person .bsn {
+            color: #8892b0;
+            font-size: 0.85rem;
+        }
+        .kcc-zaak {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #1a1a2e;
+            gap: 1rem;
+        }
+        .kcc-zaak:last-child {
+            border-bottom: none;
+        }
+        .kcc-zaak .status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .kcc-zaak .status.open { background: #74B943; color: white; }
+        .kcc-zaak .status.closed { background: #607D8B; color: white; }
+        .kcc-zaak .behandelaar {
+            color: #8892b0;
+            font-size: 0.85rem;
+            margin-left: auto;
+        }
+        .scenario {
+            background: var(--gray-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .scenario h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .scenario-steps {
+            margin-left: 1rem;
+        }
+        .scenario-steps li {
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://www.gemeentewestland.nl/fileadmin/Gemeente_Westland/site_assets/logowestland.svg" alt="Gemeente Westland">
+        </div>
+        <h1>Zaaksysteem Ketenvisualisatie</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Overzicht</a></li>
+            <li><a href="behandelaar.html">Behandelaar</a></li>
+            <li><a href="aanvrager.html">Aanvrager</a></li>
+            <li><a href="kcc.html" class="active">KCC</a></li>
+            <li><a href="../implementatie/7-vinkjes.html">7 Vinkjes</a></li>
+            <li><a href="../componenten/systemen.html">Systemen</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h2>KCC - Integraal Klantbeeld</h2>
+            <p>Als er gebeld wordt, weet je direct waar de zaak staat</p>
+        </section>
+
+        <section>
+            <div class="info-box warning">
+                <strong>Vergeet het KCC niet!</strong> Bij de GPK livegang was het KCC vergeten in de test. "Hoezo, wat hebben die ermee te maken?" - Het KCC is essentieel in de keten!
+            </div>
+        </section>
+
+        <!-- Rx.Front simulatie -->
+        <section>
+            <h3>Rx.Front - Klantbeeld op BSN</h3>
+            <p>Zodra een burger belt, zoek je op BSN en zie je direct alle zaken:</p>
+
+            <div class="kcc-screen">
+                <div class="kcc-screen-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                    <span class="kcc-screen-title">Rx.Front - Klantbeeld</span>
+                </div>
+
+                <div class="kcc-search">
+                    <input type="text" value="123456789" placeholder="Zoek op BSN..." readonly>
+                </div>
+
+                <div class="kcc-results">
+                    <div class="kcc-person">
+                        <h4>J. de Vries</h4>
+                        <span class="bsn">BSN: 123456789 | Adres: Kerkstraat 12, 2291 AB Wateringen</span>
+                    </div>
+
+                    <div class="kcc-zaak">
+                        <div>
+                            <strong>GPK Aanvraag</strong>
+                            <div style="color: #8892b0; font-size: 0.85rem;">ZK-2026-001234</div>
+                        </div>
+                        <span class="status open">In behandeling</span>
+                        <span class="behandelaar">👤 M. Jansen</span>
+                    </div>
+
+                    <div class="kcc-zaak">
+                        <div>
+                            <strong>Paspoort aanvraag</strong>
+                            <div style="color: #8892b0; font-size: 0.85rem;">ZK-2025-089234</div>
+                        </div>
+                        <span class="status closed">Afgehandeld</span>
+                        <span class="behandelaar">👤 P. de Groot</span>
+                    </div>
+
+                    <div class="kcc-zaak">
+                        <div>
+                            <strong>WMO Melding</strong>
+                            <div style="color: #8892b0; font-size: 0.85rem;">ZK-2025-076543</div>
+                        </div>
+                        <span class="status closed">Afgehandeld</span>
+                        <span class="behandelaar">👤 A. Bakker</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scenario's -->
+        <section>
+            <h3>Typische scenario's</h3>
+
+            <div class="scenario">
+                <h4>📞 Scenario 1: "Hoe staat het met mijn aanvraag?"</h4>
+                <ol class="scenario-steps">
+                    <li>Burger belt en noemt BSN of geboortedatum</li>
+                    <li>Zoek de burger op in Rx.Front</li>
+                    <li>Je ziet direct alle lopende zaken, de status en de behandelaar</li>
+                    <li>Je kunt de burger direct informeren: "Uw GPK aanvraag is in behandeling bij mevrouw Jansen"</li>
+                </ol>
+            </div>
+
+            <div class="scenario">
+                <h4>📞 Scenario 2: "Ik wil graag teruggebeld worden"</h4>
+                <ol class="scenario-steps">
+                    <li>Burger wil teruggebeld worden over een specifieke zaak</li>
+                    <li>Je ziet in Rx.Front wie de behandelaar is</li>
+                    <li>Je kunt direct een terugbelverzoek sturen naar de juiste persoon</li>
+                    <li>Of als de behandelaar beschikbaar is: direct doorverbinden</li>
+                </ol>
+            </div>
+
+            <div class="scenario">
+                <h4>📞 Scenario 3: "Ik heb een brief gekregen maar begrijp het niet"</h4>
+                <ol class="scenario-steps">
+                    <li>Burger heeft vraag over een beschikking</li>
+                    <li>Zoek de zaak op in Rx.Front</li>
+                    <li>Je ziet de status en het zaaktype</li>
+                    <li>Je kunt doorverbinden naar de behandelaar of vakinhoudelijk advies geven</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Wat het KCC ziet -->
+        <section class="flow-container">
+            <h3>Wat zie je in Rx.Front?</h3>
+            <div class="cards">
+                <div class="card" style="cursor: default; border-left: 4px solid #4CAF50;">
+                    <h4>✅ Wel zichtbaar</h4>
+                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                        <li>Alle zaken van de burger (open en gesloten)</li>
+                        <li>Huidige status van elke zaak</li>
+                        <li>Naam van de behandelaar</li>
+                        <li>Zaaktype en zaaknummer</li>
+                        <li>Datum laatste wijziging</li>
+                    </ul>
+                </div>
+                <div class="card" style="cursor: default; border-left: 4px solid #FF9800;">
+                    <h4>⚠️ Let op</h4>
+                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                        <li>Documenten zijn niet direct zichtbaar in Rx.Front</li>
+                        <li>Voor details moet je mogelijk in Rx.Enterprise kijken</li>
+                        <li>Niet alle afdelingen zijn al aangesloten</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Waarom KCC belangrijk is -->
+        <section>
+            <h3>Waarom is het KCC zo belangrijk in de keten?</h3>
+
+            <div class="info-box success">
+                <p><strong>Het KCC is het eerste contactpunt.</strong> Als de keten goed werkt, kan het KCC:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Burgers direct informeren over de status</li>
+                    <li>Terugbelverzoeken sturen naar de juiste behandelaar</li>
+                    <li>Doorverbinden zonder "ik zal het uitzoeken en u terugbellen"</li>
+                    <li>Vertrouwen wekken door transparantie</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Daarom moet het KCC altijd testen!</strong> Bij elk nieuw zaaktype dat wordt aangesloten (de 7 vinkjes), test het KCC of:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>De zaken zichtbaar zijn in Rx.Front</li>
+                    <li>De status correct wordt getoond</li>
+                    <li>De behandelaar zichtbaar is</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Alleen aangesloten zaaktypen -->
+        <section>
+            <h3>Welke zaaktypen zijn zichtbaar?</h3>
+            <p>Alleen zaaktypen die zijn aangesloten op het zaaksysteem zijn zichtbaar in Rx.Front:</p>
+
+            <div class="vinkjes" style="margin-top: 1rem;">
+                <div class="vinkje completed">
+                    <div class="number">✓</div>
+                    <div class="content">
+                        <h5>Burgerzaken</h5>
+                        <p>Paspoorten, rijbewijzen, uittreksels</p>
+                    </div>
+                </div>
+                <div class="vinkje completed">
+                    <div class="number">✓</div>
+                    <div class="content">
+                        <h5>GPK</h5>
+                        <p>Gehandicaptenparkeerkaart - Net live!</p>
+                    </div>
+                </div>
+                <div class="vinkje">
+                    <div class="number">○</div>
+                    <div class="content">
+                        <h5>WMO, Inkomen, SHV, etc.</h5>
+                        <p>Nog niet aangesloten - Nog niet zichtbaar in Rx.Front</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box warning" style="margin-top: 1rem;">
+                <strong>Niet alle zaken zijn zichtbaar!</strong> Als een burger belt over een zaaktype dat nog niet is aangesloten (bijv. bijstandsuitkering), zie je deze nog niet in Rx.Front. Deze zaken lopen nog via het oude proces.
+            </div>
+        </section>
+
+        <section style="text-align: center; margin-top: 3rem;">
+            <a href="../implementatie/7-vinkjes.html" class="btn btn-primary">Bekijk het implementatieproces →</a>
+            <a href="../index.html" class="btn btn-outline" style="margin-left: 1rem;">Terug naar overzicht</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Zaaksysteem Ketenvisualisatie - Gemeente Westland - Team Informatiebeheer</p>
+    </footer>
+
+    <script src="../js/flow.js"></script>
+</body>
+</html>

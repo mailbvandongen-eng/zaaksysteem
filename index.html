@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaaksysteem Keten - Gemeente Westland</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://www.gemeentewestland.nl/fileadmin/Gemeente_Westland/site_assets/logowestland.svg" alt="Gemeente Westland">
+        </div>
+        <h1>Zaaksysteem Ketenvisualisatie</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Overzicht</a></li>
+            <li><a href="perspectief/behandelaar.html">Behandelaar</a></li>
+            <li><a href="perspectief/aanvrager.html">Aanvrager</a></li>
+            <li><a href="perspectief/kcc.html">KCC</a></li>
+            <li><a href="implementatie/7-vinkjes.html">7 Vinkjes</a></li>
+            <li><a href="componenten/systemen.html">Systemen</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h2>Je werkt niet meer alleen in je applicatie</h2>
+            <p>Je zit in een keten met gevolgen voor aanvragers, KCC en collega's</p>
+            <span class="subtitle">Begrijp de samenhang, verbeter de dienstverlening</span>
+        </section>
+
+        <!-- Perspective switcher -->
+        <section>
+            <h3>Bekijk de keten vanuit jouw perspectief</h3>
+            <div class="perspective-cards">
+                <div class="perspective-card" data-perspective="aanvrager">
+                    <h5>Aanvrager</h5>
+                    <p>Burger of bedrijf</p>
+                </div>
+                <div class="perspective-card active" data-perspective="behandelaar">
+                    <h5>Behandelaar</h5>
+                    <p>Werkt in de keten</p>
+                </div>
+                <div class="perspective-card" data-perspective="kcc">
+                    <h5>KCC</h5>
+                    <p>Klantcontact</p>
+                </div>
+                <div class="perspective-card" data-perspective="registratie">
+                    <h5>Team Registratie</h5>
+                    <p>Post en scan</p>
+                </div>
+                <div class="perspective-card" data-perspective="fb">
+                    <h5>Func. Beheer</h5>
+                    <p>Systeeminrichting</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main flow diagram -->
+        <section class="flow-container">
+            <h3>De Zaaksysteem Keten</h3>
+            <div class="toggle-container">
+                <span>Toon technische laag</span>
+                <div class="toggle" data-target="tech-layer"></div>
+            </div>
+
+            <div class="flow-diagram">
+                <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Arrow marker -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#1A1919"/>
+                        </marker>
+                        <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#74B943"/>
+                        </marker>
+                    </defs>
+
+                    <!-- Background layers -->
+                    <rect x="40" y="40" width="200" height="520" fill="#E8F5E9" rx="8" opacity="0.5"/>
+                    <text x="140" y="70" text-anchor="middle" font-size="14" fill="#44772C" font-weight="600">KANALEN</text>
+
+                    <rect x="260" y="40" width="180" height="520" fill="#E3F2FD" rx="8" opacity="0.5"/>
+                    <text x="350" y="70" text-anchor="middle" font-size="14" fill="#1976D2" font-weight="600">INTAKE</text>
+
+                    <rect x="460" y="40" width="280" height="520" fill="#FFF3E0" rx="8" opacity="0.5"/>
+                    <text x="600" y="70" text-anchor="middle" font-size="14" fill="#E65100" font-weight="600">VERWERKING</text>
+
+                    <rect x="760" y="40" width="200" height="520" fill="#F3E5F5" rx="8" opacity="0.5"/>
+                    <text x="860" y="70" text-anchor="middle" font-size="14" fill="#7B1FA2" font-weight="600">TERUGKOPPELING</text>
+
+                    <rect x="980" y="40" width="180" height="520" fill="#E0F7FA" rx="8" opacity="0.5"/>
+                    <text x="1070" y="70" text-anchor="middle" font-size="14" fill="#00838F" font-weight="600">INZICHT</text>
+
+                    <!-- KANALEN -->
+                    <g class="node node-kanaal" data-system="gemeentewestland" data-tooltip="Website van Gemeente Westland">
+                        <rect x="60" y="100" width="160" height="50" fill="#4CAF50" rx="6"/>
+                        <text x="140" y="130" text-anchor="middle" fill="white" font-size="13" font-weight="500">gemeentewestland.nl</text>
+                    </g>
+
+                    <g class="node node-kanaal" data-system="balie" data-tooltip="Fysieke balie voor paspoorten, rijbewijzen etc.">
+                        <rect x="60" y="170" width="160" height="50" fill="#66BB6A" rx="6"/>
+                        <text x="140" y="200" text-anchor="middle" fill="white" font-size="13" font-weight="500">Balie</text>
+                    </g>
+
+                    <g class="node node-kanaal" data-system="telefoon" data-tooltip="Telefonisch contact via KCC">
+                        <rect x="60" y="240" width="160" height="50" fill="#81C784" rx="6"/>
+                        <text x="140" y="270" text-anchor="middle" fill="white" font-size="13" font-weight="500">Telefoon</text>
+                    </g>
+
+                    <g class="node node-kanaal" data-system="post" data-tooltip="Post wordt gescand en gedigitaliseerd">
+                        <rect x="60" y="310" width="160" height="50" fill="#A5D6A7" rx="6"/>
+                        <text x="140" y="340" text-anchor="middle" fill="#1A1919" font-size="13" font-weight="500">Post / Scan</text>
+                    </g>
+
+                    <!-- INTAKE -->
+                    <g class="node node-formulier" data-system="simform" data-tooltip="Formulierengenerator voor zaakgerichte formulieren">
+                        <rect x="280" y="100" width="140" height="50" fill="#2196F3" rx="6"/>
+                        <text x="350" y="130" text-anchor="middle" fill="white" font-size="13" font-weight="500">SIMform</text>
+                    </g>
+
+                    <g class="node node-formulier" data-system="ediensten" data-tooltip="Centric eDiensten voor burgerzaken">
+                        <rect x="280" y="170" width="140" height="50" fill="#42A5F5" rx="6"/>
+                        <text x="350" y="200" text-anchor="middle" fill="white" font-size="13" font-weight="500">Centric eDiensten</text>
+                    </g>
+
+                    <g class="node" data-system="digid" data-tooltip="Authenticatie voor burgers">
+                        <rect x="280" y="400" width="140" height="40" fill="#FF5722" rx="6"/>
+                        <text x="350" y="425" text-anchor="middle" fill="white" font-size="12" font-weight="500">DigiD</text>
+                    </g>
+
+                    <g class="node" data-system="eherkenning" data-tooltip="Authenticatie voor bedrijven (komt erbij)">
+                        <rect x="280" y="450" width="140" height="40" fill="#FF7043" rx="6"/>
+                        <text x="350" y="475" text-anchor="middle" fill="white" font-size="12" font-weight="500">eHerkenning</text>
+                        <text x="350" y="490" text-anchor="middle" fill="white" font-size="9">(komt erbij)</text>
+                    </g>
+
+                    <!-- Scanner detail -->
+                    <g class="node" data-system="scanner" data-tooltip="Dyanix Scansuite - scant naar werkvoorraad">
+                        <rect x="280" y="310" width="140" height="50" fill="#78909C" rx="6"/>
+                        <text x="350" y="335" text-anchor="middle" fill="white" font-size="12" font-weight="500">Dyanix Scansuite</text>
+                        <text x="350" y="350" text-anchor="middle" fill="white" font-size="10">Team Registratie</text>
+                    </g>
+
+                    <!-- VERWERKING -->
+                    <g class="node node-zaaksysteem" data-system="rx-enterprise" data-tooltip="Centraal zaaksysteem + documentenmagazijn">
+                        <rect x="500" y="180" width="200" height="70" fill="#44772C" rx="8"/>
+                        <text x="600" y="210" text-anchor="middle" fill="white" font-size="15" font-weight="600">Rx.Enterprise</text>
+                        <text x="600" y="230" text-anchor="middle" fill="white" font-size="11">Zaaksysteem + Documenten</text>
+                    </g>
+
+                    <!-- Afhandelsystemen -->
+                    <g class="node node-afhandel" data-system="centric-bz" data-tooltip="Centric Burgerzaken - paspoorten, rijbewijzen">
+                        <rect x="480" y="300" width="110" height="50" fill="#FF9800" rx="6"/>
+                        <text x="535" y="325" text-anchor="middle" fill="white" font-size="11" font-weight="500">Centric</text>
+                        <text x="535" y="340" text-anchor="middle" fill="white" font-size="11" font-weight="500">Burgerzaken</text>
+                    </g>
+
+                    <g class="node node-afhandel" data-system="s4sd" data-tooltip="Suite4Sociaal Domein - WMO, GPK, Jeugd">
+                        <rect x="600" y="300" width="110" height="50" fill="#FFA726" rx="6"/>
+                        <text x="655" y="325" text-anchor="middle" fill="white" font-size="11" font-weight="500">Suite4SD</text>
+                        <text x="655" y="340" text-anchor="middle" fill="white" font-size="10">(GPK live!)</text>
+                    </g>
+
+                    <g class="node node-afhandel" data-system="stratech" data-tooltip="Stratech - SHV (gaat naar cloud)">
+                        <rect x="480" y="360" width="110" height="45" fill="#FFB74D" rx="6"/>
+                        <text x="535" y="385" text-anchor="middle" fill="#1A1919" font-size="11" font-weight="500">Stratech</text>
+                        <text x="535" y="398" text-anchor="middle" fill="#1A1919" font-size="9">(naar cloud)</text>
+                    </g>
+
+                    <g class="node node-afhandel" data-system="toekomstig" data-tooltip="JVS, Centric Begraven - later aan te sluiten" style="opacity: 0.6">
+                        <rect x="600" y="360" width="110" height="45" fill="#FFE0B2" rx="6" stroke="#FF9800" stroke-dasharray="4"/>
+                        <text x="655" y="385" text-anchor="middle" fill="#1A1919" font-size="11">JVS, Begraven</text>
+                        <text x="655" y="398" text-anchor="middle" fill="#666" font-size="9">(toekomstig)</text>
+                    </g>
+
+                    <!-- Middleware (tech layer) -->
+                    <g id="tech-layer" class="node node-middleware" data-system="enable-u" data-tooltip="API Gateway - filtert zaaktypen en documenttypen">
+                        <rect x="500" y="430" width="200" height="45" fill="#607D8B" rx="6"/>
+                        <text x="600" y="455" text-anchor="middle" fill="white" font-size="12" font-weight="500">Enable-U (API Gateway)</text>
+                        <text x="600" y="468" text-anchor="middle" fill="white" font-size="9">Filter zaak- en documenttypen</text>
+                    </g>
+
+                    <g id="tech-layer-2" class="node node-middleware" data-system="cloudadapter" data-tooltip="Centric Cloud Adapter - koppeling eDiensten" style="opacity: 0.7">
+                        <rect x="500" y="490" width="200" height="35" fill="#78909C" rx="6"/>
+                        <text x="600" y="512" text-anchor="middle" fill="white" font-size="11">Centric Cloud Adapter</text>
+                    </g>
+
+                    <!-- TERUGKOPPELING -->
+                    <g class="node node-pip" data-system="pip" data-tooltip="Persoonlijke Internet Pagina - status volgen">
+                        <rect x="780" y="130" width="160" height="60" fill="#9C27B0" rx="6"/>
+                        <text x="860" y="158" text-anchor="middle" fill="white" font-size="14" font-weight="500">PIP</text>
+                        <text x="860" y="175" text-anchor="middle" fill="white" font-size="10">Status volgen</text>
+                        <text x="860" y="187" text-anchor="middle" fill="white" font-size="10">Documenten up/download</text>
+                    </g>
+
+                    <g class="node" data-system="notificatie" data-tooltip="Automatische notificaties bij statuswijziging">
+                        <rect x="780" y="210" width="160" height="45" fill="#BA68C8" rx="6"/>
+                        <text x="860" y="237" text-anchor="middle" fill="white" font-size="12" font-weight="500">Notificaties (mail)</text>
+                    </g>
+
+                    <!-- INZICHT -->
+                    <g class="node node-kcc" data-system="rx-front" data-tooltip="KCC systeem - integraal klantbeeld op BSN">
+                        <rect x="1000" y="130" width="140" height="60" fill="#00BCD4" rx="6"/>
+                        <text x="1070" y="158" text-anchor="middle" fill="white" font-size="14" font-weight="500">Rx.Front</text>
+                        <text x="1070" y="175" text-anchor="middle" fill="white" font-size="10">KCC - Klantbeeld</text>
+                    </g>
+
+                    <g class="node" data-system="powerbi" data-tooltip="Rapportages via BICC">
+                        <rect x="1000" y="210" width="140" height="45" fill="#26C6DA" rx="6"/>
+                        <text x="1070" y="237" text-anchor="middle" fill="white" font-size="12" font-weight="500">PowerBI / DWH</text>
+                    </g>
+
+                    <!-- Legacy -->
+                    <g class="node" data-system="corsa" data-tooltip="Wordt uitgefaseerd - vervangen door Rx.Enterprise" style="opacity: 0.5">
+                        <rect x="1000" y="480" width="140" height="45" fill="#BDBDBD" rx="6" stroke="#F44336" stroke-dasharray="4"/>
+                        <text x="1070" y="500" text-anchor="middle" fill="#666" font-size="12">Corsa</text>
+                        <text x="1070" y="515" text-anchor="middle" fill="#F44336" font-size="9">(wordt uitgefaseerd)</text>
+                    </g>
+
+                    <!-- ARROWS / CONNECTIONS -->
+                    <!-- Kanalen naar Intake -->
+                    <path class="arrow" d="M220,125 L275,125"/>
+                    <path class="arrow" d="M220,195 L275,195"/>
+                    <path class="arrow" d="M220,335 L275,335"/>
+
+                    <!-- Intake naar Rx.Enterprise -->
+                    <path class="arrow" d="M420,125 L495,200"/>
+                    <path class="arrow" d="M420,195 L495,210"/>
+
+                    <!-- Scanner naar Rx.Enterprise -->
+                    <path class="arrow" d="M420,335 L495,230"/>
+
+                    <!-- Rx.Enterprise naar Afhandelsystemen -->
+                    <path class="arrow" d="M550,250 L535,295"/>
+                    <path class="arrow" d="M650,250 L655,295"/>
+                    <path class="arrow" d="M535,250 L535,355"/>
+                    <path class="arrow" d="M655,250 L655,355"/>
+
+                    <!-- Afhandelsystemen naar Enable-U -->
+                    <path class="arrow" d="M535,350 L550,425"/>
+                    <path class="arrow" d="M655,350 L650,425"/>
+
+                    <!-- Rx.Enterprise naar PIP/KCC -->
+                    <path class="arrow animated" d="M700,200 L775,160" stroke="#74B943" marker-end="url(#arrowhead-green)"/>
+                    <path class="arrow" d="M700,215 L775,230"/>
+                    <path class="arrow animated" d="M940,160 L995,160" stroke="#74B943" marker-end="url(#arrowhead-green)"/>
+
+                    <!-- DigiD/eHerk connecties -->
+                    <path class="arrow" d="M350,395 L350,365"/>
+                    <path class="arrow" d="M280,420 L225,125" stroke="#FF5722" stroke-dasharray="3"/>
+
+                    <!-- Labels voor flows -->
+                    <text x="600" y="275" text-anchor="middle" font-size="10" fill="#666">ZS-DMS</text>
+
+                </svg>
+            </div>
+
+            <!-- System detail panel -->
+            <div id="system-detail" class="system-detail">
+                <p>Klik op een component voor meer informatie</p>
+            </div>
+        </section>
+
+        <!-- Quick actions -->
+        <section>
+            <h3>Snel naar</h3>
+            <div class="cards">
+                <a href="perspectief/behandelaar.html" class="card">
+                    <div class="icon">👤</div>
+                    <h4>Wat verandert er voor mij?</h4>
+                    <p>Als behandelaar werk je straks in de keten. Ontdek wat dit betekent.</p>
+                </a>
+                <a href="implementatie/7-vinkjes.html" class="card">
+                    <div class="icon">✅</div>
+                    <h4>De 7 Vinkjes</h4>
+                    <p>Hoe wordt een nieuw zaaktype aangesloten? Bekijk het implementatieproces.</p>
+                </a>
+                <a href="perspectief/aanvrager.html" class="card">
+                    <div class="icon">🏠</div>
+                    <h4>Vanuit de burger gezien</h4>
+                    <p>Volg een aanvraag van begin tot eind vanuit het perspectief van de aanvrager.</p>
+                </a>
+                <a href="componenten/systemen.html" class="card">
+                    <div class="icon">🔧</div>
+                    <h4>Alle systemen</h4>
+                    <p>Overzicht van alle componenten in de keten en hun functie.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Info box -->
+        <section>
+            <div class="info-box success">
+                <strong>GPK is live!</strong> De Gehandicaptenparkeerkaart is het eerste zaaktype uit het Sociaal Domein dat volledig zaakgericht werkt. WMO Melding en WMO aanvragen volgen binnenkort.
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Zaaksysteem Ketenvisualisatie - Gemeente Westland - Team Informatiebeheer</p>
+    </footer>
+
+    <script src="js/flow.js"></script>
+</body>
+</html>

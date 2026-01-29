@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aanvrager Perspectief - Zaaksysteem Keten</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .journey {
+            position: relative;
+            margin: 2rem 0;
+        }
+        .journey-step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .journey-step::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 50px;
+            bottom: -30px;
+            width: 3px;
+            background: var(--gray);
+        }
+        .journey-step:last-child::before {
+            display: none;
+        }
+        .journey-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .journey-content {
+            flex: 1;
+            background: var(--gray-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        .journey-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .journey-content .system-tag {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--text);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .pip-preview {
+            background: white;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .pip-preview h5 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gray);
+        }
+        .pip-status {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .pip-status .badge {
+            background: var(--primary-light);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .pip-docs {
+            margin-top: 1rem;
+        }
+        .pip-doc-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--gray-light);
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .benefit {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        .benefit .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .benefit h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://www.gemeentewestland.nl/fileadmin/Gemeente_Westland/site_assets/logowestland.svg" alt="Gemeente Westland">
+        </div>
+        <h1>Zaaksysteem Ketenvisualisatie</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Overzicht</a></li>
+            <li><a href="behandelaar.html">Behandelaar</a></li>
+            <li><a href="aanvrager.html" class="active">Aanvrager</a></li>
+            <li><a href="kcc.html">KCC</a></li>
+            <li><a href="../implementatie/7-vinkjes.html">7 Vinkjes</a></li>
+            <li><a href="../componenten/systemen.html">Systemen</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h2>De reis van de aanvrager</h2>
+            <p>Volg een aanvraag van begin tot eind vanuit het perspectief van de burger</p>
+        </section>
+
+        <!-- Voordelen voor burger -->
+        <section>
+            <h3>Wat verandert er voor de burger?</h3>
+            <div class="benefits">
+                <div class="benefit">
+                    <div class="icon">👁️</div>
+                    <h4>Transparant</h4>
+                    <p>Altijd inzicht in de status van je aanvraag</p>
+                </div>
+                <div class="benefit">
+                    <div class="icon">📱</div>
+                    <h4>Digitaal</h4>
+                    <p>Documenten uploaden en downloaden via de PIP</p>
+                </div>
+                <div class="benefit">
+                    <div class="icon">🔔</div>
+                    <h4>Proactief</h4>
+                    <p>Automatische notificaties bij statuswijzigingen</p>
+                </div>
+                <div class="benefit">
+                    <div class="icon">📞</div>
+                    <h4>Bereikbaar</h4>
+                    <p>KCC weet direct de status als je belt</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- De journey -->
+        <section>
+            <h3>De klantreis stap voor stap</h3>
+
+            <div class="journey">
+                <div class="journey-step">
+                    <div class="journey-icon">1</div>
+                    <div class="journey-content">
+                        <h4>Aanvraag indienen</h4>
+                        <p>De burger gaat naar <strong>gemeentewestland.nl</strong> en vindt het juiste formulier. Na inloggen met <strong>DigiD</strong> (of eHerkenning voor bedrijven) vult de burger het formulier in en dient de aanvraag in.</p>
+                        <span class="system-tag">SIMform / Centric eDiensten</span>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">2</div>
+                    <div class="journey-content">
+                        <h4>Bevestiging ontvangen</h4>
+                        <p>Direct na het indienen ontvangt de burger een <strong>bevestigingsmail</strong> met het zaaknummer. De aanvraag is nu zichtbaar in de <strong>PIP</strong> (Persoonlijke Internet Pagina).</p>
+                        <span class="system-tag">Rx.Enterprise → Notificatie</span>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">3</div>
+                    <div class="journey-content">
+                        <h4>In behandeling genomen</h4>
+                        <p>Zodra een behandelaar de zaak oppakt, krijgt de burger een <strong>notificatie</strong>. In de PIP is nu zichtbaar dat de zaak "In behandeling" is.</p>
+
+                        <div class="pip-preview">
+                            <h5>🔒 Mijn Westland - Persoonlijke Internet Pagina</h5>
+                            <div class="pip-status">
+                                <span>Status:</span>
+                                <span class="badge">In behandeling</span>
+                            </div>
+                            <p><small>Laatst bijgewerkt: vandaag om 14:32</small></p>
+                        </div>
+
+                        <span class="system-tag">PIP</span>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">4</div>
+                    <div class="journey-content">
+                        <h4>Eventueel: stukken opvragen</h4>
+                        <p>Als er aanvullende documenten nodig zijn, ontvangt de burger een <strong>notificatie</strong> met een link naar de PIP. Daar kan de burger zelf documenten <strong>uploaden</strong>.</p>
+
+                        <div class="pip-preview">
+                            <h5>📄 Gevraagde documenten</h5>
+                            <div class="pip-docs">
+                                <div class="pip-doc-item">
+                                    <span>📤</span>
+                                    <span>Inkomensverklaring</span>
+                                    <button class="btn btn-primary" style="margin-left: auto; padding: 0.25rem 0.75rem; font-size: 0.85rem;">Uploaden</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <span class="system-tag">PIP → Rx.Enterprise</span>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">5</div>
+                    <div class="journey-content">
+                        <h4>Besluit ontvangen</h4>
+                        <p>Na afhandeling ontvangt de burger een <strong>notificatie</strong> dat het besluit klaar staat. De <strong>beschikking</strong> is te downloaden via de PIP.</p>
+
+                        <div class="pip-preview">
+                            <h5>📄 Mijn documenten</h5>
+                            <div class="pip-docs">
+                                <div class="pip-doc-item">
+                                    <span>📥</span>
+                                    <span>Aanvraag GPK</span>
+                                    <span style="margin-left: auto; color: #666;">10-01-2026</span>
+                                </div>
+                                <div class="pip-doc-item">
+                                    <span>📥</span>
+                                    <span>Beschikking GPK - Toegekend</span>
+                                    <span style="margin-left: auto; color: #666;">28-01-2026</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <span class="system-tag">PIP</span>
+                    </div>
+                </div>
+
+                <div class="journey-step">
+                    <div class="journey-icon">✓</div>
+                    <div class="journey-content">
+                        <h4>Zaak afgerond</h4>
+                        <p>De zaak is afgerond en blijft zichtbaar in de PIP. Bij vragen kan de burger bellen met het KCC - zij zien dezelfde informatie.</p>
+                        <span class="system-tag">Rx.Front (KCC)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wat de burger NIET ziet -->
+        <section class="flow-container">
+            <h3>Wat de burger niet ziet</h3>
+            <p>Sommige documenten zijn bewust niet zichtbaar voor de aanvrager:</p>
+            <div class="cards" style="margin-top: 1rem;">
+                <div class="card" style="cursor: default; border-left: 4px solid #F44336;">
+                    <h4>❌ Niet zichtbaar</h4>
+                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                        <li>Concept-beschikkingen</li>
+                        <li>Interne notities</li>
+                        <li>Adviesrapporten</li>
+                        <li>Collegiale toetsing</li>
+                    </ul>
+                </div>
+                <div class="card" style="cursor: default; border-left: 4px solid #4CAF50;">
+                    <h4>✅ Wel zichtbaar</h4>
+                    <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                        <li>De aanvraag zelf</li>
+                        <li>Eigen uploads</li>
+                        <li>Definitieve beschikkingen</li>
+                        <li>Brieven aan aanvrager</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info-box" style="margin-top: 1rem;">
+                <strong>Enable-U bepaalt de zichtbaarheid.</strong> Per zaaktype wordt geconfigureerd welke documenttypen de aanvrager mag zien. Dit wordt beheerd door de Functioneel Beheerders.
+            </div>
+        </section>
+
+        <!-- KCC contact -->
+        <section>
+            <h3>Als de burger belt...</h3>
+            <div class="info-box success">
+                <p>Als een burger belt met een vraag over de aanvraag, ziet het KCC in <strong>Rx.Front</strong> direct:</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Alle lopende en afgeronde zaken op het BSN</li>
+                    <li>De huidige status van elke zaak</li>
+                    <li>Wie de behandelaar is</li>
+                </ul>
+                <p style="margin-top: 0.5rem;">Het KCC kan de burger direct helpen of doorverbinden met de juiste behandelaar.</p>
+            </div>
+        </section>
+
+        <section style="text-align: center; margin-top: 3rem;">
+            <a href="kcc.html" class="btn btn-primary">Bekijk het KCC perspectief →</a>
+            <a href="../index.html" class="btn btn-outline" style="margin-left: 1rem;">Terug naar overzicht</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Zaaksysteem Ketenvisualisatie - Gemeente Westland - Team Informatiebeheer</p>
+    </footer>
+
+    <script src="../js/flow.js"></script>
+</body>
+</html>

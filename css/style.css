@@ -1,0 +1,534 @@
+/* Gemeente Westland Zaaksysteem Flow Visualisatie
+   Huisstijl kleuren:
+   - Donkergroen: #44772C (primair)
+   - Limoengroen: #74B943 (accenten, CTA)
+   - Lichtblauw: #8FB6D9 (achtergronden)
+   - Blauwgrijs: #93B8D7 (secundair)
+   - Zwart: #1A1919 (tekst)
+   - Wit: #FFFFFE (achtergrond)
+*/
+
+:root {
+    --primary: #44772C;
+    --primary-light: #74B943;
+    --secondary: #8FB6D9;
+    --secondary-dark: #93B8D7;
+    --text: #1A1919;
+    --white: #FFFFFE;
+    --gray-light: #f5f7f9;
+    --gray: #e0e4e8;
+    --shadow: rgba(26, 25, 25, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: var(--primary);
+    color: var(--white);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.logo {
+    height: 50px;
+}
+
+.logo img {
+    height: 100%;
+    filter: brightness(0) invert(1);
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Navigation */
+nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+}
+
+nav a {
+    display: block;
+    padding: 1rem 1.25rem;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--primary);
+    background: var(--gray-light);
+}
+
+nav a.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary-light);
+}
+
+/* Main content */
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Hero section */
+.hero {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text);
+    opacity: 0.9;
+}
+
+.hero .subtitle {
+    font-size: 1rem;
+    background: var(--primary);
+    color: var(--white);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+/* Flow diagram container */
+.flow-container {
+    background: var(--white);
+    border: 1px solid var(--gray);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    overflow-x: auto;
+}
+
+.flow-container h3 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+/* SVG Flow styles */
+.flow-diagram {
+    width: 100%;
+    min-height: 500px;
+}
+
+.flow-diagram .node {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.flow-diagram .node:hover {
+    transform: scale(1.05);
+}
+
+.flow-diagram .node rect,
+.flow-diagram .node circle {
+    transition: all 0.2s ease;
+}
+
+.flow-diagram .node:hover rect,
+.flow-diagram .node:hover circle {
+    filter: brightness(1.1);
+}
+
+.flow-diagram .node.highlight rect,
+.flow-diagram .node.highlight circle {
+    stroke: var(--primary-light);
+    stroke-width: 3px;
+}
+
+.flow-diagram .arrow {
+    stroke: var(--text);
+    stroke-width: 2;
+    fill: none;
+    marker-end: url(#arrowhead);
+}
+
+.flow-diagram .arrow.animated {
+    stroke-dasharray: 10;
+    animation: flowArrow 1s linear infinite;
+}
+
+@keyframes flowArrow {
+    to {
+        stroke-dashoffset: -20;
+    }
+}
+
+/* Component colors in flow */
+.node-kanaal rect { fill: #4CAF50; }
+.node-formulier rect { fill: #2196F3; }
+.node-zaaksysteem rect { fill: var(--primary); }
+.node-afhandel rect { fill: #FF9800; }
+.node-pip rect { fill: #9C27B0; }
+.node-kcc rect { fill: #00BCD4; }
+.node-middleware rect { fill: #607D8B; }
+
+/* Cards grid */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.card {
+    background: var(--white);
+    border: 1px solid var(--gray);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card:hover {
+    border-color: var(--primary-light);
+    box-shadow: 0 4px 12px var(--shadow);
+    transform: translateY(-2px);
+}
+
+.card h4 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.card p {
+    color: var(--text);
+    opacity: 0.8;
+    font-size: 0.95rem;
+}
+
+.card .icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Perspective cards */
+.perspective-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.perspective-card {
+    background: var(--gray-light);
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.perspective-card:hover {
+    background: var(--white);
+    border-color: var(--primary-light);
+}
+
+.perspective-card.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.perspective-card h5 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.perspective-card p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* 7 Vinkjes */
+.vinkjes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.vinkje {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--gray-light);
+    border-radius: 8px;
+    border-left: 4px solid var(--gray);
+    transition: all 0.3s ease;
+}
+
+.vinkje.active {
+    background: var(--white);
+    border-left-color: var(--primary-light);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.vinkje.completed {
+    border-left-color: var(--primary);
+}
+
+.vinkje .number {
+    width: 36px;
+    height: 36px;
+    background: var(--gray);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.vinkje.completed .number {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.vinkje .content h5 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.vinkje .content p {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--primary-light);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--text);
+}
+
+.btn-secondary:hover {
+    background: var(--secondary-dark);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Toggle switch */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.toggle {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background: var(--gray);
+    border-radius: 13px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.toggle.active {
+    background: var(--primary-light);
+}
+
+.toggle::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: var(--white);
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.2s ease;
+    box-shadow: 0 1px 3px var(--shadow);
+}
+
+.toggle.active::after {
+    transform: translateX(24px);
+}
+
+/* Info boxes */
+.info-box {
+    background: var(--gray-light);
+    border-left: 4px solid var(--secondary);
+    padding: 1rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+}
+
+.info-box.warning {
+    border-left-color: #FF9800;
+    background: #FFF8E1;
+}
+
+.info-box.success {
+    border-left-color: var(--primary);
+    background: #E8F5E9;
+}
+
+/* System component details */
+.system-detail {
+    display: none;
+    background: var(--white);
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.system-detail.visible {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+footer {
+    background: var(--text);
+    color: var(--white);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+footer p {
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav a {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation for "volg de zaak" */
+.zaak-dot {
+    fill: var(--primary-light);
+    r: 8;
+}
+
+.zaak-dot.moving {
+    animation: pulse 0.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { r: 8; opacity: 1; }
+    50% { r: 12; opacity: 0.7; }
+}
+
+/* Print styles */
+@media print {
+    nav, .btn, .toggle-container {
+        display: none;
+    }
+
+    .flow-container {
+        border: 1px solid #000;
+        break-inside: avoid;
+    }
+}

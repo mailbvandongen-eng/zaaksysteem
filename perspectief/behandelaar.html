@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behandelaar Perspectief - Zaaksysteem Keten</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .comparison-box {
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        .comparison-box.before {
+            background: #FFEBEE;
+            border-left: 4px solid #F44336;
+        }
+        .comparison-box.after {
+            background: #E8F5E9;
+            border-left: 4px solid #4CAF50;
+        }
+        .comparison-box h4 {
+            margin-bottom: 1rem;
+        }
+        .comparison-box ul {
+            margin-left: 1.5rem;
+        }
+        .comparison-box li {
+            margin-bottom: 0.5rem;
+        }
+        .impact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--gray-light);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .impact-item .number {
+            background: var(--primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .chain-effect {
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--primary-light) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        .chain-effect h3 {
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        .chain-steps {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .chain-step {
+            background: white;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .chain-arrow {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://www.gemeentewestland.nl/fileadmin/Gemeente_Westland/site_assets/logowestland.svg" alt="Gemeente Westland">
+        </div>
+        <h1>Zaaksysteem Ketenvisualisatie</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Overzicht</a></li>
+            <li><a href="behandelaar.html" class="active">Behandelaar</a></li>
+            <li><a href="aanvrager.html">Aanvrager</a></li>
+            <li><a href="kcc.html">KCC</a></li>
+            <li><a href="../implementatie/7-vinkjes.html">7 Vinkjes</a></li>
+            <li><a href="../componenten/systemen.html">Systemen</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h2>Wat verandert er voor jou als behandelaar?</h2>
+            <p>Je werkt straks niet meer alleen in je eigen applicatie, maar in een keten</p>
+        </section>
+
+        <!-- De kern boodschap -->
+        <section>
+            <div class="info-box warning">
+                <strong>De belangrijkste verandering:</strong> Elke actie die je doet heeft direct gevolgen voor de aanvrager, het KCC en je collega's. Je bent onderdeel van een keten geworden.
+            </div>
+        </section>
+
+        <!-- Voor en na vergelijking -->
+        <section>
+            <h3>Vroeger vs. Nu</h3>
+            <div class="comparison">
+                <div class="comparison-box before">
+                    <h4>❌ Vroeger (zonder zaaksysteem)</h4>
+                    <ul>
+                        <li>Documenten verspreid over <strong>Corsa, netwerkschijven, e-mail</strong></li>
+                        <li>Alleen jij wist de status van een aanvraag</li>
+                        <li>Aanvrager moest bellen om status te vragen</li>
+                        <li>KCC kon niets zeggen over jouw dossiers</li>
+                        <li>Team Registratie zette post in Corsa werkvoorraad</li>
+                        <li>Je werkte in je eigen "eilandje"</li>
+                    </ul>
+                </div>
+                <div class="comparison-box after">
+                    <h4>✅ Nu (met zaaksysteem)</h4>
+                    <ul>
+                        <li><strong>Eén dossier</strong> in Rx.Enterprise met alle documenten</li>
+                        <li>Status is zichtbaar voor <strong>iedereen in de keten</strong></li>
+                        <li>Aanvrager volgt status zelf via <strong>PIP</strong></li>
+                        <li>KCC ziet <strong>integraal klantbeeld</strong> op BSN</li>
+                        <li>Post komt in werkvoorraad <strong>Rx.Enterprise</strong></li>
+                        <li>Je bent onderdeel van de <strong>keten</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Keten effect uitleg -->
+        <section>
+            <div class="chain-effect">
+                <h3>Wat gebeurt er als jij een zaak in behandeling neemt?</h3>
+                <div class="chain-steps">
+                    <div class="chain-step"><strong>Jij</strong> neemt zaak in behandeling</div>
+                    <span class="chain-arrow">→</span>
+                    <div class="chain-step">Status wijzigt in <strong>Rx.Enterprise</strong></div>
+                    <span class="chain-arrow">→</span>
+                    <div class="chain-step"><strong>Automatische notificatie</strong> naar aanvrager</div>
+                    <span class="chain-arrow">→</span>
+                    <div class="chain-step">Aanvrager ziet status in <strong>PIP</strong></div>
+                    <span class="chain-arrow">→</span>
+                    <div class="chain-step"><strong>KCC</strong> ziet jouw naam als behandelaar</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concrete impacts -->
+        <section>
+            <h3>Wat betekent dit concreet?</h3>
+
+            <div class="impact-item">
+                <div class="number">1</div>
+                <div>
+                    <h4>Neem zaken tijdig in behandeling</h4>
+                    <p>Zodra je een zaak in behandeling neemt, krijgt de aanvrager een notificatie. Laat zaken niet te lang "liggen" - de aanvrager ziet dit ook.</p>
+                </div>
+            </div>
+
+            <div class="impact-item">
+                <div class="number">2</div>
+                <div>
+                    <h4>Het KCC kan doorverbinden</h4>
+                    <p>Als een burger belt, ziet het KCC direct wie de behandelaar is en wat de status is. Ze kunnen een terugbelverzoek sturen of doorverbinden. Zorg dat je bereikbaar bent.</p>
+                </div>
+            </div>
+
+            <div class="impact-item">
+                <div class="number">3</div>
+                <div>
+                    <h4>Documenten komen centraal binnen</h4>
+                    <p>Post en nagezonden stukken komen via Team Registratie in jouw werkvoorraad in Rx.Enterprise. Niet meer in Corsa. Check regelmatig je werkvoorraad!</p>
+                </div>
+            </div>
+
+            <div class="impact-item">
+                <div class="number">4</div>
+                <div>
+                    <h4>Geen wijzigingen aan zaaktypen zonder overleg</h4>
+                    <p>De keten is zorgvuldig ingericht. Als je iets wilt aanpassen aan statussen, documenttypen of formulieren, moet dit via Informatiebeheer en de Functioneel Beheerders. Anders kan de keten "omvallen".</p>
+                </div>
+            </div>
+
+            <div class="impact-item">
+                <div class="number">5</div>
+                <div>
+                    <h4>Sommige documenten zijn zichtbaar voor de aanvrager</h4>
+                    <p>Via Enable-U wordt bepaald welke documenten de aanvrager kan zien op de PIP. Aanvragen, eigen uploads en beschikkingen zijn zichtbaar. Concept-beschikkingen en interne notities <strong>niet</strong>. Let op wat je waar opslaat!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Werkvoorraad -->
+        <section class="flow-container">
+            <h3>Je nieuwe werkplek: Rx.Enterprise</h3>
+            <p>Naast je afhandelsysteem (Burgerzaken, Suite4SD, Stratech) werk je nu ook in Rx.Enterprise:</p>
+
+            <div class="cards" style="margin-top: 1.5rem;">
+                <div class="card" style="cursor: default;">
+                    <h4>📥 Werkvoorraad</h4>
+                    <p>Hier komen nieuwe zaken en nagezonden documenten binnen. Check dit regelmatig!</p>
+                </div>
+                <div class="card" style="cursor: default;">
+                    <h4>📁 Dossier</h4>
+                    <p>Alle documenten van een zaak op één plek. Geen Corsa of netwerkschijf meer nodig.</p>
+                </div>
+                <div class="card" style="cursor: default;">
+                    <h4>📊 Status</h4>
+                    <p>De status die je instelt is direct zichtbaar voor aanvrager en KCC.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Veelgestelde vragen -->
+        <section>
+            <h3>Veelgestelde vragen</h3>
+
+            <div class="info-box">
+                <strong>Moet ik nu in twee systemen werken?</strong><br>
+                Ja, je werkt in je afhandelsysteem (bijv. Suite4SD) én in Rx.Enterprise. De systemen zijn gekoppeld via ZS-DMS, dus veel informatie wordt automatisch gesynchroniseerd. Maar documenten toevoegen en werkvoorraad beheren doe je in Rx.Enterprise.
+            </div>
+
+            <div class="info-box">
+                <strong>Wat als ik een fout maak?</strong><br>
+                Fouten in statussen of documenten zijn direct zichtbaar voor de aanvrager. Maak je een fout? Corrigeer deze zo snel mogelijk en informeer indien nodig de aanvrager proactief.
+            </div>
+
+            <div class="info-box">
+                <strong>Hoe zit het met de oude dossiers in Corsa?</strong><br>
+                Oude dossiers blijven in Corsa tot ze zijn opgeruimd. Nieuwe zaken van aangesloten zaaktypen komen alleen nog in Rx.Enterprise. De proceseigenaar heeft getekend voor het opruimen van de oude rommel.
+            </div>
+        </section>
+
+        <!-- Call to action -->
+        <section style="text-align: center; margin-top: 3rem;">
+            <a href="../implementatie/7-vinkjes.html" class="btn btn-primary">Bekijk hoe zaaktypen worden aangesloten →</a>
+            <a href="../index.html" class="btn btn-outline" style="margin-left: 1rem;">Terug naar overzicht</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Zaaksysteem Ketenvisualisatie - Gemeente Westland - Team Informatiebeheer</p>
+    </footer>
+
+    <script src="../js/flow.js"></script>
+</body>
+</html>

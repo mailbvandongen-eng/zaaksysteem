@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Systemen Overzicht - Zaaksysteem Keten</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .system-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .system-card {
+            background: white;
+            border: 1px solid var(--gray);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .system-card-header {
+            padding: 1rem 1.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .system-card-header.zaaksysteem { background: #44772C; }
+        .system-card-header.kcc { background: #00BCD4; }
+        .system-card-header.afhandel { background: #FF9800; }
+        .system-card-header.formulier { background: #2196F3; }
+        .system-card-header.middleware { background: #607D8B; }
+        .system-card-header.pip { background: #9C27B0; }
+        .system-card-header.legacy { background: #9E9E9E; }
+        .system-card-header.kanaal { background: #4CAF50; }
+        .system-card-header h4 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        .system-card-header .vendor {
+            margin-left: auto;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        .system-card-body {
+            padding: 1.5rem;
+        }
+        .system-card-body p {
+            margin-bottom: 1rem;
+        }
+        .system-card-body ul {
+            margin-left: 1.5rem;
+        }
+        .system-card-body li {
+            margin-bottom: 0.5rem;
+        }
+        .system-tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .system-tag.live { background: #E8F5E9; color: #2E7D32; }
+        .system-tag.toekomstig { background: #FFF3E0; color: #E65100; }
+        .system-tag.legacy { background: #FFEBEE; color: #C62828; }
+        .category-header {
+            background: var(--gray-light);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0 1rem 0;
+        }
+        .category-header h3 {
+            margin: 0;
+            color: var(--primary);
+        }
+        .koppeling {
+            background: var(--gray-light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--secondary);
+        }
+        .koppeling h5 {
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://www.gemeentewestland.nl/fileadmin/Gemeente_Westland/site_assets/logowestland.svg" alt="Gemeente Westland">
+        </div>
+        <h1>Zaaksysteem Ketenvisualisatie</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Overzicht</a></li>
+            <li><a href="../perspectief/behandelaar.html">Behandelaar</a></li>
+            <li><a href="../perspectief/aanvrager.html">Aanvrager</a></li>
+            <li><a href="../perspectief/kcc.html">KCC</a></li>
+            <li><a href="../implementatie/7-vinkjes.html">7 Vinkjes</a></li>
+            <li><a href="systemen.html" class="active">Systemen</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h2>Alle Systemen in de Keten</h2>
+            <p>Overzicht van alle componenten en hun functie</p>
+        </section>
+
+        <!-- Centrale systemen -->
+        <div class="category-header">
+            <h3>Centrale Systemen</h3>
+        </div>
+
+        <div class="system-grid">
+            <div class="system-card">
+                <div class="system-card-header zaaksysteem">
+                    <h4>Rx.Enterprise</h4>
+                    <span class="vendor">Roxit</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p>Het <strong>centrale zaaksysteem</strong> waarin alle zaken worden geregistreerd en beheerd. Fungeert ook als documentenmagazijn (vervangt Corsa).</p>
+                    <ul>
+                        <li>Zaakregistratie en -beheer</li>
+                        <li>Documentenmagazijn</li>
+                        <li>Werkvoorraad voor behandelaars en Team Registratie</li>
+                        <li>Toewijzing behandelaars</li>
+                    </ul>
+                    <div class="koppeling">
+                        <h5>Koppelingen</h5>
+                        <p>Via ZS-DMS/StUF-ZKN naar afhandelsystemen. Via Enable-U naar PIP.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header kcc">
+                    <h4>Rx.Front</h4>
+                    <span class="vendor">Roxit</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p>Het <strong>KCC systeem</strong> voor klantcontact. Biedt een integraal klantbeeld op basis van BSN.</p>
+                    <ul>
+                        <li>Zoeken op BSN</li>
+                        <li>Alle lopende en gesloten zaken zichtbaar</li>
+                        <li>Status en behandelaar direct inzichtelijk</li>
+                        <li>Terugbelverzoeken</li>
+                    </ul>
+                    <div class="koppeling">
+                        <h5>Koppeling</h5>
+                        <p>Haalt gegevens uit Rx.Enterprise.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header pip">
+                    <h4>PIP</h4>
+                    <span class="vendor">SIMgroep</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p>De <strong>Persoonlijke Internet Pagina</strong> waar burgers en bedrijven hun aanvragen kunnen volgen.</p>
+                    <ul>
+                        <li>Inloggen met DigiD (burgers) of eHerkenning (bedrijven)</li>
+                        <li>Status van aanvragen volgen</li>
+                        <li>Documenten downloaden en uploaden</li>
+                        <li>Notificaties ontvangen</li>
+                    </ul>
+                    <div class="koppeling">
+                        <h5>Koppeling</h5>
+                        <p>Ontvangt gegevens via Enable-U (gefilterd op zichtbare zaak- en documenttypen).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header formulier">
+                    <h4>i-Navigator</h4>
+                    <span class="vendor">KING/VNG</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p>De <strong>bron voor VNG zaaktypen</strong> en werkprocessen. Informatiebeheer haalt hier de standaard zaaktypen vandaan.</p>
+                    <ul>
+                        <li>VNG Zaaktypecatalogus</li>
+                        <li>Standaard werkprocessen</li>
+                        <li>Documenttypen en vernietigingstermijnen</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Afhandelsystemen -->
+        <div class="category-header">
+            <h3>Afhandelsystemen</h3>
+        </div>
+
+        <div class="system-grid">
+            <div class="system-card">
+                <div class="system-card-header afhandel">
+                    <h4>Centric Burgerzaken</h4>
+                    <span class="vendor">Centric</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p>Het afhandelsysteem voor <strong>burgerzaken producten</strong>.</p>
+                    <ul>
+                        <li>Paspoorten en ID-kaarten</li>
+                        <li>Rijbewijzen</li>
+                        <li>Uittreksels burgerlijke stand</li>
+                        <li>Geboorte, huwelijk, overlijden</li>
+                    </ul>
+                    <div class="koppeling">
+                        <h5>Koppeling</h5>
+                        <p>Ontvangt aanvragen via Centric Cloud Adapter. Koppelt via ZS-DMS naar Rx.Enterprise.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header afhandel">
+                    <h4>Suite4Sociaal Domein</h4>
+                    <span class="vendor">Centric</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">GPK Live!</span>
+                    <p>Het afhandelsysteem voor het <strong>sociaal domein</strong>.</p>
+                    <ul>
+                        <li>WMO aanvragen</li>
+                        <li>Gehandicaptenparkeerkaart (GPK) - <strong>Live!</strong></li>
+                        <li>Jeugdzorg</li>
+                        <li>Inburgering</li>
+                    </ul>
+                    <div class="koppeling">
+                        <h5>Koppeling</h5>
+                        <p>Via ZS-DMS naar Rx.Enterprise.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header afhandel">
+                    <h4>Stratech</h4>
+                    <span class="vendor">Stratech</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag toekomstig">Naar cloud</span>
+                    <p>Het afhandelsysteem voor <strong>schuldhulpverlening</strong>.</p>
+                    <ul>
+                        <li>SHV processen</li>
+                        <li>Gaat over half jaar naar de cloud</li>
+                        <li>Nieuwe processen worden zaakgericht ingericht</li>
+                    </ul>
+                    <div class="koppeling">
+                        <h5>Koppeling</h5>
+                        <p>Wordt gekoppeld via ZS-DMS naar Rx.Enterprise.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header afhandel" style="opacity: 0.7;">
+                    <h4>JVS (Jeugdvolgsysteem)</h4>
+                    <span class="vendor">-</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag toekomstig">Toekomstig</span>
+                    <p>Afhandelsysteem voor <strong>jeugdzorg</strong>. Aansluiting gepland voor later dit jaar of volgend jaar.</p>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header afhandel" style="opacity: 0.7;">
+                    <h4>Centric Begraven</h4>
+                    <span class="vendor">Centric</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag toekomstig">Toekomstig</span>
+                    <p>Afhandelsysteem voor <strong>begraven</strong>. Aansluiting gepland voor later dit jaar of volgend jaar.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Intake / Formulieren -->
+        <div class="category-header">
+            <h3>Intake / Formulieren</h3>
+        </div>
+
+        <div class="system-grid">
+            <div class="system-card">
+                <div class="system-card-header formulier">
+                    <h4>SIMform</h4>
+                    <span class="vendor">SIMgroep</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p>De <strong>formulierengenerator</strong> voor zaakgerichte formulieren.</p>
+                    <ul>
+                        <li>Digitale aanvraagformulieren</li>
+                        <li>Koppeling met DigiD/eHerkenning</li>
+                        <li>Levert direct aan Rx.Enterprise</li>
+                        <li>Vervangt e-mailformulieren</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header formulier">
+                    <h4>Centric eDiensten</h4>
+                    <span class="vendor">Centric</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p><strong>Standaardformulieren</strong> voor burgerzaken producten.</p>
+                    <ul>
+                        <li>Paspoort aanvraag</li>
+                        <li>Rijbewijs aanvraag</li>
+                        <li>Uittreksel aanvraag</li>
+                    </ul>
+                    <div class="koppeling">
+                        <h5>Koppeling</h5>
+                        <p>Via Centric Cloud Adapter naar Centric Burgerzaken.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middleware -->
+        <div class="category-header">
+            <h3>Middleware / Integratie</h3>
+        </div>
+
+        <div class="system-grid">
+            <div class="system-card">
+                <div class="system-card-header middleware">
+                    <h4>Enable-U</h4>
+                    <span class="vendor">Enable-U</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p>De <strong>API Gateway</strong> tussen Rx.Enterprise en de afhandelsystemen/PIP.</p>
+                    <ul>
+                        <li>Filter per zaaktype (niks ingericht = niks zichtbaar)</li>
+                        <li>Filter per documenttype</li>
+                        <li>Bepaalt wat zichtbaar is op de PIP</li>
+                    </ul>
+                    <div class="info-box" style="margin-top: 1rem;">
+                        <strong>Toekomst: Geneste configuratie</strong><br>
+                        Per zaaktype instellen welke documenttypen zichtbaar zijn. Standaard: aanvragen, eigen uploads, beschikkingen. Niet: concept-beschikkingen, interne documenten.
+                    </div>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header middleware">
+                    <h4>Centric Cloud Adapter</h4>
+                    <span class="vendor">Centric</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p><strong>On-prem tussenstation</strong> tussen Centric eDiensten en Centric Burgerzaken.</p>
+                    <ul>
+                        <li>Ontvangt aanvragen van eDiensten</li>
+                        <li>Maakt zaak aan in Centric Burgerzaken</li>
+                        <li>Vraagt zaakID aan bij Rx.Enterprise</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header middleware">
+                    <h4>ZS-DMS / StUF-ZKN</h4>
+                    <span class="vendor">Standaard</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Standaard</span>
+                    <p>De <strong>zaakdocumentservices</strong> standaard voor koppelingen tussen systemen.</p>
+                    <ul>
+                        <li>Zaak aanmaken/bijwerken</li>
+                        <li>Document toevoegen</li>
+                        <li>Status synchroniseren</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scanners -->
+        <div class="category-header">
+            <h3>Scanners</h3>
+        </div>
+
+        <div class="system-grid">
+            <div class="system-card">
+                <div class="system-card-header kanaal">
+                    <h4>BZ Balie Scanner</h4>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p>Scanner bij de <strong>burgerzaken balie</strong>.</p>
+                    <ul>
+                        <li>Scant getekende aanvragen</li>
+                        <li>Documenten komen in map</li>
+                        <li>Behandelaar voegt toe aan dossier</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header kanaal">
+                    <h4>Dyanix Scansuite</h4>
+                    <span class="vendor">Dyanix</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p>Scanoplossing voor <strong>Team Registratie</strong>.</p>
+                    <ul>
+                        <li>Scant post en documenten</li>
+                        <li>Komt in werkvoorraad Rx.Enterprise</li>
+                        <li>Team Registratie wijst toe aan behandelaar</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="system-card">
+                <div class="system-card-header legacy">
+                    <h4>Kofax</h4>
+                    <span class="vendor">Kofax</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag legacy">Wordt uitgefaseerd</span>
+                    <p>Scant <strong>e-mails naar Corsa</strong>. Wordt per zaaktype dat overgaat niet meer gebruikt.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legacy -->
+        <div class="category-header">
+            <h3>Legacy (wordt uitgefaseerd)</h3>
+        </div>
+
+        <div class="system-grid">
+            <div class="system-card">
+                <div class="system-card-header legacy">
+                    <h4>Corsa</h4>
+                    <span class="vendor">BCT</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag legacy">Wordt uitgefaseerd</span>
+                    <p>Het <strong>oude DMS</strong> dat wordt vervangen door het documentenmagazijn in Rx.Enterprise.</p>
+                    <ul>
+                        <li>Oude dossiers blijven tot opruimen</li>
+                        <li>Nieuwe zaken van aangesloten zaaktypen niet meer in Corsa</li>
+                        <li>Proceseigenaar tekent voor opruimen</li>
+                    </ul>
+                    <div class="info-box warning" style="margin-top: 1rem;">
+                        Per zaaktype dat wordt aangesloten op het zaaksysteem komt Corsa te vervallen voor dat specifieke proces.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rapportage -->
+        <div class="category-header">
+            <h3>Rapportage</h3>
+        </div>
+
+        <div class="system-grid">
+            <div class="system-card">
+                <div class="system-card-header kcc">
+                    <h4>PowerBI / DWH</h4>
+                    <span class="vendor">Microsoft / BICC</span>
+                </div>
+                <div class="system-card-body">
+                    <span class="system-tag live">Live</span>
+                    <p><strong>Rapportages</strong> via BICC uit het datawarehouse.</p>
+                    <ul>
+                        <li>Rapportages over alle zaken</li>
+                        <li>Wordt automatisch uitgebreid per aangesloten zaaktype</li>
+                        <li>Klantvragen uit Rx.Front</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <section style="text-align: center; margin-top: 3rem;">
+            <a href="../index.html" class="btn btn-primary">Terug naar overzicht →</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Zaaksysteem Ketenvisualisatie - Gemeente Westland - Team Informatiebeheer</p>
+    </footer>
+
+    <script src="../js/flow.js"></script>
+</body>
+</html>

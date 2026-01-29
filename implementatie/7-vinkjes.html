@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De 7 Vinkjes - Implementatieproces</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .vinkje-detail {
+            display: none;
+            background: white;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 0.5rem;
+            margin-left: 52px;
+        }
+        .vinkje-detail.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        .vinkje-detail h5 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+        .vinkje-detail ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .vinkje-detail li {
+            margin-bottom: 0.5rem;
+        }
+        .vinkje {
+            cursor: pointer;
+        }
+        .vinkje:hover {
+            background: var(--white);
+        }
+        .vinkje .expand-icon {
+            margin-left: auto;
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+        .vinkje.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gray);
+            border-radius: 2px;
+        }
+        .overdracht-doc {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+            border: 2px solid #FFB300;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .overdracht-doc h3 {
+            color: #FF8F00;
+            margin-bottom: 1rem;
+        }
+        .overdracht-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .overdracht-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #FFB300;
+        }
+        .play-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://www.gemeentewestland.nl/fileadmin/Gemeente_Westland/site_assets/logowestland.svg" alt="Gemeente Westland">
+        </div>
+        <h1>Zaaksysteem Ketenvisualisatie</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Overzicht</a></li>
+            <li><a href="../perspectief/behandelaar.html">Behandelaar</a></li>
+            <li><a href="../perspectief/aanvrager.html">Aanvrager</a></li>
+            <li><a href="../perspectief/kcc.html">KCC</a></li>
+            <li><a href="7-vinkjes.html" class="active">7 Vinkjes</a></li>
+            <li><a href="../componenten/systemen.html">Systemen</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h2>De 7 Vinkjes</h2>
+            <p>Hoe wordt een nieuw zaaktype aangesloten op het zaaksysteem?</p>
+        </section>
+
+        <section>
+            <p>Voordat een zaaktype live kan gaan, moeten 7 partijen akkoord geven. Dit zorgt ervoor dat de hele keten goed is ingericht en getest. Pas als alle vinkjes zijn gezet, tekent de proceseigenaar het overdrachtsformulier.</p>
+
+            <div class="play-controls">
+                <button id="play-vinkjes" class="btn btn-primary">▶ Doorloop de stappen</button>
+                <button id="reset-vinkjes" class="btn btn-outline">↺ Reset</button>
+            </div>
+        </section>
+
+        <!-- De 7 vinkjes -->
+        <section class="timeline">
+            <div class="vinkjes">
+                <!-- Vinkje 1 -->
+                <div class="vinkje" data-vinkje="1">
+                    <div class="number">1</div>
+                    <div class="content">
+                        <h5>Informatiebeheer</h5>
+                        <p>Stemt werkproces af met de business, levert VNG zaaktype uit i-Navigator</p>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="vinkje-detail" data-detail="1">
+                    <h5>Wat doet Informatiebeheer?</h5>
+                    <ul>
+                        <li>Gaat in gesprek met de <strong>keyuser</strong> van de afdeling</li>
+                        <li>Stemt het <strong>werkproces</strong> af met de business</li>
+                        <li>Selecteert het juiste <strong>VNG zaaktype</strong> uit de i-Navigator</li>
+                        <li>Bepaalt <strong>statussen</strong>, <strong>documenttypen</strong> en <strong>vernietigingstermijnen</strong></li>
+                    </ul>
+                    <div class="info-box">
+                        <strong>Output:</strong> Processpecificatie met zaaktype, statussen, documenttypen en vernietigingstermijnen
+                    </div>
+                </div>
+
+                <!-- Vinkje 2 -->
+                <div class="vinkje" data-vinkje="2">
+                    <div class="number">2</div>
+                    <div class="content">
+                        <h5>Functioneel Beheer Zaaksysteem</h5>
+                        <p>Richt zaaktype in Rx.Enterprise in, voert FAT uit</p>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="vinkje-detail" data-detail="2">
+                    <h5>Wat doet FB Zaaksysteem?</h5>
+                    <ul>
+                        <li>Richt het <strong>zaaktype</strong> in Rx.Enterprise in</li>
+                        <li>Configureert <strong>statussen</strong> en <strong>documenttypen</strong></li>
+                        <li>Stelt <strong>rechten</strong> en <strong>rollen</strong> in</li>
+                        <li>Voert <strong>FAT</strong> (Functionele Acceptatietest) uit in testomgeving</li>
+                    </ul>
+                    <div class="info-box">
+                        <strong>Systeem:</strong> Rx.Enterprise (Roxit)
+                    </div>
+                </div>
+
+                <!-- Vinkje 3 -->
+                <div class="vinkje" data-vinkje="3">
+                    <div class="number">3</div>
+                    <div class="content">
+                        <h5>Functioneel Beheer Afhandelsysteem</h5>
+                        <p>Richt zaaktype in CB/S4SD/Stratech in, voert FAT uit</p>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="vinkje-detail" data-detail="3">
+                    <h5>Wat doet FB Afhandelsysteem?</h5>
+                    <ul>
+                        <li>Richt het zaaktype in het <strong>afhandelsysteem</strong> in (Centric Burgerzaken, Suite4SD, of Stratech)</li>
+                        <li>Zorgt dat de <strong>koppeling</strong> met Rx.Enterprise werkt (ZS-DMS)</li>
+                        <li>Configureert <strong>Enable-U</strong> filters voor PIP zichtbaarheid</li>
+                        <li>Voert <strong>FAT</strong> uit in testomgeving</li>
+                    </ul>
+                    <div class="info-box">
+                        <strong>Systemen:</strong> Centric Burgerzaken, Suite4Sociaal Domein, Stratech + Enable-U
+                    </div>
+                </div>
+
+                <!-- Vinkje 4 -->
+                <div class="vinkje" data-vinkje="4">
+                    <div class="number">4</div>
+                    <div class="content">
+                        <h5>Functioneel Beheer SIMform/PIP</h5>
+                        <p>Maakt formulier in overleg met keyuser, test PIP</p>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="vinkje-detail" data-detail="4">
+                    <h5>Wat doet FB SIMform/PIP?</h5>
+                    <ul>
+                        <li>Bouwt het <strong>aanvraagformulier</strong> in SIMform</li>
+                        <li>Overlegt met <strong>keyuser</strong> over velden en validaties</li>
+                        <li>Test de <strong>DigiD koppeling</strong></li>
+                        <li>Test of de zaak correct in de <strong>PIP</strong> verschijnt</li>
+                        <li>Configureert welke documenten zichtbaar zijn voor de aanvrager</li>
+                    </ul>
+                    <div class="info-box">
+                        <strong>Uitzondering Burgerzaken:</strong> Burgerzaken gebruikt de standaardformulieren van Centric eDiensten. De flow loopt dan via de Centric Cloud Adapter.
+                    </div>
+                </div>
+
+                <!-- Vinkje 5 -->
+                <div class="vinkje" data-vinkje="5">
+                    <div class="number">5</div>
+                    <div class="content">
+                        <h5>Team Registratie</h5>
+                        <p>Test werkvoorraad en toewijzing behandelaars</p>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="vinkje-detail" data-detail="5">
+                    <h5>Wat doet Team Registratie?</h5>
+                    <ul>
+                        <li>Test of <strong>gescande documenten</strong> in de juiste werkvoorraad komen</li>
+                        <li>Test het <strong>toewijzen</strong> van documenten aan behandelaars</li>
+                        <li>Controleert of documenten correct aan <strong>bestaande dossiers</strong> kunnen worden toegevoegd</li>
+                        <li>Leert werken met werkvoorraad in <strong>Rx.Enterprise</strong> i.p.v. Corsa</li>
+                    </ul>
+                    <div class="info-box warning">
+                        <strong>Belangrijk:</strong> Team Registratie krijgt een nieuw systeem erbij! Ze werken straks in Rx.Enterprise in plaats van Corsa.
+                    </div>
+                </div>
+
+                <!-- Vinkje 6 -->
+                <div class="vinkje" data-vinkje="6">
+                    <div class="number">6</div>
+                    <div class="content">
+                        <h5>KCC</h5>
+                        <p>Test zichtbaarheid zaken in Rx.Front (integraal klantbeeld)</p>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="vinkje-detail" data-detail="6">
+                    <h5>Wat doet KCC?</h5>
+                    <ul>
+                        <li>Test of zaken <strong>zichtbaar</strong> zijn in Rx.Front</li>
+                        <li>Controleert het <strong>integrale klantbeeld</strong> op BSN</li>
+                        <li>Test of <strong>status</strong> en <strong>behandelaar</strong> correct worden getoond</li>
+                        <li>Oefent met het versturen van <strong>terugbelverzoeken</strong></li>
+                    </ul>
+                    <div class="info-box success">
+                        <strong>Let op:</strong> Bij de GPK livegang was het KCC vergeten! "Hoezo, wat hebben die ermee te maken?" - Vergeet het KCC niet!
+                    </div>
+                </div>
+
+                <!-- Vinkje 7 -->
+                <div class="vinkje" data-vinkje="7">
+                    <div class="number">7</div>
+                    <div class="content">
+                        <h5>Proceseigenaar</h5>
+                        <p>Tekent overdrachtsformulier, geeft akkoord op proces en keten</p>
+                    </div>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="vinkje-detail" data-detail="7">
+                    <h5>Wat doet de Proceseigenaar?</h5>
+                    <ul>
+                        <li>Controleert of alle <strong>6 vinkjes</strong> zijn gezet</li>
+                        <li>Checkt of <strong>werkinstructies</strong> zijn aangepast</li>
+                        <li>Zorgt dat <strong>behandelaars</strong> zijn getraind</li>
+                        <li><strong>Tekent</strong> het overdrachtsformulier</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overdrachtsformulier -->
+        <section class="overdracht-doc">
+            <h3>📋 Het Overdrachtsformulier</h3>
+            <p>De proceseigenaar tekent voor drie dingen:</p>
+            <div class="overdracht-items">
+                <div class="overdracht-item">
+                    <strong>1. Akkoord met het proces</strong>
+                    <p>Het werkproces is correct ingericht en getest met alle betrokken partijen.</p>
+                </div>
+                <div class="overdracht-item">
+                    <strong>2. Geen aanpassingen zonder toestemming</strong>
+                    <p>Wijzigingen aan het zaaktype mogen alleen met uitdrukkelijke toestemming van de proceseigenaar. Anders kan de keten omvallen.</p>
+                </div>
+                <div class="overdracht-item">
+                    <strong>3. Opruimen oude systemen</strong>
+                    <p>De proceseigenaar stemt in met het opruimen van overgebleven dossiers in Corsa, netwerkschijven en andere systemen.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BICC -->
+        <section>
+            <div class="info-box">
+                <strong>En BICC dan?</strong><br>
+                BICC (rapportages) is geen onderdeel van de 7 vinkjes maar volgt automatisch. Zodra een zaaktype is aangesloten op het zaaksysteem, komen de gegevens in het DWH terecht en worden de PowerBI rapportages automatisch uitgebreid.
+            </div>
+        </section>
+
+        <!-- GAT -->
+        <section class="flow-container">
+            <h3>FAT en GAT</h3>
+            <p>Tijdens het implementatieproces worden twee soorten testen uitgevoerd:</p>
+            <div class="cards" style="margin-top: 1.5rem;">
+                <div class="card" style="cursor: default;">
+                    <h4>FAT - Functionele Acceptatietest</h4>
+                    <p>Uitgevoerd door de Functioneel Beheerders. Test of de systemen technisch correct zijn ingericht.</p>
+                </div>
+                <div class="card" style="cursor: default;">
+                    <h4>GAT - Gebruikers Acceptatietest</h4>
+                    <p>Uitgevoerd door keyusers en behandelaars. Test de hele keten "namens de klant" - van aanvraag tot afhandeling.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap -->
+        <section>
+            <h3>Zaaktypen Roadmap</h3>
+            <div class="vinkjes" style="margin-top: 1rem;">
+                <div class="vinkje completed">
+                    <div class="number">✓</div>
+                    <div class="content">
+                        <h5>Burgerzaken</h5>
+                        <p>Paspoorten, rijbewijzen, uittreksels - Live</p>
+                    </div>
+                </div>
+                <div class="vinkje completed">
+                    <div class="number">✓</div>
+                    <div class="content">
+                        <h5>GPK (Gehandicaptenparkeerkaart)</h5>
+                        <p>Eerste zaaktype Sociaal Domein - Net live!</p>
+                    </div>
+                </div>
+                <div class="vinkje active">
+                    <div class="number">→</div>
+                    <div class="content">
+                        <h5>WMO Melding & WMO Aanvragen</h5>
+                        <p>Volgende stap in Sociaal Domein</p>
+                    </div>
+                </div>
+                <div class="vinkje">
+                    <div class="number">○</div>
+                    <div class="content">
+                        <h5>Inkomen / Levensonderhoud</h5>
+                        <p>Participatiewet in Balans - Gepland</p>
+                    </div>
+                </div>
+                <div class="vinkje">
+                    <div class="number">○</div>
+                    <div class="content">
+                        <h5>SHV Processen</h5>
+                        <p>Stratech gaat naar cloud - Project loopt</p>
+                    </div>
+                </div>
+                <div class="vinkje" style="opacity: 0.6;">
+                    <div class="number">○</div>
+                    <div class="content">
+                        <h5>JVS, Centric Begraven</h5>
+                        <p>Later dit jaar of volgend jaar</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align: center; margin-top: 3rem;">
+            <a href="../perspectief/behandelaar.html" class="btn btn-primary">Wat betekent dit voor behandelaars? →</a>
+            <a href="../index.html" class="btn btn-outline" style="margin-left: 1rem;">Terug naar overzicht</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Zaaksysteem Ketenvisualisatie - Gemeente Westland - Team Informatiebeheer</p>
+    </footer>
+
+    <script src="../js/flow.js"></script>
+    <script>
+        // Vinkje expand/collapse
+        document.querySelectorAll('.vinkje[data-vinkje]').forEach(vinkje => {
+            vinkje.addEventListener('click', function() {
+                const id = this.dataset.vinkje;
+                const detail = document.querySelector(`.vinkje-detail[data-detail="${id}"]`);
+                const isVisible = detail.classList.contains('visible');
+
+                // Close all
+                document.querySelectorAll('.vinkje-detail').forEach(d => d.classList.remove('visible'));
+                document.querySelectorAll('.vinkje').forEach(v => v.classList.remove('expanded'));
+
+                // Toggle current
+                if (!isVisible) {
+                    detail.classList.add('visible');
+                    this.classList.add('expanded');
+                }
+            });
+        });
+
+        // Play animation
+        document.getElementById('play-vinkjes').addEventListener('click', function() {
+            const vinkjes = document.querySelectorAll('.vinkje[data-vinkje]');
+            let currentIndex = 0;
+
+            // Reset all
+            vinkjes.forEach(v => {
+                v.classList.remove('active', 'completed', 'expanded');
+            });
+            document.querySelectorAll('.vinkje-detail').forEach(d => d.classList.remove('visible'));
+
+            function animateNext() {
+                if (currentIndex >= vinkjes.length) return;
+
+                // Mark previous as completed
+                if (currentIndex > 0) {
+                    vinkjes[currentIndex - 1].classList.remove('active');
+                    vinkjes[currentIndex - 1].classList.add('completed');
+                    vinkjes[currentIndex - 1].querySelector('.number').textContent = '✓';
+                }
+
+                // Mark current as active
+                vinkjes[currentIndex].classList.add('active');
+                vinkjes[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Show detail
+                const id = vinkjes[currentIndex].dataset.vinkje;
+                const detail = document.querySelector(`.vinkje-detail[data-detail="${id}"]`);
+                document.querySelectorAll('.vinkje-detail').forEach(d => d.classList.remove('visible'));
+                detail.classList.add('visible');
+                vinkjes[currentIndex].classList.add('expanded');
+
+                currentIndex++;
+
+                if (currentIndex <= vinkjes.length) {
+                    setTimeout(animateNext, 2500);
+                }
+            }
+
+            animateNext();
+        });
+
+        // Reset
+        document.getElementById('reset-vinkjes').addEventListener('click', function() {
+            const vinkjes = document.querySelectorAll('.vinkje[data-vinkje]');
+            vinkjes.forEach((v, i) => {
+                v.classList.remove('active', 'completed', 'expanded');
+                v.querySelector('.number').textContent = i + 1;
+            });
+            document.querySelectorAll('.vinkje-detail').forEach(d => d.classList.remove('visible'));
+        });
+    </script>
+</body>
+</html>
