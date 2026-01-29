@@ -101,21 +101,30 @@
         .benefits {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+            gap: 1rem;
             margin: 2rem 0;
         }
         .benefit {
-            text-align: center;
-            padding: 1.5rem;
-        }
-        .benefit .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         .benefit h4 {
             color: var(--primary);
             margin-bottom: 0.5rem;
+            font-size: 1rem;
         }
+        .benefit p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .benefit.green { border-left-color: #74B943; }
+        .benefit.blue { border-left-color: #8FB6D9; }
+        .benefit.orange { border-left-color: #FFA726; }
+        .benefit.purple { border-left-color: #9C27B0; }
     </style>
 </head>
 <body>
@@ -145,27 +154,23 @@
             De PIP (Persoonlijke Internet Pagina) wordt binnenkort gelanceerd. Onderstaande flow toont hoe het proces zal werken.
         </div>
 
-        <!-- Voordelen voor burger -->
+        <!-- Voordelen voor aanvrager -->
         <section>
             <h3>Wat verandert er voor de aanvrager?</h3>
             <div class="benefits">
-                <div class="benefit">
-                    <div class="icon">👁️</div>
+                <div class="benefit green">
                     <h4>Transparant</h4>
                     <p>Altijd inzicht in de status van je aanvraag</p>
                 </div>
-                <div class="benefit">
-                    <div class="icon">📱</div>
+                <div class="benefit blue">
                     <h4>Digitaal</h4>
                     <p>Documenten uploaden en downloaden via de PIP</p>
                 </div>
-                <div class="benefit">
-                    <div class="icon">🔔</div>
+                <div class="benefit orange">
                     <h4>Proactief</h4>
                     <p>Automatische notificaties bij statuswijzigingen</p>
                 </div>
-                <div class="benefit">
-                    <div class="icon">📞</div>
+                <div class="benefit purple">
                     <h4>Bereikbaar</h4>
                     <p>KCC weet direct de status als je belt</p>
                 </div>
