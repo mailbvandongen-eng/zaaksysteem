@@ -212,7 +212,6 @@
                 <div class="submenu-title">Kies een scenario:</div>
                 <div class="submenu-options">
                     <div class="submenu-option" data-flow="kcc-1">Klant belt voor status</div>
-                    <div class="submenu-option" data-flow="kcc-2">Terugbelverzoek</div>
                 </div>
             </div>
 
@@ -344,7 +343,7 @@
             <div id="eu-info" class="eu-info">
                 <h3 style="color: var(--primary); margin-bottom: 1rem;">Enable-U API Gateway</h3>
                 <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
-                    De API Gateway bepaalt wat de aanvrager ziet op de PIP. Het werkt als een filter tussen het zaaksysteem en de burger.
+                    De API Gateway bepaalt wat de aanvrager ziet op de PIP. Het werkt als een filter tussen het zaaksysteem en de aanvrager.
                 </p>
 
                 <!-- Diagram -->
@@ -380,7 +379,7 @@
 
                     <div style="background: #E3F2FD; padding: 1rem; border-radius: 6px; border-left: 4px solid #2196F3;">
                         <strong>Zaaktype toegevoegd = zaak zichtbaar, maar nog geen documenten</strong><br>
-                        Als je een zaaktype toevoegt, ziet de burger de zaak. Maar documenten zijn nog niet zichtbaar.
+                        Als je een zaaktype toevoegt, ziet de aanvrager de zaak. Maar documenten zijn nog niet zichtbaar.
                     </div>
 
                     <div style="background: #E8F5E9; padding: 1rem; border-radius: 6px; border-left: 4px solid #4CAF50;">
@@ -396,7 +395,7 @@
                         <ul style="margin: 0; padding-left: 1.25rem; color: #333;">
                             <li>Aanvragen</li>
                             <li>Beschikkingen</li>
-                            <li>Eigen uploads van de burger</li>
+                            <li>Eigen uploads van de aanvrager</li>
                         </ul>
                     </div>
                     <div style="background: #FFEBEE; padding: 1.25rem; border-radius: 8px;">
@@ -452,7 +451,7 @@
                     <p>Hoe wordt een nieuw zaaktype aangesloten? Bekijk het implementatieproces.</p>
                 </a>
                 <a href="perspectief/aanvrager.html" class="card">
-                    <h4>Vanuit de burger gezien</h4>
+                    <h4>Vanuit de aanvrager gezien</h4>
                     <p>Volg een aanvraag van begin tot eind vanuit het perspectief van de aanvrager.</p>
                 </a>
                 <a href="componenten/systemen.html" class="card">
@@ -481,7 +480,7 @@
             // ===== AANVRAGER FLOWS =====
             'aanvrager-sd': {
                 title: 'Aanvrager - Sociaal Domein (WMO, GPK)',
-                description: 'De burger vult een formulier in op gemeentewestland.nl, logt in met DigiD, de aanvraag komt in Rx.Enterprise, wordt behandeld in Suite4SD, en de burger kan de status volgen via de PIP.',
+                description: 'De aanvrager vult een formulier in op gemeentewestland.nl, logt in met DigiD, de aanvraag komt in Rx.Enterprise, wordt behandeld in Suite4SD, en de aanvrager kan de status volgen via de PIP.',
                 svg: `
                     <svg viewBox="0 0 800 100">
                         <style>
@@ -521,7 +520,7 @@
             },
             'aanvrager-bz': {
                 title: 'Aanvrager - Burgerzaken (eDiensten)',
-                description: 'De burger vraagt een dienst aan via Centric eDiensten (bijv. uittreksel BRP, adreswijziging), logt in met DigiD, Centric Burgerzaken verwerkt de aanvraag, dit synchroniseert naar Rx.Enterprise, en de status wordt zichtbaar in de PIP.',
+                description: 'De aanvrager vraagt een dienst aan via Centric eDiensten (bijv. uittreksel BRP, adreswijziging), logt in met DigiD, Centric Burgerzaken verwerkt de aanvraag, dit synchroniseert naar Rx.Enterprise, en de status wordt zichtbaar in de PIP.',
                 svg: `
                     <svg viewBox="0 0 800 100">
                         <style>
@@ -656,45 +655,18 @@
             // ===== KCC FLOWS =====
             'kcc-1': {
                 title: 'KCC - Klant belt voor status',
-                description: 'Een burger belt het KCC. De medewerker zoekt op BSN in Rx.Front en ziet direct alle zaken, de status en wie de behandelaar is.',
+                description: 'De aanvrager belt het KCC. De medewerker zoekt op BSN in Rx.Front en ziet direct alle zaken, de status en wie de behandelaar is. Kan een terugbelverzoek aanmaken of doorverbinden met de juiste behandelaar.',
                 svg: `
                     <svg viewBox="0 0 740 100">
-                        <style>@keyframes flow{to{stroke-dashoffset:-9}}.anim{animation:flow .4s linear infinite}</style>
-                        <rect x="170" y="25" width="100" height="50" fill="#81C784" rx="6"/>
-                        <text x="220" y="45" text-anchor="middle" fill="white" font-size="10">Telefoon</text>
-                        <text x="220" y="60" text-anchor="middle" fill="white" font-size="8">burger belt</text>
                         <rect x="320" y="25" width="100" height="50" fill="#00BCD4" rx="6"/>
                         <text x="370" y="45" text-anchor="middle" fill="white" font-size="10">Rx.Front</text>
-                        <text x="370" y="60" text-anchor="middle" fill="white" font-size="8">zoek op BSN</text>
-                        <rect x="470" y="25" width="100" height="50" fill="#44772C" rx="6"/>
-                        <text x="520" y="45" text-anchor="middle" fill="white" font-size="10">Rx.Enterprise</text>
-                        <text x="520" y="60" text-anchor="middle" fill="white" font-size="8">alle zaken</text>
-                        <line class="anim" x1="270" y1="50" x2="320" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="anim" x1="420" y1="50" x2="470" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                    </svg>`
-            },
-            'kcc-2': {
-                title: 'KCC - Terugbelverzoek',
-                description: 'Het KCC ziet in het klantbeeld wie de behandelaar is. Ze kunnen een terugbelverzoek aanmaken of de aanvrager direct doorverbinden met de juiste behandelaar.',
-                svg: `
-                    <svg viewBox="0 0 740 100">
-                        <style>@keyframes flow{to{stroke-dashoffset:-9}}.anim{animation:flow .4s linear infinite}</style>
-                        <rect x="170" y="25" width="100" height="50" fill="#00BCD4" rx="6"/>
-                        <text x="220" y="45" text-anchor="middle" fill="white" font-size="10">Rx.Front</text>
-                        <text x="220" y="60" text-anchor="middle" fill="white" font-size="8">KCC</text>
-                        <rect x="320" y="25" width="100" height="50" fill="#26C6DA" rx="6"/>
-                        <text x="370" y="45" text-anchor="middle" fill="white" font-size="9">Terugbelverzoek</text>
-                        <text x="370" y="60" text-anchor="middle" fill="white" font-size="8">naar behandelaar</text>
-                        <rect x="470" y="25" width="100" height="50" fill="#44772C" rx="6"/>
-                        <text x="520" y="55" text-anchor="middle" fill="white" font-size="10">Rx.Enterprise</text>
-                        <line class="anim" x1="270" y1="50" x2="320" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
-                        <line class="anim" x1="420" y1="50" x2="470" y2="50" stroke="#74B943" stroke-width="3" stroke-dasharray="6,3"/>
+                        <text x="370" y="60" text-anchor="middle" fill="white" font-size="8">klantbeeld</text>
                     </svg>`
             },
             // ===== REGISTRATIE FLOW =====
             'reg-1': {
                 title: 'Team Registratie - Post verwerken',
-                description: 'Post komt binnen, wordt gescand, komt in de werkvoorraad van Rx.Enterprise en wordt toegewezen aan de juiste behandelaar.',
+                description: 'Post komt binnen, wordt gescand en komt in de werkvoorraad van Team Registratie. Zij zetten het door naar de juiste werkvoorraad in Rx.Enterprise. De behandelaar gaat ermee verder.',
                 svg: `
                     <svg viewBox="0 0 740 100">
                         <style>@keyframes flow{to{stroke-dashoffset:-9}}.anim{animation:flow .4s linear infinite}</style>

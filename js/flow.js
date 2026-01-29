@@ -74,9 +74,9 @@ function showSystemDetail(systemId) {
         },
         'pip': {
             title: 'PIP (Persoonlijke Internet Pagina)',
-            description: 'De portal waar burgers hun aanvragen kunnen volgen.',
+            description: 'De portal waar inwoners hun aanvragen kunnen volgen.',
             details: [
-                'Inloggen met DigiD (burgers) of eHerkenning (bedrijven)',
+                'Inloggen met DigiD (inwoners) of eHerkenning (bedrijven)',
                 'Status van aanvragen volgen',
                 'Documenten downloaden en uploaden',
                 'Notificaties ontvangen bij statuswijzigingen'
