@@ -5,6 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zaaksysteem Keten - Gemeente Westland</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .submenu {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--gray-light);
+            border-radius: 8px;
+        }
+        .submenu.visible {
+            display: block;
+        }
+        .submenu-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+        .submenu-options {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .submenu-option {
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            border: 2px solid var(--gray);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .submenu-option:hover {
+            border-color: var(--primary-light);
+        }
+        .submenu-option.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .flow-path {
+            fill: none;
+            stroke: var(--primary-light);
+            stroke-width: 4;
+            stroke-dasharray: 12 6;
+            stroke-linecap: round;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .flow-path.visible {
+            opacity: 1;
+            animation: flowDash 1s linear infinite;
+        }
+        @keyframes flowDash {
+            to { stroke-dashoffset: -18; }
+        }
+        .node.dimmed {
+            opacity: 0.25;
+        }
+        .node.highlighted {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -34,7 +94,7 @@
                     <h5>Aanvrager</h5>
                     <p>Burger of bedrijf</p>
                 </div>
-                <div class="perspective-card active" data-perspective="behandelaar">
+                <div class="perspective-card" data-perspective="behandelaar">
                     <h5>Behandelaar</h5>
                     <p>Werkt in de keten</p>
                 </div>
@@ -46,9 +106,14 @@
                     <h5>Team Registratie</h5>
                     <p>Post en scan</p>
                 </div>
-                <div class="perspective-card" data-perspective="fb">
-                    <h5>Func. Beheer</h5>
-                    <p>Systeeminrichting</p>
+            </div>
+
+            <!-- Submenu voor aanvrager -->
+            <div id="submenu-aanvrager" class="submenu">
+                <div class="submenu-title">Kies een domein:</div>
+                <div class="submenu-options">
+                    <div class="submenu-option" data-flow="sd">Sociaal Domein (WMO, GPK)</div>
+                    <div class="submenu-option" data-flow="bz">Burgerzaken (Paspoort, Rijbewijs)</div>
                 </div>
             </div>
         </section>
@@ -63,12 +128,8 @@
 
             <div class="flow-diagram">
                 <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Arrow marker -->
                     <defs>
-                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                            <polygon points="0 0, 10 3.5, 0 7" fill="#1A1919"/>
-                        </marker>
-                        <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <marker id="arrowhead-flow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                             <polygon points="0 0, 10 3.5, 0 7" fill="#74B943"/>
                         </marker>
                     </defs>
@@ -88,26 +149,6 @@
 
                     <rect x="980" y="40" width="180" height="520" fill="#E0F7FA" rx="8" opacity="0.5"/>
                     <text x="1070" y="70" text-anchor="middle" font-size="14" fill="#00838F" font-weight="600">INZICHT</text>
-
-                    <!-- ARROWS / CONNECTIONS (eerst, zodat ze achter nodes komen) -->
-                    <path class="arrow" d="M220,125 L275,125"/>
-                    <path class="arrow" d="M220,195 L275,195"/>
-                    <path class="arrow" d="M220,335 L275,335"/>
-                    <path class="arrow" d="M420,125 L495,200"/>
-                    <path class="arrow" d="M420,195 L495,210"/>
-                    <path class="arrow" d="M420,335 L495,230"/>
-                    <path class="arrow" d="M550,250 L535,295"/>
-                    <path class="arrow" d="M650,250 L655,295"/>
-                    <path class="arrow" d="M535,250 L535,355"/>
-                    <path class="arrow" d="M655,250 L655,355"/>
-                    <path class="arrow" d="M535,350 L550,425"/>
-                    <path class="arrow" d="M655,350 L650,425"/>
-                    <path class="arrow animated" d="M700,200 L775,160" stroke="#74B943" marker-end="url(#arrowhead-green)"/>
-                    <path class="arrow" d="M700,215 L775,230"/>
-                    <path class="arrow animated" d="M940,160 L995,160" stroke="#74B943" marker-end="url(#arrowhead-green)"/>
-                    <path class="arrow" d="M350,395 L350,365"/>
-                    <path class="arrow" d="M280,420 L225,125" stroke="#FF5722" stroke-dasharray="3"/>
-                    <text x="600" y="275" text-anchor="middle" font-size="10" fill="#666">ZS-DMS</text>
 
                     <!-- KANALEN -->
                     <g class="node node-kanaal" data-system="gemeentewestland">
@@ -240,7 +281,7 @@
 
             <!-- System detail panel -->
             <div id="system-detail" class="system-detail">
-                <p>Klik op een component voor meer informatie</p>
+                <p>Kies een perspectief en domein om de keten te zien</p>
             </div>
         </section>
 
@@ -249,22 +290,18 @@
             <h3>Snel naar</h3>
             <div class="cards">
                 <a href="perspectief/behandelaar.html" class="card">
-                    <div class="icon">👤</div>
                     <h4>Wat verandert er voor mij?</h4>
                     <p>Als behandelaar werk je straks in de keten. Ontdek wat dit betekent.</p>
                 </a>
                 <a href="implementatie/7-vinkjes.html" class="card">
-                    <div class="icon">✅</div>
                     <h4>De 7 Vinkjes</h4>
                     <p>Hoe wordt een nieuw zaaktype aangesloten? Bekijk het implementatieproces.</p>
                 </a>
                 <a href="perspectief/aanvrager.html" class="card">
-                    <div class="icon">🏠</div>
                     <h4>Vanuit de burger gezien</h4>
                     <p>Volg een aanvraag van begin tot eind vanuit het perspectief van de aanvrager.</p>
                 </a>
                 <a href="componenten/systemen.html" class="card">
-                    <div class="icon">🔧</div>
                     <h4>Alle systemen</h4>
                     <p>Overzicht van alle componenten in de keten en hun functie.</p>
                 </a>
@@ -284,5 +321,145 @@
     </footer>
 
     <script src="js/flow.js"></script>
+    <script>
+        // Flow configurations per perspective and domain
+        // Node positions (centers):
+        // gemeentewestland: 140,125  simform: 350,125  ediensten: 350,195  digid: 350,420
+        // rx-enterprise: 600,215  centric-bz: 535,325  s4sd: 655,325  pip: 860,160
+        // rx-front: 1070,160  post: 140,335  scanner: 350,335
+        const flowConfigs = {
+            'aanvrager-sd': {
+                nodes: ['gemeentewestland', 'simform', 'digid', 'rx-enterprise', 's4sd', 'pip'],
+                // gemeentewestland → simform → (digid) → rx-enterprise → s4sd → pip
+                path: 'M220,125 L280,125 M420,125 L420,380 L300,420 M400,420 L500,380 L500,215 M700,215 L700,300 L655,300 M655,350 L655,380 L750,380 L780,180 L780,160'
+            },
+            'aanvrager-bz': {
+                nodes: ['gemeentewestland', 'ediensten', 'digid', 'centric-bz', 'rx-enterprise', 'pip'],
+                // gemeentewestland → ediensten → (digid) → centric-bz → rx-enterprise → pip
+                path: 'M220,125 L220,195 L280,195 M420,195 L420,380 L300,420 M400,420 L480,380 L480,325 M590,325 L630,325 L630,250 L600,250 M600,180 L700,180 L780,160'
+            },
+            'behandelaar': {
+                nodes: ['rx-enterprise', 'centric-bz', 's4sd', 'stratech', 'scanner'],
+                // scanner → rx-enterprise → afhandelsystemen
+                path: 'M420,335 L500,280 L500,215 M700,215 L700,280 L655,300 M535,300 L535,360'
+            },
+            'kcc': {
+                nodes: ['rx-front', 'rx-enterprise', 'pip', 'telefoon'],
+                // telefoon → rx-front ← rx-enterprise ← pip
+                path: 'M220,270 L1000,270 L1000,160 M940,160 L860,160 M780,160 L700,160 L700,180'
+            },
+            'registratie': {
+                nodes: ['post', 'scanner', 'rx-enterprise'],
+                // post → scanner → rx-enterprise
+                path: 'M220,335 L280,335 M420,335 L500,280 L500,215'
+            }
+        };
+
+        // Perspective cards
+        document.querySelectorAll('.perspective-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const perspective = this.dataset.perspective;
+
+                // Update active state
+                document.querySelectorAll('.perspective-card').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+
+                // Hide all flow paths
+                document.querySelectorAll('.flow-path').forEach(p => p.classList.remove('visible'));
+
+                // Reset nodes
+                document.querySelectorAll('.node').forEach(n => {
+                    n.classList.remove('dimmed', 'highlighted');
+                });
+
+                // Show submenu for aanvrager
+                const submenu = document.getElementById('submenu-aanvrager');
+                if (perspective === 'aanvrager') {
+                    submenu.classList.add('visible');
+                    document.querySelectorAll('.submenu-option').forEach(o => o.classList.remove('active'));
+                } else {
+                    submenu.classList.remove('visible');
+
+                    // Apply flow for other perspectives
+                    const config = flowConfigs[perspective];
+                    if (config) {
+                        applyFlow(config);
+                    }
+                }
+            });
+        });
+
+        // Submenu options
+        document.querySelectorAll('.submenu-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const flow = this.dataset.flow;
+
+                // Update active state
+                document.querySelectorAll('.submenu-option').forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+
+                // Get config
+                const config = flowConfigs['aanvrager-' + flow];
+                if (config) {
+                    applyFlow(config);
+
+                    // Show animated path
+                    const svg = document.querySelector('.flow-diagram svg');
+                    let flowPath = document.getElementById('dynamic-flow');
+                    if (!flowPath) {
+                        flowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        flowPath.id = 'dynamic-flow';
+                        flowPath.classList.add('flow-path');
+                        // Insert after defs but before nodes
+                        const firstNode = svg.querySelector('.node');
+                        svg.insertBefore(flowPath, firstNode);
+                    }
+                    flowPath.setAttribute('d', config.path);
+                    flowPath.classList.add('visible');
+                }
+            });
+        });
+
+        function applyFlow(config) {
+            const allNodes = document.querySelectorAll('.node');
+
+            // Hide any existing dynamic flow first
+            const existingFlow = document.getElementById('dynamic-flow');
+            if (existingFlow) {
+                existingFlow.classList.remove('visible');
+            }
+
+            // Dim all nodes first
+            allNodes.forEach(node => {
+                node.classList.add('dimmed');
+                node.classList.remove('highlighted');
+            });
+
+            // Highlight relevant nodes
+            config.nodes.forEach(nodeId => {
+                const node = document.querySelector(`[data-system="${nodeId}"]`);
+                if (node) {
+                    node.classList.remove('dimmed');
+                    node.classList.add('highlighted');
+                }
+            });
+
+            // Draw path if exists
+            if (config.path) {
+                const svg = document.querySelector('.flow-diagram svg');
+                let flowPath = document.getElementById('dynamic-flow');
+                if (!flowPath) {
+                    flowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    flowPath.id = 'dynamic-flow';
+                    flowPath.classList.add('flow-path');
+                    flowPath.setAttribute('marker-end', 'url(#arrowhead-flow)');
+                    const firstNode = svg.querySelector('.node');
+                    svg.insertBefore(flowPath, firstNode);
+                }
+                flowPath.setAttribute('d', config.path);
+                setTimeout(() => flowPath.classList.add('visible'), 50);
+            }
+        }
+    </script>
 </body>
 </html>
