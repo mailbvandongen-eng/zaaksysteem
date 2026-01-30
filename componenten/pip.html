@@ -79,6 +79,15 @@
             margin: 0;
             font-size: 0.9rem;
         }
+        .blurred {
+            filter: blur(4px);
+            user-select: none;
+        }
+        .credential-note {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -178,8 +187,8 @@
             <p>Wil je zien hoe de PIP eruitziet? Bekijk de acceptatieomgeving:</p>
             <div class="test-box">
                 <p style="margin-bottom: 0.75rem;"><strong>Testomgeving:</strong> <a href="http://mijn.gemeentewestland.simgroep-acceptatie.nl/" target="_blank" style="color: #44772C;">mijn.gemeentewestland.simgroep-acceptatie.nl</a></p>
-                <p style="margin-bottom: 0.25rem;"><strong>Gebruikersnaam:</strong> DonaldDuck</p>
-                <p style="margin-bottom: 0;"><strong>Wachtwoord:</strong> 123Duckstad!</p>
+                <p style="margin-bottom: 0.25rem;"><strong>Gebruikersnaam:</strong> <span class="blurred">DonaldDuck</span> <span class="credential-note">(opvragen bij Bob)</span></p>
+                <p style="margin-bottom: 0;"><strong>Wachtwoord:</strong> <span class="blurred">123Duckstad!</span> <span class="credential-note">(opvragen bij Bob)</span></p>
             </div>
             <p style="color: var(--text-light); font-size: 0.9rem;">Let op: de testomgeving is soms niet bereikbaar. Probeer het dan later opnieuw.</p>
         </section>
