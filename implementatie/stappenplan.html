@@ -7,6 +7,37 @@
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="../css/style.css">
     <style>
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .page-header-content {
+            flex: 1;
+        }
+        .page-header-content h2 {
+            margin-bottom: 0.5rem;
+        }
+        .page-header-action {
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .download-hint {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+            }
+            .page-header-action {
+                width: 100%;
+            }
+        }
         .stap {
             display: flex;
             gap: 1rem;
@@ -145,10 +176,24 @@
     </nav>
 
     <main>
-        <h2>Stappenplan Formulieren naar Zaaksysteem</h2>
-        <p style="color: var(--text-light); margin-bottom: 1.5rem;">
-            Hoe zet je een formulier om naar het zaaksysteem? Dit stappenplan helpt je door het proces.
-        </p>
+        <div class="page-header">
+            <div class="page-header-content">
+                <h2>Stappenplan Formulieren naar Zaaksysteem</h2>
+                <p style="color: var(--text-light);">
+                    Hoe zet je een formulier om naar het zaaksysteem? Dit stappenplan helpt je door het proces.
+                </p>
+            </div>
+            <div class="page-header-action">
+                <a href="../downloads/overdrachtsdocument.docx" class="download-btn" download="overdrachtsdocument.docx">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                    </svg>
+                    Download sjabloon
+                </a>
+                <span class="download-hint">Overdrachtsdocument</span>
+            </div>
+        </div>
 
         <!-- Prioritering -->
         <section>
@@ -304,19 +349,6 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Download sectie -->
-        <section class="download-section">
-            <h3>Overdrachtsdocument</h3>
-            <p style="margin-bottom: 1rem;">Download het sjabloon voor het overdrachtsdocument. Dit document gebruik je bij stap 9.</p>
-            <a href="../downloads/overdrachtsdocument.docx" class="download-btn" download="overdrachtsdocument.docx">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-                </svg>
-                Download Word-sjabloon
-            </a>
         </section>
 
         <!-- Preview van het overdrachtsdocument -->
