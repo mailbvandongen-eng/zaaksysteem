@@ -123,6 +123,58 @@
             font-size: 0.9rem;
         }
 
+        /* Intro sectie */
+        .intro-hero {
+            background: linear-gradient(135deg, #f0f7ed 0%, #e8f4e5 100%);
+            border: 1px solid var(--primary-light);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .intro-hero h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .intro-lead {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 1.5rem auto;
+            line-height: 1.6;
+        }
+        .intro-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .intro-card {
+            background: white;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+        .intro-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .intro-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .intro-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+        @media (max-width: 768px) {
+            .intro-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -147,6 +199,33 @@
     </nav>
 
     <main>
+        <!-- Intro sectie -->
+        <section class="intro-hero">
+            <h2>Welkom bij de Zaaksysteem Ketenvisualisatie</h2>
+            <p class="intro-lead">
+                Deze website helpt je begrijpen hoe het zaaksysteem werkt en wat jouw rol daarin is.
+                Het is bedoeld voor iedereen die met het zaaksysteem te maken krijgt.
+            </p>
+
+            <div class="intro-cards">
+                <div class="intro-card">
+                    <div class="intro-icon">👀</div>
+                    <h4>Bewustwording</h4>
+                    <p>Begrijp hoe aanvragen door de keten stromen en waarom jouw werk ertoe doet.</p>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-icon">🔍</div>
+                    <h4>Inzicht</h4>
+                    <p>Bekijk de keten vanuit verschillende perspectieven: aanvrager, behandelaar of KCC.</p>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-icon">📋</div>
+                    <h4>Aan de slag</h4>
+                    <p>Vind stappenplannen en hulpmiddelen als je zelf met het zaaksysteem gaat werken.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Perspective switcher -->
         <section>
             <h3>Bekijk de keten vanuit een perspectief</h3>
