@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stappenplan Formulieren - Zaaksysteem</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .stap {
+            display: flex;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--white);
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+        }
+        .stap-nummer {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .stap-content h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        .stap-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .stap-tip {
+            background: #FFF8E1;
+            border-left: 3px solid #FFB300;
+            padding: 0.75rem 1rem;
+            margin-top: 0.75rem;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.9rem;
+        }
+        .download-section {
+            background: linear-gradient(135deg, #f0f7ed 0%, #e8f4e5 100%);
+            border: 1px solid var(--primary-light);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .download-section h3 {
+            margin-bottom: 1rem;
+        }
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .download-btn:hover {
+            background: var(--primary-light);
+        }
+        .priority-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .priority-item {
+            background: white;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .priority-item .nummer {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .priority-item p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+        .overdracht-preview {
+            background: white;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .overdracht-preview h4 {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .overdracht-section {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: var(--gray-light);
+            border-radius: 4px;
+        }
+        .overdracht-section strong {
+            color: var(--primary);
+        }
+        @media (max-width: 768px) {
+            .priority-box {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://www.gemeentewestland.nl/fileadmin/Gemeente_Westland/site_assets/logowestland.svg" alt="Gemeente Westland">
+        </div>
+        <h1>Zaaksysteem Ketenvisualisatie</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Overzicht</a></li>
+            <li><a href="../perspectief/behandelaar.html">Behandelaar</a></li>
+            <li><a href="../perspectief/aanvrager.html">Aanvrager</a></li>
+            <li><a href="../perspectief/kcc.html">KCC</a></li>
+            <li><a href="7-vinkjes.html">Ketenafstemming</a></li>
+            <li><a href="stappenplan.html" class="active">Stappenplan</a></li>
+            <li><a href="../componenten/pip.html">PIP</a></li>
+            <li><a href="../componenten/systemen.html">Systemen</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Stappenplan Formulieren naar Zaaksysteem</h2>
+        <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+            Hoe zet je een formulier om naar het zaaksysteem? Dit stappenplan helpt je door het proces.
+        </p>
+
+        <!-- Prioritering -->
+        <section>
+            <h3>Volgorde van aanpakken</h3>
+            <p>We pakken formulieren aan in deze volgorde:</p>
+            <div class="priority-box">
+                <div class="priority-item">
+                    <div class="nummer">1</div>
+                    <p>PDF formulieren</p>
+                </div>
+                <div class="priority-item">
+                    <div class="nummer">2</div>
+                    <p>E-mailadressen</p>
+                </div>
+                <div class="priority-item">
+                    <div class="nummer">3</div>
+                    <p>SIM-formulieren</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <strong>Tip:</strong> We beginnen met de formulieren die het meest worden gebruikt. Als je een formulier oppakt, doe dan meteen alle formulieren van die eigenaar.
+            </div>
+        </section>
+
+        <!-- Stappenplan -->
+        <section style="margin-top: 2.5rem;">
+            <h3>Het stappenplan</h3>
+
+            <div class="stap">
+                <div class="stap-nummer">1</div>
+                <div class="stap-content">
+                    <h4>Check of het formulier binnenkort verandert</h4>
+                    <p>Vraag bij FB Burgerzaken of het formulier binnenkort meegaat in een e-dienst of portaal. Als dat zo is, wacht je met de omzetting.</p>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">2</div>
+                <div class="stap-content">
+                    <h4>Zoek de eigenaar van het formulier</h4>
+                    <p>Zoek uit wie de eigenaar is van het formulier. Dit is vaak de proceseigenaar van het proces waar het formulier bij hoort.</p>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">3</div>
+                <div class="stap-content">
+                    <h4>Leg het uit aan de eigenaar</h4>
+                    <p>Ga met de eigenaar om de tafel. Leg uit wat we doen en waarom:</p>
+                    <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                        <li>Aanvragers zien hun zaken in de PIP (Persoonlijke Internet Pagina)</li>
+                        <li>We krijgen een compleet klantbeeld</li>
+                        <li>Documenten worden goed gearchiveerd</li>
+                        <li>We mogen geen persoonsgegevens per e-mail vragen (wettelijk)</li>
+                        <li>Alles komt in 1 werkvoorraad in Rx.Enterprise</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">Vraag ook hoe het huidige proces werkt.</p>
+                    <div class="stap-tip">
+                        <strong>Geen akkoord?</strong> Schakel je leidinggevende in.
+                    </div>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">4</div>
+                <div class="stap-content">
+                    <h4>Maak een functioneel ontwerp</h4>
+                    <p>Stel samen met het team en de proceseigenaar het proces vast. Maak hiervan een functioneel ontwerp. Pas het formulier aan of ontwerp een nieuw formulier als dat nodig is.</p>
+                    <div class="stap-tip">
+                        <strong>Let op:</strong> Je mag alleen informatie vragen die echt nodig is om de aanvraag te beoordelen. Dit is wettelijk bepaald.
+                    </div>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">5</div>
+                <div class="stap-content">
+                    <h4>Betrek Informatiebeheer</h4>
+                    <p>Als het een aanvraagproces is, betrek je Informatiebeheer voor de inrichting.</p>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">6</div>
+                <div class="stap-content">
+                    <h4>Neem contact op met ISO</h4>
+                    <p>Stuur het ontwerp naar de Information Security Officer (ISO) voor een privacy-check.</p>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">7</div>
+                <div class="stap-content">
+                    <h4>Laat het bouwen door FB Zaaksysteem</h4>
+                    <p>Stuur het ontwerp naar FB Zaaksysteem om te bouwen. Vraag ook wie de werkverdelers zijn in het team binnen Rx.Enterprise. Check of deze mensen ook echt die rol hebben.</p>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">8</div>
+                <div class="stap-content">
+                    <h4>Test met werkverdelers en behandelaars</h4>
+                    <p>Test het proces met de werkverdelers en behandelaars. Leg uit waarom we dit doen (zie stap 3). Vertel dat alle documenten zichtbaar zijn voor de aanvrager in de PIP. Dit is belangrijk om bewust met documenten om te gaan en datalekken te voorkomen.</p>
+                    <p style="margin-top: 0.5rem;"><strong>Test ook:</strong> het klantbeeld en de PIP.</p>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">9</div>
+                <div class="stap-content">
+                    <h4>Vraag formeel akkoord</h4>
+                    <p>Na akkoord van de testers vraag je formeel akkoord aan de leidinggevende. Beschrijf kort het proces in een overdrachtsdocument.</p>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">10</div>
+                <div class="stap-content">
+                    <h4>Zet live</h4>
+                    <p>Na akkoord van de leidinggevende (proceseigenaar) kan FB Zaaksysteem het in productie zetten. FB Zaaksysteem vraagt de webredactie om de webpagina met het oude formulier aan te passen of te vervangen.</p>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">11</div>
+                <div class="stap-content">
+                    <h4>Informeer het KCC</h4>
+                    <p>Webredactie informeert het KCC dat er een nieuw proces in het klantbeeld komt.</p>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">12</div>
+                <div class="stap-content">
+                    <h4>Preproductietest</h4>
+                    <p>Voer een preproductietest uit met iemand van het team en FB Zaaksysteem.</p>
+                </div>
+            </div>
+
+            <div class="stap">
+                <div class="stap-nummer">13</div>
+                <div class="stap-content">
+                    <h4>Livegang en nazorg</h4>
+                    <p>Wanneer het live staat:</p>
+                    <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                        <li>Stuur een mail naar de testgroep en werkverdelers</li>
+                        <li>Sta klaar voor vragen</li>
+                        <li>Kijk mee met de eerste aanvragen</li>
+                        <li>Evalueer na een paar weken</li>
+                    </ul>
+                    <div class="stap-tip">
+                        <strong>Geen reactie van het vakteam?</strong> Escaleer naar je leidinggevende en de teammanager.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download sectie -->
+        <section class="download-section">
+            <h3>Overdrachtsdocument</h3>
+            <p style="margin-bottom: 1rem;">Download het sjabloon voor het overdrachtsdocument. Dit document gebruik je bij stap 9.</p>
+            <a href="../downloads/overdrachtsdocument.docx" class="download-btn">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                </svg>
+                Download Word-sjabloon
+            </a>
+        </section>
+
+        <!-- Preview van het overdrachtsdocument -->
+        <section>
+            <h3>Wat staat er in het overdrachtsdocument?</h3>
+            <div class="overdracht-preview">
+                <h4>Overdrachtsdocument Proces</h4>
+
+                <div class="overdracht-section">
+                    <strong>1.1 Algemeen</strong>
+                    <p>Met dit document wordt het proces opgenomen in het zaaksysteem.</p>
+                </div>
+
+                <div class="overdracht-section">
+                    <strong>1.2 Betrokkenen en rol</strong>
+                    <p>Wie hebben meegewerkt aan dit proces? Denk aan:</p>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li>Team Registratie</li>
+                        <li>FB Zaaksysteem</li>
+                        <li>Senior KCC</li>
+                        <li>Senior-adviseur van de afdeling</li>
+                        <li>Informatiebeheer</li>
+                    </ul>
+                </div>
+
+                <div class="overdracht-section">
+                    <strong>1.3 Autorisaties</strong>
+                    <p>Wie mag dit proces behandelen? Wie is proceseigenaar? Wie zijn de keyusers?</p>
+                </div>
+
+                <div class="overdracht-section">
+                    <strong>1.4 Beheer en ondersteuning</strong>
+                    <p>Hoe meld je storingen? Hoe vraag je wijzigingen aan? Wie mag wat doen?</p>
+                </div>
+
+                <div class="overdracht-section">
+                    <strong>1.5 Procesbeschrijving</strong>
+                    <p>Beschrijving van hoe het proces werkt.</p>
+                </div>
+
+                <div class="overdracht-section">
+                    <strong>Akkoordverklaring</strong>
+                    <p>De proceseigenaar tekent voor akkoord.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align: center; margin-top: 3rem;">
+            <a href="7-vinkjes.html" class="btn btn-primary">Bekijk de 7 vinkjes</a>
+            <a href="../index.html" class="btn btn-outline" style="margin-left: 1rem;">Terug naar overzicht</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Zaaksysteem Ketenvisualisatie - Gemeente Westland</p>
+    </footer>
+</body>
+</html>
