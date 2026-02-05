@@ -3,6 +3,12 @@
 
 const changelog = [
     {
+        datum: "2026-02-05",
+        wijzigingen: [
+            "Overzicht live zaaktypen toegevoegd aan Ketenafstemming pagina"
+        ]
+    },
+    {
         datum: "2026-02-04",
         wijzigingen: [
             "Schuldhulpverlening (Stratech Perspectief Cloud) toegevoegd aan de roadmap",
