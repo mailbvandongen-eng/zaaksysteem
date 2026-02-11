@@ -174,42 +174,26 @@
         }
         /* Inhoudsopgave */
         .toc {
-            background: var(--gray-light);
-            border-radius: 8px;
-            padding: 1.25rem 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
             margin-bottom: 2rem;
         }
-        .toc-title {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-        .toc-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 0.75rem 2rem;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .toc-list li {
-            display: flex;
-            flex-direction: column;
-        }
-        .toc-list a {
-            color: var(--primary);
+        .toc a {
+            display: inline-block;
+            background: var(--gray-light);
+            color: var(--text);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border: 1px solid var(--gray);
+            transition: all 0.15s ease;
         }
-        .toc-list a:hover {
-            text-decoration: underline;
-        }
-        .toc-list .toc-desc {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            margin-top: 0.15rem;
+        .toc a:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
         }
     </style>
 </head>
@@ -240,25 +224,10 @@
 
         <!-- Inhoudsopgave -->
         <div class="toc">
-            <div class="toc-title">Op deze pagina</div>
-            <ul class="toc-list">
-                <li>
-                    <a href="#vinkjes">Ketenafstemming proces</a>
-                    <span class="toc-desc">7 partijen moeten akkoord geven voordat een zaaktype live gaat</span>
-                </li>
-                <li>
-                    <a href="#live">Live Zaaktypen</a>
-                    <span class="toc-desc">Overzicht van alle zaaktypen die in productie draaien</span>
-                </li>
-                <li>
-                    <a href="#filtering">Documenttypen Filtering</a>
-                    <span class="toc-desc">Enable-U configuratie per zaaktype voor de PIP</span>
-                </li>
-                <li>
-                    <a href="#roadmap">Roadmap</a>
-                    <span class="toc-desc">Planning voor aansluiting nieuwe zaaktypen</span>
-                </li>
-            </ul>
+            <a href="#vinkjes">Proces</a>
+            <a href="#live">Live Zaaktypen</a>
+            <a href="#filtering">Documenttypen</a>
+            <a href="#roadmap">Roadmap</a>
         </div>
 
         <!-- Ketenafstemming proces -->
