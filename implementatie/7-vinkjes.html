@@ -195,6 +195,35 @@
             color: white;
             border-color: var(--primary);
         }
+        /* Naar boven knop */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.25rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 100;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -765,6 +794,8 @@
         </section>
     </main>
 
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
     <footer>
         <p>Zaaksysteem Ketenvisualisatie - Gemeente Westland</p>
     </footer>
@@ -797,6 +828,16 @@
                 const zaaktype = this.parentElement;
                 zaaktype.classList.toggle('expanded');
             });
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
         });
 
     </script>
