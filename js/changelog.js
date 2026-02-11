@@ -5,7 +5,7 @@ const changelog = [
     {
         datum: "2026-02-11",
         wijzigingen: [
-            "Feedback Loisha verwerkt",
+            "Feedback Lisha verwerkt",
             "Financiën Export en Subsidies verwijderd uit live zaaktypen (niet meer in gebruik)",
             "KCC zoekt nu op postcode + huisnummer (niet BSN)",
             "FB Zaaksysteem: regelt automatisering toegevoegd (notificaties, fasering)",
