@@ -158,6 +158,51 @@
             color: var(--text-light);
             margin-left: 0.5rem;
         }
+        /* Sectie headers */
+        .section-header {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            margin: 3rem 0 1.5rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .section-header:first-of-type {
+            margin-top: 1.5rem;
+        }
+        /* Inhoudsopgave */
+        .toc {
+            background: var(--gray-light);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .toc-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .toc-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .toc-list a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.25rem 0;
+            border-bottom: 1px dotted var(--gray);
+        }
+        .toc-list a:hover {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -182,15 +227,24 @@
     </nav>
 
     <main>
-        <h2>De 7 Vinkjes</h2>
-        <p style="color: var(--text-light); margin-bottom: 1.5rem;">Hoe wordt een nieuw zaaktype aangesloten op het zaaksysteem?</p>
+        <h2>Ketenafstemming</h2>
+        <p style="color: var(--text-light); margin-bottom: 1.5rem;">Alles over het aansluiten van zaaktypen op het zaaksysteem.</p>
 
-        <section>
-            <p>Voordat een zaaktype live kan gaan, moeten 7 partijen akkoord geven. Dit zorgt ervoor dat de hele keten goed is ingericht en getest. Pas als alle vinkjes zijn gezet, tekent de proceseigenaar het overdrachtsformulier.</p>
-
-        </section>
+        <!-- Inhoudsopgave -->
+        <nav class="toc">
+            <div class="toc-title">Op deze pagina</div>
+            <ul class="toc-list">
+                <li><a href="#vinkjes">De 7 Vinkjes</a></li>
+                <li><a href="#live">Live Zaaktypen</a></li>
+                <li><a href="#filtering">Documenttypen Filtering</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+            </ul>
+        </nav>
 
         <!-- De 7 vinkjes -->
+        <h3 class="section-header" id="vinkjes">De 7 Vinkjes</h3>
+        <p style="margin-bottom: 1rem;">Voordat een zaaktype live kan gaan, moeten 7 partijen akkoord geven. Pas als alle vinkjes zijn gezet, tekent de proceseigenaar het overdrachtsformulier.</p>
+
         <section class="timeline">
             <div class="vinkjes">
                 <!-- Vinkje 1 -->
@@ -392,8 +446,8 @@
         </section>
 
         <!-- Live Zaaktypen -->
+        <h3 class="section-header" id="live">Live Zaaktypen</h3>
         <section>
-            <h3>Live Zaaktypen</h3>
             <p style="color: var(--text-light); margin-bottom: 1rem;">Deze zaaktypen zijn aangesloten op het zaaksysteem en draaien in productie.</p>
 
             <div class="overdracht-doc" style="margin-top: 1rem;">
@@ -446,8 +500,8 @@
         </section>
 
         <!-- Documenttypen Filtering -->
+        <h3 class="section-header" id="filtering">Documenttypen Filtering (Enable-U)</h3>
         <section>
-            <h3>Documenttypen Filtering (Enable-U)</h3>
             <p style="color: var(--text-light); margin-bottom: 1rem;">Per zaaktype is geconfigureerd welke documenttypen zichtbaar zijn op de PIP. Klik op een zaaktype om de documenttypen te zien.</p>
 
             <div class="filtering-list">
@@ -674,8 +728,8 @@
         </section>
 
         <!-- Roadmap -->
+        <h3 class="section-header" id="roadmap">Roadmap</h3>
         <section>
-            <h3>Roadmap Optimalisatie Dienstverlening</h3>
             <p style="color: var(--text-light); margin-bottom: 1rem;">Het doel is om alle dienstverleningsprocessen aan te sluiten op het zaaksysteem.</p>
             <div class="vinkjes" style="margin-top: 1rem;">
                 <div class="vinkje completed">
