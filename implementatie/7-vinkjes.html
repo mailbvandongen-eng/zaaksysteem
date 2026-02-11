@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>De 7 Vinkjes - Implementatieproces</title>
+    <title>Ketenafstemming - Zaaksysteem Keten</title>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <link rel="stylesheet" href="../css/style.css">
     <style>
@@ -167,6 +167,7 @@
             margin: 3rem 0 1.5rem 0;
             font-size: 1.1rem;
             font-weight: 600;
+            scroll-margin-top: 120px;
         }
         .section-header:first-of-type {
             margin-top: 1.5rem;
@@ -175,33 +176,40 @@
         .toc {
             background: var(--gray-light);
             border-radius: 8px;
-            padding: 1rem 1.5rem;
+            padding: 1.25rem 1.5rem;
             margin-bottom: 2rem;
         }
         .toc-title {
             font-weight: 600;
             color: var(--primary);
-            margin-bottom: 0.75rem;
-            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
         }
         .toc-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.75rem 2rem;
             margin: 0;
             padding: 0;
             list-style: none;
         }
+        .toc-list li {
+            display: flex;
+            flex-direction: column;
+        }
         .toc-list a {
-            color: var(--text);
+            color: var(--primary);
             text-decoration: none;
-            font-size: 0.9rem;
-            padding: 0.25rem 0;
-            border-bottom: 1px dotted var(--gray);
+            font-weight: 500;
+            font-size: 0.95rem;
         }
         .toc-list a:hover {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
+            text-decoration: underline;
+        }
+        .toc-list .toc-desc {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 0.15rem;
         }
     </style>
 </head>
@@ -234,15 +242,27 @@
         <nav class="toc">
             <div class="toc-title">Op deze pagina</div>
             <ul class="toc-list">
-                <li><a href="#vinkjes">De 7 Vinkjes</a></li>
-                <li><a href="#live">Live Zaaktypen</a></li>
-                <li><a href="#filtering">Documenttypen Filtering</a></li>
-                <li><a href="#roadmap">Roadmap</a></li>
+                <li>
+                    <a href="#vinkjes">Ketenafstemming proces</a>
+                    <span class="toc-desc">7 partijen moeten akkoord geven voordat een zaaktype live gaat</span>
+                </li>
+                <li>
+                    <a href="#live">Live Zaaktypen</a>
+                    <span class="toc-desc">Overzicht van alle zaaktypen die in productie draaien</span>
+                </li>
+                <li>
+                    <a href="#filtering">Documenttypen Filtering</a>
+                    <span class="toc-desc">Enable-U configuratie per zaaktype voor de PIP</span>
+                </li>
+                <li>
+                    <a href="#roadmap">Roadmap</a>
+                    <span class="toc-desc">Planning voor aansluiting nieuwe zaaktypen</span>
+                </li>
             </ul>
         </nav>
 
-        <!-- De 7 vinkjes -->
-        <h3 class="section-header" id="vinkjes">De 7 Vinkjes</h3>
+        <!-- Ketenafstemming proces -->
+        <h3 class="section-header" id="vinkjes">Ketenafstemming proces</h3>
         <p style="margin-bottom: 1rem;">Voordat een zaaktype live kan gaan, moeten 7 partijen akkoord geven. Pas als alle vinkjes zijn gezet, tekent de proceseigenaar het overdrachtsformulier.</p>
 
         <section class="timeline">
@@ -425,7 +445,7 @@
         <section>
             <div class="info-box">
                 <strong>En BICC dan?</strong><br>
-                BICC (rapportages) is geen onderdeel van de 7 vinkjes maar volgt automatisch. Zodra een zaaktype is aangesloten op het zaaksysteem, komen de gegevens in het DWH terecht en worden de PowerBI rapportages automatisch uitgebreid.
+                BICC (rapportages) is geen onderdeel van de ketenafstemming maar volgt automatisch. Zodra een zaaktype is aangesloten op het zaaksysteem, komen de gegevens in het DWH terecht en worden de PowerBI rapportages automatisch uitgebreid.
             </div>
         </section>
 
