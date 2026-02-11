@@ -87,6 +87,77 @@
             gap: 1rem;
             margin-bottom: 2rem;
         }
+        /* Filtering lijst */
+        .filtering-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .filtering-zaaktype {
+            background: white;
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .filtering-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .filtering-header:hover {
+            background: var(--gray-light);
+        }
+        .filtering-code {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: monospace;
+        }
+        .filtering-naam {
+            font-weight: 500;
+            flex: 1;
+        }
+        .filtering-count {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+        .filtering-header .expand-icon {
+            color: var(--text-light);
+            transition: transform 0.2s;
+        }
+        .filtering-zaaktype.expanded .filtering-header .expand-icon {
+            transform: rotate(180deg);
+        }
+        .filtering-doctypes {
+            display: none;
+            padding: 0 1.25rem 1.25rem 1.25rem;
+            border-top: 1px solid var(--gray);
+            background: var(--gray-light);
+        }
+        .filtering-zaaktype.expanded .filtering-doctypes {
+            display: block;
+        }
+        .filtering-doctypes ul {
+            margin: 1rem 0 0 1.5rem;
+        }
+        .filtering-doctypes li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .filtering-doctypes code {
+            background: white;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-left: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -374,6 +445,234 @@
             </div>
         </section>
 
+        <!-- Documenttypen Filtering -->
+        <section>
+            <h3>Documenttypen Filtering (Enable-U)</h3>
+            <p style="color: var(--text-light); margin-bottom: 1rem;">Per zaaktype is geconfigureerd welke documenttypen zichtbaar zijn op de PIP. Klik op een zaaktype om de documenttypen te zien.</p>
+
+            <div class="filtering-list">
+                <div class="filtering-zaaktype" data-zaaktype="geboorte">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B0327</span>
+                        <span class="filtering-naam">Geboorte aangifte</span>
+                        <span class="filtering-count">8 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aangifte geboorte <code>BE00017663</code></li>
+                            <li>Afschrift akte naamskeuze <code>BE00002048</code></li>
+                            <li>Donorverklaring <code>LB00000600</code></li>
+                            <li>Erkenningsakte <code>BE00002052</code></li>
+                            <li>Geboortebewijs <code>LB00000598</code></li>
+                            <li>Kopie buitenlands paspoort <code>LB00000599</code></li>
+                            <li>Kopie identiteitsbewijs <code>BE00017662</code></li>
+                            <li>Overig stuk inkomend <code>BE00006583</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="overlijden">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B0360</span>
+                        <span class="filtering-naam">Overlijdensmelding</span>
+                        <span class="filtering-count">4 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aangifte overlijden <code>BE00002278</code></li>
+                            <li>Kopie identiteitsbewijs <code>BE00017154</code></li>
+                            <li>Overig stuk inkomend <code>BE00006649</code></li>
+                            <li>Verklaring overlijden <code>BE00002302</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="reisdocument">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B0268</span>
+                        <span class="filtering-naam">Reisdocument</span>
+                        <span class="filtering-count">4 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aanvraag formulier <code>BE00005850</code></li>
+                            <li>Kopie identiteitsbewijs <code>BE00018251</code></li>
+                            <li>Overig stuk inkomend <code>BE00006454</code></li>
+                            <li>Toestemmingsverklaring <code>BE00021704</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="volmacht">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B0280</span>
+                        <span class="filtering-naam">Volmacht verkiezingen</span>
+                        <span class="filtering-count">4 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aanvraag formulier <code>BE00017298</code></li>
+                            <li>Formulier instemming gemachtigde <code>LB00000603</code></li>
+                            <li>Overig stuk inkomend <code>BE00006484</code></li>
+                            <li>Volmachtbewijs <code>BE00001715</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="verhuizing">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B0366</span>
+                        <span class="filtering-naam">BRP verhuizing aangifte</span>
+                        <span class="filtering-count">6 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Verhuizing aangifte <code>BE00018190</code></li>
+                            <li>Toestemming hoofdbewoner <code>BE00002315</code></li>
+                            <li>Overig stuk inkomend <code>BE00006658</code></li>
+                            <li>Kopie identiteitsbewijs <code>BE00002316</code></li>
+                            <li>Kopie huurovereenkomst <code>BE00018191</code></li>
+                            <li>Eigendomsbewijs <code>BE00002319</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="emigratie">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B1425</span>
+                        <span class="filtering-naam">Doorgeven vertrek naar het buitenland</span>
+                        <span class="filtering-count">2 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aangifte <code>BE00010782</code></li>
+                            <li>Overig stuk inkomend <code>BE00010783</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="verstrekkingsbeperking">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B0328</span>
+                        <span class="filtering-naam">BRP persoonsgegevens verstrekkingsbeperking</span>
+                        <span class="filtering-count">5 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aanvraag formulier <code>BE00002054</code></li>
+                            <li>Kopie identiteitsbewijs <code>BE00017664</code></li>
+                            <li>Overig stuk inkomend <code>BE00006586</code></li>
+                            <li>Toekenning <code>BE00002055</code></li>
+                            <li>Verklaring te ondertekenen door aanvrager <code>LB00000597</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="naamgebruik">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B0348</span>
+                        <span class="filtering-naam">BRP naamgebruikgegeven mutatie</span>
+                        <span class="filtering-count">5 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aanvraag formulier <code>BE00002168</code></li>
+                            <li>Kennisgeving mutatie naamgebruik <code>BE00002164</code></li>
+                            <li>Kopie identiteitsbewijs <code>BE00017668</code></li>
+                            <li>Overig stuk inkomend <code>BE00006619</code></li>
+                            <li>Verklaring te ondertekenen door aanvrager <code>LB00000596</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="burgerlijkestand">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B0259</span>
+                        <span class="filtering-naam">Document Burgerlijke Stand</span>
+                        <span class="filtering-count">2 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aanvraag formulier <code>BE00001494</code></li>
+                            <li>Overig stuk inkomend <code>BE00006433</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="uittreksel">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B0255</span>
+                        <span class="filtering-naam">BRP uittreksel</span>
+                        <span class="filtering-count">2 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aanvraag formulier <code>BE00005849</code></li>
+                            <li>Overig stuk inkomend <code>BE00006424</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="vermissing">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B0276</span>
+                        <span class="filtering-naam">Reisdocument vermissing/diefstal</span>
+                        <span class="filtering-count">4 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aanvraag formulier <code>BE00017147</code></li>
+                            <li>Kopie identiteitsbewijs <code>BE00017534</code></li>
+                            <li>Overig stuk inkomend <code>BE00006475</code></li>
+                            <li>Proces-verbaal <code>BE00017148</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="stempas">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B1628</span>
+                        <span class="filtering-naam">Vervangende stempas</span>
+                        <span class="filtering-count">2 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aanvraag formulier <code>BE00014450</code></li>
+                            <li>Overig stuk inkomend <code>BE00014457</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="filtering-zaaktype" data-zaaktype="vog">
+                    <div class="filtering-header">
+                        <span class="filtering-code">B0275</span>
+                        <span class="filtering-naam">Verklaring omtrent gedrag (VOG)</span>
+                        <span class="filtering-count">3 documenttypen</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="filtering-doctypes">
+                        <ul>
+                            <li>Aanvraag formulier <code>BE00001645</code></li>
+                            <li>Kopie identiteitsbewijs <code>BE00017540</code></li>
+                            <li>Overig stuk inkomend <code>BE00006472</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Roadmap -->
         <section>
             <h3>Roadmap Optimalisatie Dienstverlening</h3>
@@ -446,6 +745,14 @@
                     detail.classList.add('visible');
                     this.classList.add('expanded');
                 }
+            });
+        });
+
+        // Filtering zaaktypen expand/collapse
+        document.querySelectorAll('.filtering-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const zaaktype = this.parentElement;
+                zaaktype.classList.toggle('expanded');
             });
         });
 

@@ -9,7 +9,8 @@ const changelog = [
             "Financiën Export en Subsidies verwijderd uit live zaaktypen (niet meer in gebruik)",
             "KCC zoekt nu op postcode + huisnummer (niet BSN)",
             "FB Zaaksysteem: regelt automatisering toegevoegd (notificaties, fasering)",
-            "Notificaties genuanceerd (per zaaktype ingericht)"
+            "Notificaties genuanceerd (per zaaktype ingericht)",
+            "Documenttypen filtering overzicht toegevoegd (Enable-U configuratie per zaaktype)"
         ]
     },
     {
