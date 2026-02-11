@@ -56,7 +56,7 @@ function showSystemDetail(systemId) {
             title: 'Rx.Front (KCC)',
             description: 'Het KCC systeem voor klantcontact. Medewerkers zien hier het integrale klantbeeld.',
             details: [
-                'Zoeken op BSN',
+                'Zoeken op postcode + huisnummer',
                 'Alle lopende en gesloten zaken zichtbaar',
                 'Status en behandelaar direct inzichtelijk',
                 'Terugbelverzoeken kunnen worden ingepland'
