@@ -3,6 +3,14 @@
 
 const changelog = [
     {
+        datum: "2026-03-10",
+        wijzigingen: [
+            "Kanaal E-mail toegevoegd aan het overzicht",
+            "Post/Scan hernoemd naar Post",
+            "gemeentewestland.nl hernoemd naar Website (Gemeente Westland)"
+        ]
+    },
+    {
         datum: "2026-02-11",
         wijzigingen: [
             "Feedback Lisha verwerkt",
