@@ -7,7 +7,8 @@ const changelog = [
         wijzigingen: [
             "Kanaal E-mail toegevoegd aan het overzicht",
             "Post/Scan hernoemd naar Post",
-            "gemeentewestland.nl hernoemd naar Website (Gemeente Westland)"
+            "gemeentewestland.nl hernoemd naar Website (Gemeente Westland)",
+            "Behandelaar: Corsa vervangen door systemen"
         ]
     },
     {
