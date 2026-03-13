@@ -3,6 +3,12 @@
 
 const changelog = [
     {
+        datum: "2026-03-13",
+        wijzigingen: [
+            "Stappenplan: stap ISO contact verwijderd"
+        ]
+    },
+    {
         datum: "2026-03-10",
         wijzigingen: [
             "Kanaal E-mail toegevoegd aan het overzicht",
