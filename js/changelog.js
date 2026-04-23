@@ -3,6 +3,15 @@
 
 const changelog = [
     {
+        datum: "2026-04-23",
+        wijzigingen: [
+            "Ketenafstemming verduidelijkt met werkafspraken voor poststromen bij Postregistratie",
+            "Stappenplan stap 5 uitgebreid met afstemming met Postregistratie",
+            "Overdrachtsdocument terminologie aangepast naar Taakveld DIV (adviseur recordmanagement)",
+            "Betalingsregeling gemeentebelasting verwijderd uit live zaaktypen"
+        ]
+    },
+    {
         datum: "2026-03-13",
         wijzigingen: [
             "Stappenplan: stap ISO contact verwijderd"
